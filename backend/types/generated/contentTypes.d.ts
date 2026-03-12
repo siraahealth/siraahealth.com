@@ -430,6 +430,106 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
+  collectionName: 'bookings';
+  info: {
+    displayName: 'Booking';
+    pluralName: 'bookings';
+    singularName: 'booking';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    child_age: Schema.Attribute.String;
+    consent: Schema.Attribute.Boolean;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::booking.booking'
+    > &
+      Schema.Attribute.Private;
+    parent_name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone_number: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }>;
+    primary_concern: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
+  collectionName: 'doctors';
+  info: {
+    displayName: 'Doctor';
+    pluralName: 'doctors';
+    singularName: 'doctor';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    designation: Schema.Attribute.String & Schema.Attribute.Required;
+    experience: Schema.Attribute.Integer & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::doctor.doctor'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
+  collectionName: 'page_contents';
+  info: {
+    displayName: 'Page Content';
+    pluralName: 'page-contents';
+    singularName: 'page-content';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-content.page-content'
+    > &
+      Schema.Attribute.Private;
+    page: Schema.Attribute.Enumeration<['home']>;
+    publishedAt: Schema.Attribute.DateTime;
+    section: Schema.Attribute.String;
+    tag_line: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -941,6 +1041,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::booking.booking': ApiBookingBooking;
+      'api::doctor.doctor': ApiDoctorDoctor;
+      'api::page-content.page-content': ApiPageContentPageContent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

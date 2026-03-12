@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "singularName": "booking",
+    "pluralName": "bookings",
+    "displayName": "Booking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "parent_name": {
+      "type": "string",
+      "required": true
+    },
+    "phone_number": {
+      "type": "string",
+      "maxLength": 10,
+      "required": true
+    },
+    "child_age": {
+      "type": "string"
+    },
+    "primary_concern": {
+      "type": "string"
+    },
+    "consent": {
+      "type": "boolean"
+    }
+  }
+}
