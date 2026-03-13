@@ -1,0 +1,152 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    environment: production
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            frontend:
+              - 'frontend/**'
+
+      - name: Build using Node.js ${{ matrix.node-version }}
+        if: steps.changes.outputs.frontend == 'true'
+        run: |
+          pwd
+          ls -la
+          cd frontend
+          echo "NEXT_PUBLIC_FRONTEND_URL=${{ vars.NEXT_PUBLIC_FRONTEND_URL }}" >> .env
+          echo "NEXT_PUBLIC_PHONE_NUMBER=${{ vars.NEXT_PUBLIC_PHONE_NUMBER }}" >> .env
+          echo "NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }}" >> .env
+          echo "CUSTOM_TOKEN=${{ vars.CUSTOM_TOKEN }}" >> .env
+
+          # Install dependencies and build frontend
+          npm install
+          npm run build
+
+      - name: Copy build
+        if: steps.changes.outputs.frontend == 'true'
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          source: "./frontend"
+          target: "/root/websites/codevally"
+          strip_components: 0
+
+      - name: Restart server
+        if: steps.changes.outputs.frontend == 'true'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          script: |
+            export NVM_DIR="/root/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 20
+            pm2 restart codevally_frontend_3000 || pm2 start "npm run start" --name codevally_frontend_3000
+
+  backend:
+    runs-on: ubuntu-latest
+    environment: production
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+
+      - name: Build using Node.js ${{ matrix.node-version }}
+        if: steps.changes.outputs.backend == 'true'
+        run: |
+          pwd
+          ls -la
+          cd backend
+          echo "HOST=${{ vars.HOST }}" >> .env
+          echo "PORT=${{ vars.PORT }}" >> .env
+          echo "APP_KEYS=${{ vars.APP_KEYS }}" >> .env
+          echo "API_TOKEN_SALT=${{ vars.API_TOKEN_SALT }}" >> .env
+          echo "ADMIN_JWT_SECRET=${{ vars.ADMIN_JWT_SECRET }}" >> .env
+          echo "TRANSFER_TOKEN_SALT=${{ vars.TRANSFER_TOKEN_SALT }}" >> .env
+          echo "ENCRYPTION_KEY=${{ vars.ENCRYPTION_KEY }}" >> .env
+          echo "DATABASE_CLIENT=${{ vars.DATABASE_CLIENT }}" >> .env
+          echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> .env
+          echo "DATABASE_PORT=${{ vars.DATABASE_PORT }}" >> .env
+          echo "DATABASE_NAME=${{ vars.DATABASE_NAME }}" >> .env
+          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
+          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
+          echo "DATABASE_SSL=${{ vars.DATABASE_SSL }}" >> .env
+          echo "DATABASE_FILENAME=${{ secrets.DATABASE_FILENAME }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "CMS_CUSTOM_TOKEN=${{ secrets.CMS_CUSTOM_TOKEN }}" >> .env
+          echo "ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}" >> .env
+          echo "ALLOWED_REFERRAL=${{ secrets.ALLOWED_REFERRAL }}" >> .env
+
+          # Install dependencies and build backend
+          npm install
+          npm run build
+
+      - name: Clean and set permissions
+        if: steps.changes.outputs.backend == 'true'
+        run: |
+          rm -f ./backend/.strapi-updater.json || true
+          sudo chmod -R 755 ./backend
+
+      - name: Copy build
+        if: steps.changes.outputs.backend == 'true'
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          source: "./backend"
+          target: "/root/websites/codevally"
+          strip_components: 0
+
+      - name: Restart server
+        if: steps.changes.outputs.backend == 'true'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          script: |
+            export NVM_DIR="/root/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 20
+            pm2 restart codevally_backend_1337 || pm2 start "npm run start" --name codevally_backend_1337
