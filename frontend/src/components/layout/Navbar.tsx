@@ -10,7 +10,7 @@ export default function Navbar() {
             alt="Siraa Health"
             className="w-16 h-16 object-contain"
           />
-          <span className="font-display font-black text-2xl tracking-tight text-foreground hidden sm:inline">
+          <span className="font-display font-black text-2xl tracking-tight text-foreground">
             Siraa <span className="text-primary">Health</span>
           </span>
         </div>
