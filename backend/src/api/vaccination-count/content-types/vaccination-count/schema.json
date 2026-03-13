@@ -20,7 +20,8 @@
       "required": true
     },
     "iap_immunisation_schedule": {
-      "type": "biginteger",
+      "type": "string",
+      "default": "100%",
       "required": true
     }
   }
