@@ -324,7 +324,7 @@ export function BookingForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-full py-8 h-auto text-lg font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 mt-4"
+          className="px-8 py-4 rounded-full w-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all text-center flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
             <>
