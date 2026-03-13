@@ -21,9 +21,9 @@ export function DoctorsSection({ doctors }: { doctors: Doctor[] }) {
               className="bg-accent/20 rounded-3xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300"
             >
               <div className="aspect-square w-full overflow-hidden">
-                {doc.imageUrl && (
+                {doc.image && (
                   <img
-                    src={doc.imageUrl}
+                    src={doc.image}
                     alt={doc.name}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />

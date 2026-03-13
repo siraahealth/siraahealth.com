@@ -1,8 +1,6 @@
-"use client";
-import React from "react";
+import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 
 export default function Navbar() {
-  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
   return (
     <header className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-border/50 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -18,16 +16,16 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          {phoneNumber && (
+          {PHONE_NUMBER && (
             <div className="hidden md:flex flex-col items-end mr-4">
               <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
                 Call Us Today
               </span>
               <a
-                href={`tel:${phoneNumber}`}
+                href={`tel:${PHONE_NUMBER}`}
                 className="font-display font-bold text-primary text-lg"
               >
-                {phoneNumber}
+                {formattedPhoneNumber}
               </a>
             </div>
           )}

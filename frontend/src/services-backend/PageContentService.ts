@@ -8,7 +8,7 @@ export class PageContentBackendService extends BaseBackendService {
   ): Promise<PageContent | null> {
     try {
       const res = await this.fetchStrapi(
-        `/api/page-contents?filters[page][$eq]=${page}&filters[section][$eq]=${section}&populate=image`,
+        `/api/page-contents?filters[page][$eq]=${page}&filters[section][$eq]=${section}&populate[image][fields][0]=url&populate[icon][fields][0]=url`,
       );
 
       if (!res.ok) {
@@ -25,7 +25,8 @@ export class PageContentBackendService extends BaseBackendService {
         tag_line: doc.tag_line,
         section: doc.section,
         page: doc.page,
-        image: this.STRAPI_URL + doc.image.url,
+        image: doc.image.url ? this.STRAPI_URL + doc.image.url : undefined,
+        icon: doc.icon.url ? this.STRAPI_URL + doc.icon.url : undefined,
       };
     } catch (err) {
       console.error("Failed to fetch page contents from Strapi", err);

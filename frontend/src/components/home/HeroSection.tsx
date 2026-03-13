@@ -1,9 +1,8 @@
 import { ArrowDown, PhoneCall, Star } from "lucide-react";
 import type { PageContent } from "@/lib/page-contents";
+import { PHONE_NUMBER } from "@/utils/contant";
 
 export function HeroSection({ content }: { content: PageContent | null }) {
-  console.log(content);
-
   return (
     <section
       id="home"
@@ -41,13 +40,15 @@ export function HeroSection({ content }: { content: PageContent | null }) {
                 Book Development Assessment
                 <ArrowDown className="w-5 h-5 animate-bounce" />
               </a>
-              <a
-                href="#development-quiz"
-                className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
-              >
-                <PhoneCall className="w-5 h-5 text-primary" />
-                Check Your Child's Development in 60 Seconds
-              </a>
+              {PHONE_NUMBER && (
+                <a
+                  href={`tel:${PHONE_NUMBER}`}
+                  className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
+                >
+                  <PhoneCall className="w-5 h-5 text-primary" />
+                  Talk to a Specialist
+                </a>
+              )}
             </div>
           </div>
 
@@ -56,10 +57,34 @@ export function HeroSection({ content }: { content: PageContent | null }) {
               {content?.image && (
                 <img
                   src={content.image}
-                  alt="Hero Image"
+                  alt="Indian pediatrician and child during consultation"
                   className="w-full h-full object-cover"
                 />
               )}
+
+              {/* Status Badge Overlay */}
+              <div className="absolute bottom-6 px-6 w-full animate-fade-in-up delay-500">
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/20 flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                    {content?.icon && (
+                      <img
+                        src={content.icon}
+                        alt="Indian pediatrician and child during consultation"
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
+
+                  <div>
+                    <p className="font-display font-bold text-sm">
+                      {content?.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground font-medium">
+                      {content?.tag_line}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

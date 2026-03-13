@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { GoogleFormEmbed } from "@/components/GoogleFormEmbed";
+import { BookingForm } from "@/components/home/BookingForm";
 
 export function TestimonialsSection() {
   return (
@@ -55,9 +55,9 @@ export function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Google Form Embed */}
-          <div className="sticky top-24">
-            <GoogleFormEmbed />
+          {/* Custom Booking Form */}
+          <div className="sticky top-24" id="booking-form">
+            <BookingForm />
           </div>
         </div>
       </div>

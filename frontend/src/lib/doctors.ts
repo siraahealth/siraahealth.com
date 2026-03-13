@@ -5,7 +5,7 @@ export interface Doctor {
   name: string;
   designation: string;
   experience: number;
-  imageUrl?: string;
+  image?: string;
 }
 
 export async function getDoctors(): Promise<Doctor[]> {

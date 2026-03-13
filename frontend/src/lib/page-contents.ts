@@ -7,6 +7,7 @@ export interface PageContent {
   section: string;
   page: string;
   image?: string;
+  icon?: string;
 }
 
 export async function getPageContents(
