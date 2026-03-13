@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
@@ -10,7 +9,6 @@ import { ServicesSection } from "@/components/home/ServicesSection";
 import { DoctorsSection } from "@/components/home/DoctorsSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { FAQSection } from "@/components/home/FAQSection";
-import { DevelopmentQuiz } from "@/components/DevelopmentQuiz";
 import type { PageContent } from "@/lib/page-contents";
 import type { Doctor } from "@/lib/doctors";
 
@@ -31,12 +29,6 @@ export default function HomePage({ heroContent, doctors }: HomePageProps) {
         <CareJourneySection />
         <ServicesSection />
         <DoctorsSection doctors={doctors} />
-
-        <section id="development-quiz" className="py-20 lg:py-28 bg-accent/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <DevelopmentQuiz />
-          </div>
-        </section>
 
         <TestimonialsSection />
         <FAQSection />

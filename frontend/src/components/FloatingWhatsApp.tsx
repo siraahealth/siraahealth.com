@@ -1,8 +1,9 @@
 "use client";
 import { MessageCircle } from "lucide-react";
+import { PHONE_NUMBER } from "@/utils/contant";
 
 export function FloatingWhatsApp() {
-  const whatsappUrl = "https://wa.me/919910731103?text=Hi%20I%20want%20to%20book%20a%20child%20assessment%20with%20Siraa%20Health";
+  const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=Hi%20I%20want%20to%20book%20a%20child%20assessment%20with%20Siraa%20Health`;
 
   return (
     <a
@@ -16,7 +17,7 @@ export function FloatingWhatsApp() {
       <span className="font-semibold font-display hidden sm:block">
         Chat With Specialist
       </span>
-      
+
       {/* Pulse ping effect */}
       <span className="absolute right-0 top-0 -mt-1 -mr-1 flex h-4 w-4">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>

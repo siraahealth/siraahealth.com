@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,19 +16,9 @@ import {
 } from "@/components/ui/select";
 import { Controller } from "react-hook-form";
 import { FrontendService } from "@/services/FrontendService";
+import { bookingSchema } from "@/validation/booking-schema";
 
 const frontendService = new FrontendService();
-
-const schema = yup.object().shape({
-  parent_name: yup.string().required("Parent's name is required"),
-  phone_number: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
-  child_age: yup.string(),
-  primary_concern: yup.string(),
-  consent: yup.boolean().oneOf([true, false]),
-});
 
 // Define the form data type to match exactly what react-hook-form expects
 interface IBookingFormData {
@@ -53,7 +42,7 @@ export function BookingForm() {
     formState: { errors },
     reset,
   } = useForm<IBookingFormData>({
-    resolver: yupResolver(schema) as any, // Cast to any to bypass complex yup/hook-form type mismatches if they persist
+    resolver: yupResolver(bookingSchema) as any,
     defaultValues: {
       parent_name: "",
       phone_number: "",

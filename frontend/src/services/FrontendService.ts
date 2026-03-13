@@ -6,11 +6,11 @@ export class FrontendService {
   }
 
   /**
-   * Sends a booking request to the internal Next.js API route.
+   * Sends a booking request to the Next.js API route.
    */
   public async createBooking(data: any): Promise<any> {
     try {
-      const apiUrl = `${this.apiUrl}/api/internal/bookings`;
+      const apiUrl = `${this.apiUrl}/api/bookings`;
 
       const res = await fetch(apiUrl, {
         method: "POST",

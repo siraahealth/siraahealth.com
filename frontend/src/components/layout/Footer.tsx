@@ -1,5 +1,6 @@
 import React from "react";
 import { MapPin, PhoneCall } from "lucide-react";
+import { formattedPhoneNumber } from "@/utils/contant";
 
 export default function Footer() {
   return (
@@ -74,7 +75,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <PhoneCall className="w-5 h-5 text-primary shrink-0" />
-                <span>+91 99107 31103</span>
+                <span>{formattedPhoneNumber}</span>
               </li>
             </ul>
           </div>
@@ -105,10 +106,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm font-medium">
             <p>© 2026 Siraa Health. All Rights Reserved</p>
             <div className="flex gap-6">
-              <a href="/privacy-policy" className="hover:text-white">
+              <a href="#" className="hover:text-white">
                 Privacy Policy
               </a>
-              <a href="/terms-of-service" className="hover:text-white">
+              <a href="#" className="hover:text-white">
                 Terms of Service
               </a>
             </div>
