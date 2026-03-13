@@ -5,7 +5,7 @@ export class DoctorBackendService extends BaseBackendService {
   public static async getDoctors(): Promise<Doctor[]> {
     try {
       const res = await this.fetchStrapi(
-        "/api/doctors?populate[image][fields][0]=url",
+        `/api/doctors?populate[image][fields][0]=url&pagination[limit]=50`,
       );
 
       if (!res.ok) {
