@@ -1,47 +1,116 @@
+"use client";
+
+import { useState } from "react";
+import { Menu, X, Phone } from "lucide-react";
 import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-border/50 shadow-sm">
+    <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 shadow-sm transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="/">
+        <a href="/" className="relative z-50">
           <div className="flex items-center gap-2">
             <img
               src="/assets/siraa-logo.png"
               alt="Siraa Health"
-              className="w-16 h-16 object-contain"
+              className="w-12 h-12 md:w-16 md:h-16 object-contain"
             />
-            <span className="font-display font-black text-2xl tracking-tight text-foreground">
+            <span className="font-display font-black text-xl md:text-2xl tracking-tight text-foreground">
               Siraa <span className="text-primary">Health</span>
             </span>
           </div>
         </a>
 
-        <div className="flex items-center gap-4">
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-8">
+          <a
+            href="/vaccination"
+            className="text-sm font-bold text-foreground hover:text-primary transition-colors"
+          >
+            Why Vaccinate
+          </a>
+
           {PHONE_NUMBER && (
-            <div className="hidden md:flex flex-col items-end mr-4">
-              <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+            <div className="flex flex-col items-end border-r border-border/50 pr-8">
+              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
                 Call Us Today
               </span>
               <a
                 href={`tel:${PHONE_NUMBER}`}
-                className="font-display font-bold text-primary text-lg"
+                className="font-display font-bold text-primary text-lg leading-tight"
               >
                 {formattedPhoneNumber}
               </a>
             </div>
           )}
-          <a href="/vaccination">
-            <div className="hidden md:flex flex-col items-end mr-4">
-              Why Vaccinate
-            </div>
-          </a>
+
           <a
             href="#booking-form"
-            className="px-5 py-2.5 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-colors hidden sm:block"
+            className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
             Book Assessment
           </a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden relative z-50 p-2 text-foreground hover:bg-black/5 rounded-xl transition-colors"
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`lg:hidden fixed inset-0 bg-white z-40 transition-all duration-500 ease-in-out ${
+          isOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col h-full pt-24 gap-6 bg-white">
+          <div className="bg-white px-6">
+            <div className="space-y-4">
+              <a
+                href="/vaccination"
+                onClick={() => setIsOpen(false)}
+                className="block text-2xl font-display font-bold text-foreground hover:text-primary transition-colors border-b border-border/30 pb-4"
+              >
+                Why Vaccinate
+              </a>
+            </div>
+
+            <div className="mt-auto pb-12 space-y-6">
+              {PHONE_NUMBER && (
+                <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
+                  <div className="flex items-center gap-3 mb-1">
+                    <Phone className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest text-primary/60">
+                      Direct Support
+                    </span>
+                  </div>
+                  <a
+                    href={`tel:${PHONE_NUMBER}`}
+                    className="font-display font-bold text-primary text-2xl block"
+                  >
+                    {formattedPhoneNumber}
+                  </a>
+                </div>
+              )}
+
+              <a
+                href="#booking-form"
+                onClick={() => setIsOpen(false)}
+                className="block w-full text-center px-8 py-4 rounded-2xl font-bold bg-secondary text-secondary-foreground text-xl shadow-xl shadow-secondary/20 hover:bg-yellow-400 active:scale-95 transition-all"
+              >
+                Book Assessment
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
