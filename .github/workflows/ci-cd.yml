@@ -38,8 +38,8 @@ jobs:
           cd frontend
           echo "NEXT_PUBLIC_FRONTEND_URL=${{ vars.NEXT_PUBLIC_FRONTEND_URL }}" >> .env
           echo "NEXT_PUBLIC_PHONE_NUMBER=${{ vars.NEXT_PUBLIC_PHONE_NUMBER }}" >> .env
-          echo "NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }}" >> .env
-          echo "CUSTOM_TOKEN=${{ vars.CUSTOM_TOKEN }}" >> .env
+          echo "NEXT_PUBLIC_STRAPI_URL=${{ vars.NEXT_PUBLIC_STRAPI_URL }}" >> .env
+          echo "CUSTOM_TOKEN=${{ secrets.CUSTOM_TOKEN }}" >> .env
 
           # Install dependencies and build frontend
           npm install
@@ -99,23 +99,21 @@ jobs:
           cd backend
           echo "HOST=${{ vars.HOST }}" >> .env
           echo "PORT=${{ vars.PORT }}" >> .env
-          echo "APP_KEYS=${{ vars.APP_KEYS }}" >> .env
-          echo "API_TOKEN_SALT=${{ vars.API_TOKEN_SALT }}" >> .env
-          echo "ADMIN_JWT_SECRET=${{ vars.ADMIN_JWT_SECRET }}" >> .env
-          echo "TRANSFER_TOKEN_SALT=${{ vars.TRANSFER_TOKEN_SALT }}" >> .env
-          echo "ENCRYPTION_KEY=${{ vars.ENCRYPTION_KEY }}" >> .env
+          echo "APP_KEYS=${{ secrets.APP_KEYS }}" >> .env
+          echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> .env
+          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> .env
+          echo "TRANSFER_TOKEN_SALT=${{ secrets.TRANSFER_TOKEN_SALT }}" >> .env
+          echo "ENCRYPTION_KEY=${{ secrets.ENCRYPTION_KEY }}" >> .env
           echo "DATABASE_CLIENT=${{ vars.DATABASE_CLIENT }}" >> .env
-          echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> .env
+          echo "DATABASE_HOST=${{ vars.DATABASE_HOST }}" >> .env
           echo "DATABASE_PORT=${{ vars.DATABASE_PORT }}" >> .env
           echo "DATABASE_NAME=${{ vars.DATABASE_NAME }}" >> .env
-          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
+          echo "DATABASE_USERNAME=${{ vars.DATABASE_USERNAME }}" >> .env
           echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
-          echo "DATABASE_SSL=${{ vars.DATABASE_SSL }}" >> .env
-          echo "DATABASE_FILENAME=${{ secrets.DATABASE_FILENAME }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
           echo "CMS_CUSTOM_TOKEN=${{ secrets.CMS_CUSTOM_TOKEN }}" >> .env
-          echo "ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}" >> .env
-          echo "ALLOWED_REFERRAL=${{ secrets.ALLOWED_REFERRAL }}" >> .env
+          echo "ALLOWED_ORIGIN=${{ vars.ALLOWED_ORIGIN }}" >> .env
+          echo "ALLOWED_REFERRAL=${{ vars.ALLOWED_REFERRAL }}" >> .env
 
           # Install dependencies and build backend
           npm install
