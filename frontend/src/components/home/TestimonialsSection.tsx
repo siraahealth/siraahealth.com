@@ -56,7 +56,7 @@ export function TestimonialsSection() {
           </div>
 
           {/* Custom Booking Form */}
-          <div className="sticky top-24" id="booking-form">
+          <div className="sticky top-24 scroll-mt-32" id="booking-form">
             <BookingForm />
           </div>
         </div>
