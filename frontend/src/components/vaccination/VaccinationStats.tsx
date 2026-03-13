@@ -12,17 +12,26 @@ export function VaccinationStats({
   const statsToRender = [
     {
       label: "Babies Safely Vaccinated",
-      value: dynamicStats.babies_safely_vaccinated,
+      value:
+        Number(dynamicStats.babies_safely_vaccinated) === 0
+          ? "0"
+          : `${dynamicStats.babies_safely_vaccinated}+`,
       icon: Baby,
     },
     {
       label: "Parents Trust Siraa Health",
-      value: dynamicStats.parents_trust_siraa_health,
+      value:
+        Number(dynamicStats.parents_trust_siraa_health) === 0
+          ? "0"
+          : `${dynamicStats.parents_trust_siraa_health}+`,
       icon: Heart,
     },
     {
       label: "IAP Immunisation Schedule",
-      value: dynamicStats.iap_immunisation_schedule,
+      value:
+        Number(dynamicStats.iap_immunisation_schedule) === 0
+          ? "0"
+          : `${dynamicStats.iap_immunisation_schedule}%`,
       icon: Syringe,
     },
     {
