@@ -1,6 +1,13 @@
 import { PageContentBackendService } from "@/services-backend/PageContentService";
 import { DoctorBackendService } from "@/services-backend/DoctorService";
-import HomePage from "./(home)/HomePage";
+import { HeroSection } from "@/components/home/HeroSection";
+import { TrustSection } from "@/components/home/TrustSection";
+import { SymptomsSection } from "@/components/home/SymptomsSection";
+import { CareJourneySection } from "@/components/home/CareJourneySection";
+import { ServicesSection } from "@/components/home/ServicesSection";
+import { DoctorsSection } from "@/components/home/DoctorsSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { FAQSection } from "@/components/home/FAQSection";
 
 export default async function Home() {
   // Fetching directly from the backend services server-side
@@ -10,5 +17,17 @@ export default async function Home() {
     "hero",
   );
 
-  return <HomePage doctors={doctors} heroContent={heroContent} />;
+  return (
+    <main>
+      <HeroSection content={heroContent} />
+      <TrustSection />
+      <SymptomsSection />
+      <CareJourneySection />
+      <ServicesSection />
+      <DoctorsSection doctors={doctors} />
+
+      <TestimonialsSection />
+      <FAQSection />
+    </main>
+  );
 }

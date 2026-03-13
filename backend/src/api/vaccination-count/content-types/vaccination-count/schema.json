@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "vaccination_counts",
+  "info": {
+    "singularName": "vaccination-count",
+    "pluralName": "vaccination-counts",
+    "displayName": "Vaccination Count"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "parents_trust_siraa_health": {
+      "type": "biginteger",
+      "required": true
+    },
+    "babies_safely_vaccinated": {
+      "type": "biginteger",
+      "required": true
+    },
+    "iap_immunisation_schedule": {
+      "type": "biginteger",
+      "required": true
+    }
+  }
+}

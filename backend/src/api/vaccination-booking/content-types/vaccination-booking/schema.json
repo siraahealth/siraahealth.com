@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vaccination_bookings",
+  "info": {
+    "singularName": "vaccination-booking",
+    "pluralName": "vaccination-bookings",
+    "displayName": "Vaccination Booking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "parent_name": {
+      "type": "string",
+      "required": true
+    },
+    "phone_number": {
+      "type": "string",
+      "required": true
+    },
+    "child_age": {
+      "type": "string"
+    }
+  }
+}

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Nunito, Quicksand } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import Navbar from "@/components/layout/Navbar";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import Footer from "@/components/layout/Footer";
 
 const fontSans = Nunito({
   variable: "--font-sans",
@@ -17,7 +20,8 @@ const fontDisplay = Quicksand({
 
 export const metadata: Metadata = {
   title: "Siraa Health | Pediatric Therapy Clinic",
-  description: "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
+  description:
+    "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
 };
 
 export default function RootLayout({
@@ -30,7 +34,14 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontDisplay.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="min-h-screen bg-background font-sans">
+            <Navbar />
+            <div>{children}</div>
+            <Footer />
+            <FloatingWhatsApp />
+          </div>
+        </Providers>
       </body>
     </html>
   );

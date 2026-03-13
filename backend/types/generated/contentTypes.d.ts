@@ -530,6 +530,71 @@ export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiVaccinationBookingVaccinationBooking
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'vaccination_bookings';
+  info: {
+    displayName: 'Vaccination Booking';
+    pluralName: 'vaccination-bookings';
+    singularName: 'vaccination-booking';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    child_age: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vaccination-booking.vaccination-booking'
+    > &
+      Schema.Attribute.Private;
+    parent_name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone_number: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVaccinationCountVaccinationCount
+  extends Struct.SingleTypeSchema {
+  collectionName: 'vaccination_counts';
+  info: {
+    displayName: 'Vaccination Count';
+    pluralName: 'vaccination-counts';
+    singularName: 'vaccination-count';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    babies_safely_vaccinated: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    iap_immunisation_schedule: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vaccination-count.vaccination-count'
+    > &
+      Schema.Attribute.Private;
+    parents_trust_siraa_health: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1044,6 +1109,8 @@ declare module '@strapi/strapi' {
       'api::booking.booking': ApiBookingBooking;
       'api::doctor.doctor': ApiDoctorDoctor;
       'api::page-content.page-content': ApiPageContentPageContent;
+      'api::vaccination-booking.vaccination-booking': ApiVaccinationBookingVaccinationBooking;
+      'api::vaccination-count.vaccination-count': ApiVaccinationCountVaccinationCount;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

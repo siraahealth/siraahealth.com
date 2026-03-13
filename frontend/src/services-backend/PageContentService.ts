@@ -12,7 +12,9 @@ export class PageContentBackendService extends BaseBackendService {
       );
 
       if (!res.ok) {
-        throw new Error("failed to fetch page content.");
+        const errorData = await res.json();
+        console.error("Strapi Vaccination Booking Error:", errorData);
+        throw new Error("Failed to create vaccination booking in Strapi");
       }
 
       const { data } = await res.json();
