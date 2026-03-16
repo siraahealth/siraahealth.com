@@ -27,7 +27,7 @@ export default function AppNavbar() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
           <Link
-            href="/vaccination"
+            href="/vaccination#why-vaccinate"
             className="text-sm font-bold text-foreground hover:text-primary transition-colors"
           >
             Why Vaccinate
@@ -77,7 +77,7 @@ export default function AppNavbar() {
           <div className="bg-white px-6">
             <div className="space-y-4">
               <Link
-                href="/vaccination"
+                href="/vaccination#why-vaccinate"
                 onClick={() => setIsOpen(false)}
                 className="block text-2xl font-display font-bold text-foreground hover:text-primary transition-colors border-b border-border/30 pb-4"
               >
