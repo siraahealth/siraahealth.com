@@ -106,10 +106,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm font-medium">
             <p>© 2026 Siraa Health. All Rights Reserved</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white">
+              <a href="/privacy-policy" className="hover:text-white">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-white">
+              <a href="/terms-of-service" className="hover:text-white">
                 Terms of Service
               </a>
             </div>
