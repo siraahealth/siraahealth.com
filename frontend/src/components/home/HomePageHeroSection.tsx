@@ -47,7 +47,7 @@ export default function HomePageHeroSection({
                   className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
                 >
                   <PhoneCall className="w-5 h-5 text-primary" />
-                  Talk to a Specialist
+                  Check your child's development in 60 seconds
                 </a>
               )}
             </div>
