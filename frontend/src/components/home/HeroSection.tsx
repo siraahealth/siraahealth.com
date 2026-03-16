@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   ShieldCheck,
   ClipboardList,
@@ -8,8 +7,9 @@ import {
   Brain,
   ChevronRight,
   Users,
-  Activity,
   Search,
+  Globe,
+  Clock,
 } from "lucide-react";
 import type { PageContent } from "@/lib/page-contents";
 
@@ -35,54 +35,58 @@ export function HeroSection({ content }: { content: PageContent | null }) {
             </p>
 
             {/* Features Row */}
-            <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-border/50 grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mx-auto text-primary">
-                  <ShieldCheck className="w-6 h-6" />
+            <div className="bg-white rounded-[2.5rem] p-8 lg:p-10 shadow-sm border border-border/40 grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-primary/80">
+                  <ShieldCheck className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-foreground">
+                  <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
                     Safe & Painless
-                  </p>
-                  <p className="text-[10px] text-muted-foreground font-medium">
+                  </h4>
+                  <p className="text-[14px] text-muted-foreground font-medium">
                     Vaccinations
                   </p>
                 </div>
               </div>
 
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-yellow-50 flex items-center justify-center mx-auto text-yellow-600">
-                  <ClipboardList className="w-6 h-6" />
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600/80">
+                  <ClipboardList className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-foreground">Milestone</p>
-                  <p className="text-[10px] text-muted-foreground font-medium underline">
+                  <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
+                    Milestone
+                  </h4>
+                  <p className="text-[14px] text-primary font-bold underline decoration-1 underline-offset-[6px]">
                     Tracking
                   </p>
                 </div>
               </div>
 
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-50 flex items-center justify-center mx-auto text-cyan-600">
-                  <UserRound className="w-6 h-6" />
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-primary/80">
+                  <UserRound className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-foreground">Expert</p>
-                  <p className="text-[10px] text-muted-foreground font-medium">
+                  <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
+                    Expert
+                  </h4>
+                  <p className="text-[14px] text-muted-foreground font-medium">
                     Pediatric Care
                   </p>
                 </div>
               </div>
 
-              <div className="text-center space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center mx-auto text-purple-600">
-                  <Brain className="w-6 h-6" />
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center text-purple-600/80">
+                  <Brain className="w-8 h-8" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-foreground">
+                  <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
                     Early Screening for
-                  </p>
-                  <p className="text-[10px] text-muted-foreground font-medium">
+                  </h4>
+                  <p className="text-[14px] text-muted-foreground font-medium">
                     Speech & Learning
                   </p>
                 </div>
@@ -108,34 +112,44 @@ export function HeroSection({ content }: { content: PageContent | null }) {
             </div>
 
             {/* Trust Stats Bar */}
-            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 border-t border-border/50">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Users className="w-5 h-5 text-primary/60" />
+            <div className="flex flex-wrap items-center gap-x-10 gap-y-6 pt-6 border-t border-border/40">
+              <div className="flex items-center gap-3">
+                <div className="text-emerald-500/80">
+                  <Globe className="w-6 h-6" />
+                </div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">500+</p>
-                  <p className="text-[10px] uppercase tracking-wider font-medium">
+                  <p className="text-base font-bold text-[#1A1A1A]">500+</p>
+                  <p className="text-[13px] text-muted-foreground font-medium">
                     Families Trust Us
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Activity className="w-5 h-5 text-primary/60" />
+              <div className="hidden sm:block w-px h-10 bg-border/40"></div>
+
+              <div className="flex items-center gap-3">
+                <div className="text-teal-500/80">
+                  <Clock className="w-6 h-6" />
+                </div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">95%</p>
-                  <p className="text-[10px] uppercase tracking-wider font-medium">
+                  <p className="text-base font-bold text-[#1A1A1A]">95%</p>
+                  <p className="text-[13px] text-muted-foreground font-medium">
                     On-Time Vaccinations
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Search className="w-5 h-5 text-primary/60" />
+              <div className="hidden sm:block w-px h-10 bg-border/40"></div>
+
+              <div className="flex items-center gap-3">
+                <div className="text-orange-500/80">
+                  <Search className="w-6 h-6" />
+                </div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">
+                  <p className="text-base font-bold text-[#1A1A1A]">
                     Early Detection
                   </p>
-                  <p className="text-[10px] uppercase tracking-wider font-medium">
+                  <p className="text-[13px] text-muted-foreground font-medium">
                     Saves Precious Time
                   </p>
                 </div>
