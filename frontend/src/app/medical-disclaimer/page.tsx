@@ -18,19 +18,29 @@ export default function MedicalDisclaimerPage() {
         <p>
           The information provided on the SiraaHealth website, blogs, social
           media, and marketing material is for informational and educational
-          purposes only. It does not constitute medical advice.
+          purposes only.
         </p>
+
+        <p>It does not constitute medical advice.</p>
 
         <p>
           Browsing the website or interacting with digital content does not
-          create a doctor-patient relationship. Medical advice is provided only
-          after formal consultation with a registered medical practitioner.
+          create a doctor-patient relationship.
+        </p>
+
+        <p>
+          Medical advice is provided only after formal consultation with a
+          registered medical practitioner.
         </p>
 
         <p>
           SiraaHealth does not guarantee treatment outcomes, immunity results,
-          or vaccine reactions. Vaccines and medical treatments may carry risks
-          and side effects. Individual responses vary.
+          or vaccine reactions.
+        </p>
+
+        <p>
+          Vaccines and medical treatments may carry risks and side effects.
+          Individual responses vary.
         </p>
 
         <blockquote>
