@@ -1,87 +1,165 @@
-import { ArrowDown, PhoneCall, Star } from "lucide-react";
+"use client";
+
+import React from "react";
+import {
+  ShieldCheck,
+  ClipboardList,
+  UserRound,
+  Brain,
+  ChevronRight,
+  Users,
+  Activity,
+  Search,
+} from "lucide-react";
 import type { PageContent } from "@/lib/page-contents";
-import { PHONE_NUMBER } from "@/utils/contant";
 
 export function HeroSection({ content }: { content: PageContent | null }) {
   return (
-    <section id="home" className="relative py-8 lg:py-12 overflow-hidden">
-      <div className="absolute inset-0 bg-accent/40 z-0"></div>
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent z-0"></div>
+    <section className="relative overflow-hidden bg-[#F8F9FA] pt-8 pb-12 lg:pt-12 lg:pb-20">
+      {/* Background patterns could be added here */}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          <div className="max-w-2xl animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-primary/10 text-primary font-bold text-sm mb-6">
-              <Star className="w-4 h-4 fill-secondary text-secondary" />
-              #1 Pediatric Therapy Clinic in Gurgaon
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.15] text-foreground mb-6 text-balance">
-              <span>
-                Worried About Your Child’s{" "}
-                <span className="text-primary">Speech or Development?</span>
-              </span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl font-display font-black leading-[1.2] text-foreground mb-6">
+              Protect Your Child from{" "}
+              <span className="text-primary block">Preventable Diseases</span>
+              and Track Their <span className="text-primary">Development </span>
+              with Experts
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground mb-8 font-medium max-w-xl">
-              Early screening and evidence-based therapy for speech delay,
-              autism, and developmental delays by Gurgaon's leading pediatric
-              specialists.
+            <p className="text-lg md:text-xl text-muted-foreground font-medium mb-10 max-w-xl">
+              Vaccinations, pediatric care, and early milestone screening — all
+              in one trusted clinic.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Features Row */}
+            <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-border/50 grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+              <div className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mx-auto text-primary">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-foreground">
+                    Safe & Painless
+                  </p>
+                  <p className="text-[10px] text-muted-foreground font-medium">
+                    Vaccinations
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-yellow-50 flex items-center justify-center mx-auto text-yellow-600">
+                  <ClipboardList className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-foreground">Milestone</p>
+                  <p className="text-[10px] text-muted-foreground font-medium underline">
+                    Tracking
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-cyan-50 flex items-center justify-center mx-auto text-cyan-600">
+                  <UserRound className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-foreground">Expert</p>
+                  <p className="text-[10px] text-muted-foreground font-medium">
+                    Pediatric Care
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center mx-auto text-purple-600">
+                  <Brain className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-foreground">
+                    Early Screening for
+                  </p>
+                  <p className="text-[10px] text-muted-foreground font-medium">
+                    Speech & Learning
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <a
                 href="#booking-form"
-                className="px-8 py-4 rounded-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all text-center flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-full font-bold bg-primary text-white flex items-center justify-center gap-2 hover:bg-primary/90 transition-all group"
               >
-                Book Development Assessment
-                <ArrowDown className="w-5 h-5 animate-bounce" />
+                Book Vaccination Appointment
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              {PHONE_NUMBER && (
-                <a
-                  href={`tel:${PHONE_NUMBER}`}
-                  className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
-                >
-                  <PhoneCall className="w-5 h-5 text-primary" />
-                  Talk to a Specialist
-                </a>
-              )}
+              <a
+                href="#milestones"
+                className="px-8 py-4 rounded-full font-bold bg-white text-foreground border border-border flex items-center justify-center gap-2 hover:border-primary/30 transition-all group"
+              >
+                Check Development Milestones
+                <ChevronRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+
+            {/* Trust Stats Bar */}
+            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 border-t border-border/50">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Users className="w-5 h-5 text-primary/60" />
+                <div>
+                  <p className="text-sm font-bold text-foreground">500+</p>
+                  <p className="text-[10px] uppercase tracking-wider font-medium">
+                    Families Trust Us
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Activity className="w-5 h-5 text-primary/60" />
+                <div>
+                  <p className="text-sm font-bold text-foreground">95%</p>
+                  <p className="text-[10px] uppercase tracking-wider font-medium">
+                    On-Time Vaccinations
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Search className="w-5 h-5 text-primary/60" />
+                <div>
+                  <p className="text-sm font-bold text-foreground">
+                    Early Detection
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wider font-medium">
+                    Saves Precious Time
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="relative animate-fade-in-up delay-200 lg:ml-auto">
-            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20 aspect-[4/5] sm:aspect-square max-w-md mx-auto border-8 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
-              {content?.image && (
+          {/* Right Image Container */}
+          <div className="relative">
+            <div className="relative rounded-l-[10rem] rounded-r-3xl overflow-hidden shadow-2xl">
+              {content?.image ? (
                 <img
                   src={content.image}
-                  alt="Indian pediatrician and child during consultation"
-                  className="w-full h-full object-cover"
+                  alt="Doctor with child"
+                  className="w-full h-full object-cover aspect-[4/3] lg:aspect-[3/4]"
                 />
+              ) : (
+                <div className="w-full h-full aspect-[4/3] lg:aspect-[3/4] bg-muted flex items-center justify-center">
+                  <p className="text-muted-foreground">Hero Image</p>
+                </div>
               )}
 
-              {/* Status Badge Overlay */}
-              <div className="absolute bottom-6 px-6 w-full animate-fade-in-up delay-500">
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/20 flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                    {content?.icon && (
-                      <img
-                        src={content.icon}
-                        alt="Indian pediatrician and child during consultation"
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-                  </div>
-
-                  <div>
-                    <p className="font-display font-bold text-sm">
-                      {content?.title}
-                    </p>
-                    <p className="text-xs text-muted-foreground font-medium">
-                      {content?.tag_line}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {/* Decorative elements from the image (like circles/dots) can be simulated here */}
+              <div className="absolute top-0 left-0 w-full h-full pointer-events-none border-[12px] border-white/20 rounded-l-[10rem] rounded-r-3xl"></div>
             </div>
           </div>
         </div>

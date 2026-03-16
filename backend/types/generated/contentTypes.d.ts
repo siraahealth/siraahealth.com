@@ -519,11 +519,11 @@ export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
       'api::page-content.page-content'
     > &
       Schema.Attribute.Private;
-    page: Schema.Attribute.Enumeration<['home']>;
+    page: Schema.Attribute.Enumeration<['home', 'development']>;
     publishedAt: Schema.Attribute.DateTime;
     section: Schema.Attribute.String;
     tag_line: Schema.Attribute.String;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

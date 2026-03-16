@@ -13,7 +13,7 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "tag_line": {
       "type": "string",
@@ -40,7 +40,8 @@
     "page": {
       "type": "enumeration",
       "enum": [
-        "home"
+        "home",
+        "development"
       ]
     }
   }

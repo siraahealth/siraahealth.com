@@ -23,12 +23,12 @@ export class PageContentBackendService extends BaseBackendService {
 
       return {
         id: doc.id,
-        title: doc.title,
-        tag_line: doc.tag_line,
-        section: doc.section,
-        page: doc.page,
-        image: doc.image.url ? this.STRAPI_URL + doc.image.url : undefined,
-        icon: doc.icon.url ? this.STRAPI_URL + doc.icon.url : undefined,
+        title: doc?.title,
+        tag_line: doc?.tag_line,
+        section: doc?.section,
+        page: doc?.page,
+        image: doc?.image?.url ? this.STRAPI_URL + doc.image.url : undefined,
+        icon: doc?.icon?.url ? this.STRAPI_URL + doc.icon.url : undefined,
       };
     } catch (err) {
       console.error("Failed to fetch page contents from Strapi", err);
