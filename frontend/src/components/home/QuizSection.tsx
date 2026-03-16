@@ -169,8 +169,8 @@ export function QuizSection() {
 
   return (
     <section className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="bg-white rounded-[3rem] p-8 sm:p-12 shadow-2xl shadow-primary/10 border border-primary/5 relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-[1440px]">
+        <div className="bg-white rounded-[3rem] p-8 sm:p-12 shadow-2xl shadow-primary/10 border border-primary/10 relative overflow-hidden">
           {/* Decorative blobs */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
@@ -216,12 +216,12 @@ export function QuizSection() {
                     <p className="text-xl font-bold text-foreground mb-6">
                       How old is your child?
                     </p>
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-4">
                       {AGE_OPTIONS.map((option) => (
                         <button
                           key={option}
                           onClick={() => setValue("childAge", option)}
-                          className={`w-full p-5 rounded-2xl text-left font-bold transition-all border-2 text-lg ${
+                          className={`w-full p-4 rounded-xl text-left font-semibold transition-all border text-base ${
                             selectedAge === option
                               ? "border-primary bg-primary/5 text-primary"
                               : "border-border bg-accent/30 text-foreground hover:border-primary/30"
@@ -261,7 +261,7 @@ export function QuizSection() {
                         <button
                           key={option}
                           onClick={() => toggleSymptom(option)}
-                          className={`w-full p-5 rounded-2xl text-left font-bold transition-all border-2 flex items-center gap-4 text-lg ${
+                          className={`w-full p-4 rounded-xl text-left font-semibold transition-all border flex items-center gap-4 text-base ${
                             selectedSymptoms.includes(option)
                               ? "border-primary bg-primary/5 text-primary"
                               : "border-border bg-accent/30 text-foreground hover:border-primary/30"
@@ -308,12 +308,12 @@ export function QuizSection() {
                       Have teachers or family members expressed concern about
                       your child's development?
                     </p>
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-4">
                       {CONCERN_OPTIONS.map((option) => (
                         <button
                           key={option}
                           onClick={() => setValue("concerns", option)}
-                          className={`w-full p-5 rounded-2xl text-left font-bold transition-all border-2 text-lg ${
+                          className={`w-full p-4 rounded-xl text-left font-semibold transition-all border text-base ${
                             selectedConcern === option
                               ? "border-primary bg-primary/5 text-primary"
                               : "border-border bg-accent/30 text-foreground hover:border-primary/30"
@@ -359,7 +359,7 @@ export function QuizSection() {
                       <input
                         {...register("parentName")}
                         placeholder="Enter your full name"
-                        className="w-full p-5 rounded-2xl border-2 border-border bg-accent/30 focus:border-primary focus:bg-white outline-none transition-all text-lg"
+                        className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:border-[#3B82F6] focus:bg-white outline-none transition-all"
                       />
                       {errors.parentName && (
                         <p className="text-red-500 text-sm font-bold flex items-center gap-1">
@@ -380,7 +380,7 @@ export function QuizSection() {
                         <input
                           {...register("parentNumber")}
                           placeholder="10-digit number"
-                          className="w-full p-5 pl-16 rounded-2xl border-2 border-border bg-accent/30 focus:border-primary focus:bg-white outline-none transition-all text-lg"
+                          className="w-full p-4 pl-14 rounded-xl border border-slate-200 bg-slate-50 focus:border-[#3B82F6] focus:bg-white outline-none transition-all"
                         />
                       </div>
                       {errors.parentNumber && (
