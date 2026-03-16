@@ -1,6 +1,7 @@
 import React from "react";
 import { MapPin, PhoneCall } from "lucide-react";
 import { formattedPhoneNumber } from "@/utils/contant";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -28,36 +29,25 @@ export default function Footer() {
             <h4 className="font-display font-bold text-xl mb-6">Quick Links</h4>
             <ul className="space-y-3 text-white/70 font-medium">
               <li>
-                <a
-                  href="#home"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/" className="hover:text-primary transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#about"
+                <Link
+                  href="/vaccination"
                   className="hover:text-primary transition-colors"
                 >
-                  About Us
-                </a>
+                  Vaccination
+                </Link>
               </li>
               <li>
-                <a
-                  href="#services"
+                <Link
+                  href="/development"
                   className="hover:text-primary transition-colors"
                 >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#doctors"
-                  className="hover:text-primary transition-colors"
-                >
-                  Our Doctors
-                </a>
+                  Development
+                </Link>
               </li>
             </ul>
           </div>
@@ -106,15 +96,15 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm font-medium">
             <p>© 2026 Siraa Health. All Rights Reserved</p>
             <div className="flex gap-6">
-              <a href="/privacy-policy" className="hover:text-white">
+              <Link href="/privacy-policy" className="hover:text-white">
                 Privacy Policy
-              </a>
-              <a href="/terms-of-service" className="hover:text-white">
+              </Link>
+              <Link href="/terms-of-service" className="hover:text-white">
                 Terms of Service
-              </a>
-              <a href="/medical-disclaimer" className="hover:text-white">
+              </Link>
+              <Link href="/medical-disclaimer" className="hover:text-white">
                 Medical Disclaimer
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -11,6 +11,7 @@ import {
   Clock,
 } from "lucide-react";
 import type { PageContent } from "@/lib/page-contents";
+import Link from "next/link";
 
 export function HeroSection({ content }: { content: PageContent | null }) {
   return (
@@ -94,20 +95,20 @@ export function HeroSection({ content }: { content: PageContent | null }) {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <a
-                href="#booking-form"
+              <Link
+                href="/vaccination"
                 className="px-8 py-4 rounded-full font-bold bg-primary text-white flex items-center justify-center gap-2 hover:bg-primary/90 transition-all group"
               >
                 Book Vaccination Appointment
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#milestones"
+              </Link>
+              <Link
+                href="/development"
                 className="px-8 py-4 rounded-full font-bold bg-white text-foreground border border-border flex items-center justify-center gap-2 hover:border-primary/30 transition-all group"
               >
                 Check Development Milestones
                 <ChevronRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
 
             {/* Trust Stats Bar */}

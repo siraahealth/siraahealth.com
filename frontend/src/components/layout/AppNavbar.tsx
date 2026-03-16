@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
+import Link from "next/link";
 
 export default function AppNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ export default function AppNavbar() {
   return (
     <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 shadow-sm h-[81px] transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="/" className="relative z-50">
+        <Link href="/" className="relative z-50">
           <div className="flex items-center gap-2">
             <img
               src="/assets/siraa-logo.png"
@@ -21,16 +22,16 @@ export default function AppNavbar() {
               Siraa <span className="text-primary">Health</span>
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
-          <a
+          <Link
             href="/vaccination"
             className="text-sm font-bold text-foreground hover:text-primary transition-colors"
           >
             Why Vaccinate
-          </a>
+          </Link>
 
           {PHONE_NUMBER && (
             <div className="flex flex-col items-end border-r border-border/50 pr-8">
@@ -46,12 +47,12 @@ export default function AppNavbar() {
             </div>
           )}
 
-          <a
+          <Link
             href="#booking-form"
             className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
             Book Assessment
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -66,25 +67,25 @@ export default function AppNavbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`lg:hidden fixed inset-0 bg-white z-40 transition-all duration-500 ease-in-out ${
+        className={`lg:hidden inset-0 bg-white transition-all duration-300 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
-        <div className="flex flex-col h-full pt-24 gap-6 bg-white">
+        <div className="flex flex-col h-full py-6 gap-6 bg-white">
           <div className="bg-white px-6">
             <div className="space-y-4">
-              <a
+              <Link
                 href="/vaccination"
                 onClick={() => setIsOpen(false)}
                 className="block text-2xl font-display font-bold text-foreground hover:text-primary transition-colors border-b border-border/30 pb-4"
               >
                 Why Vaccinate
-              </a>
+              </Link>
             </div>
 
-            <div className="mt-auto pb-12 space-y-6">
+            <div className="mt-auto space-y-6">
               {PHONE_NUMBER && (
                 <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
                   <div className="flex items-center gap-3 mb-1">
@@ -102,13 +103,13 @@ export default function AppNavbar() {
                 </div>
               )}
 
-              <a
-                href="#booking-form"
+              <Link
+                href="/development#booking-form"
                 onClick={() => setIsOpen(false)}
                 className="block w-full text-center px-8 py-4 rounded-2xl font-bold bg-secondary text-secondary-foreground text-xl shadow-xl shadow-secondary/20 hover:bg-yellow-400 active:scale-95 transition-all"
               >
                 Book Assessment
-              </a>
+              </Link>
             </div>
           </div>
         </div>
