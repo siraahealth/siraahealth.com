@@ -13,8 +13,6 @@ export default async function Home() {
     "hero",
   );
 
-  console.log(heroContent);
-
   return (
     <main>
       <HeroSection content={heroContent} />
