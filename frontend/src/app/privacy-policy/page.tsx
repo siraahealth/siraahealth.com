@@ -12,10 +12,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <main>
-      <LegalHero
-        title="Privacy Policy"
-        subtitle="Last Updated: March 16, 2026"
-      />
+      <LegalHero title="Privacy Policy" />
 
       <LegalContent>
         <p>

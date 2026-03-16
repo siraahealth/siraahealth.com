@@ -22,11 +22,11 @@ export function LegalHero({ title, subtitle }: LegalHeroProps) {
         <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-white shadow-sm border border-primary/10 text-primary mb-6">
           <ShieldCheck className="w-8 h-8" />
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-lg sm:text-xl text-muted-foreground font-medium max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground font-medium max-w-2xl mx-auto mt-6">
             {subtitle}
           </p>
         )}

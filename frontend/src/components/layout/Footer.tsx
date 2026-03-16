@@ -112,6 +112,9 @@ export default function Footer() {
               <a href="/terms-of-service" className="hover:text-white">
                 Terms of Service
               </a>
+              <a href="/medical-disclaimer" className="hover:text-white">
+                Medical Disclaimer
+              </a>
             </div>
           </div>
 
