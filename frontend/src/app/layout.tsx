@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Quicksand } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-import Navbar from "@/components/layout/Navbar";
+import AppNavbar from "@/components/layout/AppNavbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import Footer from "@/components/layout/Footer";
 
@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <Providers>
           <div className="min-h-screen bg-background font-sans">
-            <Navbar />
+            <AppNavbar />
             {children}
             <Footer />
             <FloatingWhatsApp />

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 
-export default function Navbar() {
+export default function AppNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
