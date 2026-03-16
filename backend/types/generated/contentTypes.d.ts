@@ -530,6 +530,39 @@ export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiQuizSubmissionQuizSubmission
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'quiz_submissions';
+  info: {
+    displayName: 'Quiz Submission';
+    pluralName: 'quiz-submissions';
+    singularName: 'quiz-submission';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    childAge: Schema.Attribute.String & Schema.Attribute.Required;
+    concerns: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::quiz-submission.quiz-submission'
+    > &
+      Schema.Attribute.Private;
+    parentName: Schema.Attribute.String & Schema.Attribute.Required;
+    parentNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    symptoms: Schema.Attribute.JSON & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiVaccinationBookingVaccinationBooking
   extends Struct.CollectionTypeSchema {
   collectionName: 'vaccination_bookings';
@@ -1109,6 +1142,7 @@ declare module '@strapi/strapi' {
       'api::booking.booking': ApiBookingBooking;
       'api::doctor.doctor': ApiDoctorDoctor;
       'api::page-content.page-content': ApiPageContentPageContent;
+      'api::quiz-submission.quiz-submission': ApiQuizSubmissionQuizSubmission;
       'api::vaccination-booking.vaccination-booking': ApiVaccinationBookingVaccinationBooking;
       'api::vaccination-count.vaccination-count': ApiVaccinationCountVaccinationCount;
       'plugin::content-releases.release': PluginContentReleasesRelease;

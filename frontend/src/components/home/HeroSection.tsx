@@ -6,7 +6,6 @@ import {
   UserRound,
   Brain,
   ChevronRight,
-  Users,
   Search,
   Globe,
   Clock,

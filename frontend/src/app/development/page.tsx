@@ -8,6 +8,7 @@ import { ServicesSection } from "@/components/home/ServicesSection";
 import { DoctorsSection } from "@/components/home/DoctorsSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { QuizSection } from "@/components/home/QuizSection";
 
 export default async function DevelopmentPage() {
   // Fetching directly from the backend services server-side
@@ -25,6 +26,7 @@ export default async function DevelopmentPage() {
       <CareJourneySection />
       <ServicesSection />
       <DoctorsSection doctors={doctors} />
+      <QuizSection />
       <TestimonialsSection />
       <FAQSection />
     </main>

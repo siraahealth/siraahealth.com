@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quiz_submissions",
+  "info": {
+    "singularName": "quiz-submission",
+    "pluralName": "quiz-submissions",
+    "displayName": "Quiz Submission"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "parentName": {
+      "type": "string",
+      "required": true
+    },
+    "parentNumber": {
+      "type": "string",
+      "required": true
+    },
+    "childAge": {
+      "type": "string",
+      "required": true
+    },
+    "symptoms": {
+      "type": "json",
+      "required": true
+    },
+    "concerns": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
