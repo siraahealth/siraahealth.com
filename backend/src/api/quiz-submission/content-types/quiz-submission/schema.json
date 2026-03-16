@@ -19,16 +19,8 @@
       "type": "string",
       "required": true
     },
-    "childAge": {
-      "type": "string",
-      "required": true
-    },
-    "symptoms": {
+    "quiz": {
       "type": "json",
-      "required": true
-    },
-    "concerns": {
-      "type": "string",
       "required": true
     }
   }

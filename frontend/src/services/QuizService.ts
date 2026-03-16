@@ -2,9 +2,7 @@ export class QuizService {
   public static async submitQuiz(data: {
     parentName: string;
     parentNumber: string;
-    childAge: string;
-    symptoms: string[];
-    concerns: string;
+    quiz: any[];
   }) {
     try {
       const response = await fetch("/api/quiz", {

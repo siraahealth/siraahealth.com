@@ -87,7 +87,26 @@ export function QuizSection() {
     setIsSubmitting(true);
     setSubmitError(null);
     try {
-      await QuizService.submitQuiz(data);
+      const formattedData = {
+        parentName: data.parentName,
+        parentNumber: data.parentNumber,
+        quiz: [
+          {
+            question: "How old is your child?",
+            answer: data.childAge,
+          },
+          {
+            question: "Have you noticed any of these in your child?",
+            answer: data.symptoms,
+          },
+          {
+            question:
+              "Have teachers or family members expressed concern about your child's development?",
+            answer: data.concerns,
+          },
+        ],
+      };
+      await QuizService.submitQuiz(formattedData);
       setShowResult(true);
       reset();
     } catch (error: any) {

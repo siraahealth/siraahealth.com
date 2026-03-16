@@ -3,9 +3,7 @@ import { BaseBackendService } from "./BaseService";
 export interface QuizSubmissionData {
   parentName: string;
   parentNumber: string;
-  childAge: string;
-  symptoms: string[];
-  concerns: string;
+  quiz: any[];
 }
 
 export class QuizBackendService extends BaseBackendService {
