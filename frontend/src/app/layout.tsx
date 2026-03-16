@@ -37,7 +37,7 @@ export default function RootLayout({
         <Providers>
           <div className="min-h-screen bg-background font-sans">
             <Navbar />
-            <div>{children}</div>
+            {children}
             <Footer />
             <FloatingWhatsApp />
           </div>

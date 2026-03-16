@@ -12,7 +12,7 @@ export function VaccinationHero() {
   ];
 
   return (
-    <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-gradient-to-tr from-white via-blue-50/30 to-white">
+    <section className="relative py-8 lg:py-12 overflow-hidden bg-gradient-to-tr from-white via-blue-50/30 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="max-w-2xl animate-fade-in">

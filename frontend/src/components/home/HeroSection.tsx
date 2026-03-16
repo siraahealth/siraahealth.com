@@ -4,10 +4,7 @@ import { PHONE_NUMBER } from "@/utils/contant";
 
 export function HeroSection({ content }: { content: PageContent | null }) {
   return (
-    <section
-      id="home"
-      className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden"
-    >
+    <section id="home" className="relative py-8 lg:py-12 overflow-hidden">
       <div className="absolute inset-0 bg-accent/40 z-0"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent z-0"></div>
 
