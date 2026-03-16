@@ -53,7 +53,7 @@ export function VaccinationHero() {
 
           <div
             className="relative lg:ml-auto mx-auto w-full items-center max-w-md scroll-mt-32"
-            id="booking-form"
+            id="vaccination-form"
           >
             <div className="absolute -inset-4 bg-gradient-to-tr from-blue-100 to-purple-100 rounded-[3rem] blur-2xl opacity-30 select-none pointer-events-none"></div>
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-blue-900/10">

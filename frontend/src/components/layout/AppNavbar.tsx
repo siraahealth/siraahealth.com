@@ -48,7 +48,7 @@ export default function AppNavbar() {
           )}
 
           <Link
-            href="#booking-form"
+            href="/development#booking-form"
             className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
             Book Assessment

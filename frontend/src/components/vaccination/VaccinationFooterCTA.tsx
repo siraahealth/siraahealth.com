@@ -13,12 +13,12 @@ export function VaccinationFooterCTA() {
 
         <div className="flex justify-center">
           <a
-            href="#booking-form"
+            href="#vaccination-form"
             className="px-10 py-5 rounded-full font-bold bg-yellow-400 text-black hover:bg-yellow-500 transition-all hover:scale-105 shadow-xl shadow-blue-900/20 text-xl"
             onClick={(e) => {
               e.preventDefault();
               document
-                .querySelector("#booking-form")
+                .querySelector("#vaccination-form")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
           >
