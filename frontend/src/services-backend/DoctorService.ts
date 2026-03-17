@@ -21,12 +21,12 @@ export class DoctorBackendService extends BaseBackendService {
       }
 
       return data.map((doc: any) => ({
-        id: doc.id,
-        name: doc.name,
-        designation: doc.designation,
-        experience: doc.experience,
-        image: doc.image?.url
-          ? `${this.STRAPI_URL}${doc.image?.url}`
+        id: doc?.id,
+        name: doc?.name,
+        designation: doc?.designation,
+        experience: doc?.experience,
+        image: doc?.image?.url
+          ? `${this.STRAPI_URL}${doc?.image?.url}`
           : undefined,
       }));
     } catch (err) {

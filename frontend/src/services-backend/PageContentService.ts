@@ -19,10 +19,14 @@ export class PageContentBackendService extends BaseBackendService {
 
       const { data } = await res.json();
 
-      const doc = data[0];
+      const doc = data?.[0] || null;
+
+      if (!doc) {
+        return null;
+      }
 
       return {
-        id: doc.id,
+        id: doc?.id,
         title: doc?.title,
         tag_line: doc?.tag_line,
         section: doc?.section,
