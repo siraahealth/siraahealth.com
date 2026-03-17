@@ -4,9 +4,26 @@ import { LegalHero } from "@/components/legal/LegalHero";
 import { LegalContent } from "@/components/legal/LegalContent";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Siraa Health",
+  title: "Privacy Policy",
   description:
     "Learn how Siraa Health collects, uses, and protects your personal and medical information.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy",
+    description:
+      "Learn how Siraa Health collects, uses, and protects your personal and medical information.",
+    url: "/privacy-policy",
+    images: ["/assets/siraa-logo.png"],
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy",
+    description:
+      "Learn how Siraa Health collects, uses, and protects your personal and medical information.",
+    images: ["/assets/siraa-logo.png"],
+  },
 };
 
 export default function PrivacyPolicyPage() {

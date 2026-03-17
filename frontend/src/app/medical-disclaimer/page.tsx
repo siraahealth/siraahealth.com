@@ -4,9 +4,26 @@ import { LegalHero } from "@/components/legal/LegalHero";
 import { LegalContent } from "@/components/legal/LegalContent";
 
 export const metadata: Metadata = {
-  title: "Medical Disclaimer | Siraa Health",
+  title: "Medical Disclaimer",
   description:
     "Important medical disclosure information regarding the content provided by Siraa Health.",
+  alternates: {
+    canonical: "/medical-disclaimer",
+  },
+  openGraph: {
+    title: "Medical Disclaimer",
+    description:
+      "Important medical disclosure information regarding the content provided by Siraa Health.",
+    url: "/medical-disclaimer",
+    images: ["/assets/siraa-logo.png"],
+  },
+  twitter: {
+    card: "summary",
+    title: "Medical Disclaimer",
+    description:
+      "Important medical disclosure information regarding the content provided by Siraa Health.",
+    images: ["/assets/siraa-logo.png"],
+  },
 };
 
 export default function MedicalDisclaimerPage() {

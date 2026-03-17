@@ -4,9 +4,26 @@ import { LegalHero } from "@/components/legal/LegalHero";
 import { LegalContent } from "@/components/legal/LegalContent";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Siraa Health",
+  title: "Terms & Conditions",
   description:
     "Read the terms and conditions for using Siraa Health's website and services.",
+  alternates: {
+    canonical: "/terms-of-service",
+  },
+  openGraph: {
+    title: "Terms & Conditions",
+    description:
+      "Read the terms and conditions for using Siraa Health's website and services.",
+    url: "/terms-of-service",
+    images: ["/assets/siraa-logo.png"],
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms & Conditions",
+    description:
+      "Read the terms and conditions for using Siraa Health's website and services.",
+    images: ["/assets/siraa-logo.png"],
+  },
 };
 
 export default function TermsOfServicePage() {

@@ -9,6 +9,11 @@ import ScrollOnMount from "@/components/core/ScrollOnMount";
 import GTMScript from "@/components/analytics/GTMScript";
 import GTMFrame from "@/components/analytics/GTMFrame";
 
+const baseUrl = new URL(
+  process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000",
+);
+const isProd = process.env.NEXT_PUBLIC_NODE_ENV === "production";
+
 const fontSans = Nunito({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -22,9 +27,43 @@ const fontDisplay = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "Siraa Health | Pediatric Therapy Clinic",
+  metadataBase: baseUrl,
+  title: {
+    default: "Siraa Health | Pediatric Therapy Clinic",
+    template: "%s | Siraa Health",
+  },
   description:
     "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Siraa Health | Pediatric Therapy Clinic",
+    description:
+      "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
+    url: "/",
+    siteName: "Siraa Health",
+    locale: "en_IN",
+    type: "website",
+    images: [
+      {
+        url: "/assets/siraa-logo.png",
+        width: 512,
+        height: 512,
+        alt: "Siraa Health logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Siraa Health | Pediatric Therapy Clinic",
+    description:
+      "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
+    images: ["/assets/siraa-logo.png"],
+  },
+  robots: isProd
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export default function RootLayout({
@@ -32,10 +71,46 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const schemaOrg = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    name: "Siraa Health",
+    url: baseUrl.toString(),
+    logo: new URL("/assets/siraa-logo.png", baseUrl).toString(),
+    telephone: phoneNumber || undefined,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Golf Course Road",
+      addressLocality: "Gurgaon",
+      addressRegion: "Haryana",
+      addressCountry: "IN",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "09:00",
+        closes: "19:00",
+      },
+    ],
+  };
+
   return (
     <html lang="en">
       <head>
         <meta name="apple-mobile-web-app-title" content="Siraa Health" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+        />
         <GTMScript />
       </head>
       <body
