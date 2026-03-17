@@ -21,7 +21,7 @@ export function HeroSection({ content }: { content: PageContent | null }) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="max-w-2xl">
+          <div className="max-w-fit">
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-display font-black leading-[1.2] text-foreground mb-6">
               Protect Your Child from{" "}
               <span className="text-primary block">Preventable Diseases</span>
@@ -35,8 +35,8 @@ export function HeroSection({ content }: { content: PageContent | null }) {
             </p>
 
             {/* Features Row */}
-            <div className="bg-white rounded-[2.5rem] p-8 lg:p-10 shadow-sm border border-border/40 grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              <div className="flex flex-col items-center text-center space-y-4">
+            <div className="bg-white rounded-[2.5rem] p-8 lg:p-10 shadow-sm border border-border/40 flex flex-col md:flex-row md:items-center md:justify-between gap-y-8 mb-12">
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-primary/80">
                   <ShieldCheck className="w-8 h-8" />
                 </div>
@@ -50,7 +50,9 @@ export function HeroSection({ content }: { content: PageContent | null }) {
                 </div>
               </div>
 
-              <div className="flex flex-col items-center text-center space-y-4">
+              <div className="hidden md:block w-px h-24 bg-border/60 mx-4"></div>
+
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <div className="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600/80">
                   <ClipboardList className="w-8 h-8" />
                 </div>
@@ -58,13 +60,15 @@ export function HeroSection({ content }: { content: PageContent | null }) {
                   <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
                     Milestone
                   </h4>
-                  <p className="text-[14px] text-primary font-bold underline decoration-1 underline-offset-[6px]">
+                  <p className="text-[14px] text-primary font-bold decoration-primary decoration-2 underline-offset-[8px] underline">
                     Tracking
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col items-center text-center space-y-4">
+              <div className="hidden md:block w-px h-24 bg-border/60 mx-4"></div>
+
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-primary/80">
                   <UserRound className="w-8 h-8" />
                 </div>
@@ -78,7 +82,9 @@ export function HeroSection({ content }: { content: PageContent | null }) {
                 </div>
               </div>
 
-              <div className="flex flex-col items-center text-center space-y-4">
+              <div className="hidden md:block w-px h-24 bg-border/60 mx-4"></div>
+
+              <div className="flex flex-col items-center text-center space-y-4 flex-1">
                 <div className="w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center text-purple-600/80">
                   <Brain className="w-8 h-8" />
                 </div>
@@ -112,7 +118,7 @@ export function HeroSection({ content }: { content: PageContent | null }) {
             </div>
 
             {/* Trust Stats Bar */}
-            <div className="flex flex-wrap items-center gap-x-10 gap-y-6 pt-6 border-t border-border/40">
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 pt-6 border-t border-border/40">
               <div className="flex items-center gap-3">
                 <div className="text-emerald-500/80">
                   <Globe className="w-6 h-6" />
@@ -159,7 +165,25 @@ export function HeroSection({ content }: { content: PageContent | null }) {
 
           {/* Right Image Container */}
           <div className="relative">
-            <div className="relative rounded-l-[10rem] rounded-r-3xl overflow-hidden shadow-2xl">
+            <svg
+              className="absolute inset-0 w-0 h-0"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <defs>
+                <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
+                  <path d="M0.35,0 C0.65,0 0.9,0.1 0.98,0.4 C1.05,0.7 0.92,0.95 0.65,0.99 C0.38,1.03 0.05,0.85 0.02,0.6 C-0.01,0.35 0.1,0 0.35,0 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <div
+              className="relative z-10 overflow-hidden shadow-2xl bg-white/70"
+              style={{
+                clipPath: "url(#hero-blob)",
+                WebkitClipPath: "url(#hero-blob)",
+              }}
+            >
               {content?.image ? (
                 <img
                   src={content.image}
@@ -172,8 +196,14 @@ export function HeroSection({ content }: { content: PageContent | null }) {
                 </div>
               )}
 
-              {/* Decorative elements from the image (like circles/dots) can be simulated here */}
-              <div className="absolute top-0 left-0 w-full h-full pointer-events-none border-[12px] border-white/20 rounded-l-[10rem] rounded-r-3xl"></div>
+              {/* White Overlay Border */}
+              <div
+                className="absolute top-0 left-0 w-full h-full pointer-events-none border-[12px] border-white/20"
+                style={{
+                  clipPath: "url(#hero-blob)",
+                  WebkitClipPath: "url(#hero-blob)",
+                }}
+              ></div>
             </div>
           </div>
         </div>
