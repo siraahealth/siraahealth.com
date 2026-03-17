@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { scrollToSection } from "@/utils/scroll";
+import { usePathname } from "next/navigation";
 
 /**
  * Mount this component on any page that contains scroll-target sections.
@@ -11,7 +12,10 @@ import { scrollToSection } from "@/utils/scroll";
  *
  * Returns null — renders nothing.
  */
-export function ScrollOnMount() {
+export default function ScrollOnMount() {
+  const pathName = usePathname();
+  const ref = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     const sectionId = sessionStorage.getItem("pendingScrollSection");
     if (!sectionId) return;
@@ -19,9 +23,13 @@ export function ScrollOnMount() {
     sessionStorage.removeItem("pendingScrollSection");
 
     // Small delay lets the page fully paint before scrolling
-    const timer = setTimeout(() => scrollToSection(sectionId), 300);
-    return () => clearTimeout(timer);
-  }, []);
+    ref.current = setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 1000);
+    return () => {
+      ref.current && clearTimeout(ref.current);
+    };
+  }, [pathName]);
 
   return null;
 }

@@ -5,7 +5,7 @@ import { Providers } from "@/components/providers";
 import NavbarSwitcher from "@/components/layout/NavbarSwitcher";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import Footer from "@/components/layout/Footer";
-import { ScrollOnMount } from "@/components/core/ScrollOnMount";
+import ScrollOnMount from "@/components/core/ScrollOnMount";
 
 const fontSans = Nunito({
   variable: "--font-sans",
@@ -41,9 +41,9 @@ export default function RootLayout({
             {children}
             <Footer />
             <FloatingWhatsApp />
+            <ScrollOnMount />
           </div>
         </Providers>
-        <ScrollOnMount />
       </body>
     </html>
   );

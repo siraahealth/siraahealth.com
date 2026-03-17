@@ -69,7 +69,7 @@ export function BookingForm() {
   };
 
   return (
-    <div className="sticky top-24 scroll-mt-32" id="booking-form">
+    <div className="sticky top-24">
       {submitStatus === "success" ? (
         <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 text-center animate-fade-in-up">
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">

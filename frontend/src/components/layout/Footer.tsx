@@ -86,7 +86,7 @@ export default function Footer() {
             </ul>
             <ScrollButton
               sectionId="booking-form"
-              href="/"
+              href="/development"
               className="mt-6 block w-full py-3 rounded-xl font-bold bg-primary hover:bg-primary/90 transition-colors text-center text-white"
             >
               Schedule Visit
