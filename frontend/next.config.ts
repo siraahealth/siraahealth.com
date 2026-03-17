@@ -12,13 +12,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: url.protocol.replace(":", "") as "http" | "https",
-        hostname: "127.0.0.1",
-        port: url.port,
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: url.protocol.replace(":", "") as "http" | "https",
-        hostname: "localhost",
+        hostname: url.hostname,
         port: url.port,
         pathname: "/uploads/**",
       },
