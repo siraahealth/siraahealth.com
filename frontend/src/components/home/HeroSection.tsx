@@ -45,8 +45,8 @@ export function HeroSection({
       color: "text-teal-500/80",
     },
     {
-      label: "Early Detection",
-      value: "Saves Precious Time",
+      value: "Early Detection",
+      label: "Saves Precious Time",
       icon: Search,
       color: "text-orange-500/80",
     },
