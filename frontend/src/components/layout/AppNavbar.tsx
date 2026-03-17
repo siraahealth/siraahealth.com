@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 import Link from "next/link";
+import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
 
 export default function AppNavbar() {
@@ -14,9 +15,11 @@ export default function AppNavbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="relative z-50">
           <div className="flex items-center gap-2">
-            <img
+            <Image
               src="/assets/siraa-logo.png"
               alt="Siraa Health"
+              width={64}
+              height={64}
               className="w-12 h-12 md:w-16 md:h-16 object-contain"
             />
             <span className="font-display font-black text-xl md:text-2xl tracking-tight text-foreground">

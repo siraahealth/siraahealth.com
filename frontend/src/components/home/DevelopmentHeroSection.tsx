@@ -1,4 +1,5 @@
 import { ArrowDown, PhoneCall, Star } from "lucide-react";
+import Image from "next/image";
 import type { PageContent } from "@/lib/page-contents";
 import { PHONE_NUMBER } from "@/utils/contant";
 import { ScrollButton } from "@/components/core/ScrollButton";
@@ -55,24 +56,26 @@ export default function DevelopmentHeroSection({
           </div>
 
           <div className="relative animate-fade-in-up delay-200 lg:ml-auto">
-            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20 aspect-[4/5] sm:aspect-square max-w-md mx-auto border-8 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20 aspect-[4/5] sm:aspect-square max-w-md mx-auto border-8 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500 w-full">
               {content?.image && (
-                <img
+                <Image
                   src={content.image}
                   alt="Indian pediatrician and child during consultation"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover !relative"
                 />
               )}
 
               {/* Status Badge Overlay */}
               <div className="absolute bottom-6 px-6 w-full animate-fade-in-up delay-500">
                 <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/20 flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
                     {content?.icon && (
-                      <img
+                      <Image
                         src={content.icon}
                         alt="Indian pediatrician and child during consultation"
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover !relative"
                       />
                     )}
                   </div>

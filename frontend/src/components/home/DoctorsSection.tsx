@@ -1,6 +1,7 @@
 "use client";
 
 import { Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import type { Doctor } from "@/lib/doctors";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
@@ -49,12 +50,13 @@ export function DoctorsSection({ doctors }: DoctorsSectionProps) {
             {doctors.map((doc, i) => (
               <SwiperSlide key={i}>
                 <div className="bg-accent/20 rounded-3xl overflow-hidden border border-border hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
-                  <div className="aspect-square w-full overflow-hidden">
+                  <div className="aspect-square w-full overflow-hidden relative">
                     {doc.image && (
-                      <img
+                      <Image
                         src={doc.image}
                         alt={doc.name}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-500"
                       />
                     )}
                   </div>

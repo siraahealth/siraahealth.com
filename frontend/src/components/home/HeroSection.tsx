@@ -10,6 +10,7 @@ import {
   Globe,
   Clock,
 } from "lucide-react";
+import Image from "next/image";
 import type { PageContent } from "@/lib/page-contents";
 import Link from "next/link";
 
@@ -181,7 +182,7 @@ export function HeroSection({ content }: { content: PageContent | null }) {
       </div>
 
       {/* Right Image Container - Absolute on desktop */}
-      <div className="lg:absolute lg:top-0 lg:right-0 lg:w-1/2 lg:h-full mt-12 lg:mt-0 px-4 lg:px-0">
+      <div className="lg:absolute lg:top-0 lg:right-0 lg:w-1/2 lg:h-full mt-12 lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
         <svg
           className="absolute inset-0 w-0 h-0"
           aria-hidden="true"
@@ -202,10 +203,12 @@ export function HeroSection({ content }: { content: PageContent | null }) {
           }}
         >
           {content?.image ? (
-            <img
+            <Image
               src={content.image}
               alt="Doctor with child"
-              className="w-full h-full object-cover aspect-[4/3] lg:aspect-auto"
+              fill
+              className="object-cover"
+              priority
             />
           ) : (
             <div className="w-full h-full aspect-[4/3] lg:aspect-auto bg-muted flex items-center justify-center">

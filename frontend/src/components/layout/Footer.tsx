@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { MapPin, PhoneCall } from "lucide-react";
 import { formattedPhoneNumber } from "@/utils/contant";
 import Link from "next/link";
@@ -11,9 +12,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <img
+              <Image
                 src="/assets/siraa-logo.png"
                 alt="Siraa Health"
+                width={64}
+                height={64}
                 className="w-16 h-16 object-contain bg-white rounded-lg p-2"
               />
               <span className="font-display font-black text-2xl tracking-tight">
