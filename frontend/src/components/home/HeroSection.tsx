@@ -1,4 +1,5 @@
 "use client";
+import { Fragment } from "react";
 
 import {
   ShieldCheck,
@@ -179,8 +180,8 @@ export function HeroSection({
             {/* Trust Stats Bar */}
             <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-10 gap-y-6">
               {statsToRender.map((stat, index) => (
-                <>
-                  <div className="flex items-center gap-3" key={index}>
+                <Fragment key={index}>
+                  <div className="flex items-center gap-3">
                     <div className={stat.color}>
                       <stat.icon className="lg:w-8 lg:h-8 w-6 h-6" />
                     </div>
@@ -196,7 +197,7 @@ export function HeroSection({
                   {index !== statsToRender.length - 1 && (
                     <div className="hidden sm:block w-px h-10 bg-border/40"></div>
                   )}
-                </>
+                </Fragment>
               ))}
             </div>
           </div>
