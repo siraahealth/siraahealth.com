@@ -3,7 +3,7 @@ import type { PageContent } from "@/lib/page-contents";
 import { PHONE_NUMBER } from "@/utils/contant";
 import { ScrollButton } from "@/components/core/ScrollButton";
 
-export default function HomePageHeroSection({
+export default function DevelopmentHeroSection({
   content,
 }: {
   content: PageContent | null;

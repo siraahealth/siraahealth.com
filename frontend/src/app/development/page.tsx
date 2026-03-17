@@ -1,6 +1,6 @@
 import { PageContentBackendService } from "@/services-backend/PageContentService";
 import { DoctorBackendService } from "@/services-backend/DoctorService";
-import HomePageHeroSection from "@/components/home/HomePageHeroSection";
+import DevelopmentHeroSection from "@/components/home/DevelopmentHeroSection";
 import { TrustSection } from "@/components/home/TrustSection";
 import { SymptomsSection } from "@/components/home/SymptomsSection";
 import { CareJourneySection } from "@/components/home/CareJourneySection";
@@ -20,7 +20,7 @@ export default async function DevelopmentPage() {
 
   return (
     <main>
-      <HomePageHeroSection content={heroContent} />
+      <DevelopmentHeroSection content={heroContent} />
       <TrustSection />
       <SymptomsSection />
       <CareJourneySection />
