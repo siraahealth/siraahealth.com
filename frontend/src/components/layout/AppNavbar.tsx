@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 import Link from "next/link";
+import { ScrollButton } from "../core/ScrollButton";
 
 export default function AppNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +27,13 @@ export default function AppNavbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
-          <Link
-            href="/vaccination#why-vaccinate"
+          <ScrollButton
+            sectionId="why-vaccinate"
+            href="/vaccination"
             className="text-sm font-bold text-foreground hover:text-primary transition-colors"
           >
             Why Vaccinate
-          </Link>
+          </ScrollButton>
 
           {PHONE_NUMBER && (
             <div className="flex flex-col items-end border-r border-border/50 pr-8">
@@ -47,12 +49,13 @@ export default function AppNavbar() {
             </div>
           )}
 
-          <Link
-            href="/development#booking-form"
+          <ScrollButton
+            sectionId="booking-form"
+            href="/development"
             className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
             Book Assessment
-          </Link>
+          </ScrollButton>
         </div>
 
         {/* Mobile Menu Button */}
@@ -76,13 +79,13 @@ export default function AppNavbar() {
         <div className="flex flex-col h-full py-6 gap-6 bg-white">
           <div className="bg-white px-6">
             <div className="space-y-4">
-              <Link
-                href="/vaccination#why-vaccinate"
-                onClick={() => setIsOpen(false)}
+              <ScrollButton
+                sectionId="why-vaccinate"
+                href="/vaccination"
                 className="block text-2xl font-display font-bold text-foreground hover:text-primary transition-colors border-b border-border/30 pb-4"
               >
                 Why Vaccinate
-              </Link>
+              </ScrollButton>
             </div>
 
             <div className="mt-auto space-y-6">
@@ -103,13 +106,13 @@ export default function AppNavbar() {
                 </div>
               )}
 
-              <Link
-                href="/development#booking-form"
-                onClick={() => setIsOpen(false)}
+              <ScrollButton
+                sectionId="booking-form"
+                href="/development"
                 className="block w-full text-center px-8 py-4 rounded-2xl font-bold bg-secondary text-secondary-foreground text-xl shadow-xl shadow-secondary/20 hover:bg-yellow-400 active:scale-95 transition-all"
               >
                 Book Assessment
-              </Link>
+              </ScrollButton>
             </div>
           </div>
         </div>

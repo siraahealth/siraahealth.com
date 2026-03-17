@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { ScrollButton } from "../core/ScrollButton";
 
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,12 +41,13 @@ export default function LandingNavbar() {
 
         {/* Action Button */}
         <div className="hidden lg:block">
-          <Link
-            href="/development#booking-form"
+          <ScrollButton
+            sectionId="booking-form"
+            href="/development"
             className="px-8 py-3.5 rounded-full font-bold bg-[#3B82F6] text-white hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95"
           >
             Book Appointment
-          </Link>
+          </ScrollButton>
         </div>
 
         {/* Mobile Menu Button */}
@@ -81,13 +83,14 @@ export default function LandingNavbar() {
             >
               Development
             </Link>
-            <Link
-              href="/development#booking-form"
-              onClick={() => setIsOpen(false)}
+
+            <ScrollButton
+              sectionId="booking-form"
+              href="/development"
               className="mt-4 block text-lg w-full text-center px-8 py-4 rounded-2xl font-bold bg-[#3B82F6] text-white shadow-xl shadow-blue-500/20"
             >
               Book Appointment
-            </Link>
+            </ScrollButton>
           </div>
         </div>
       </div>
