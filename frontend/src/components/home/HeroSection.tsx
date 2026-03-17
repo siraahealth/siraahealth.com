@@ -13,8 +13,55 @@ import {
 import Image from "next/image";
 import type { PageContent } from "@/lib/page-contents";
 import Link from "next/link";
+import { CountUp } from "../ui/CountUp";
+import { VaccinationStatsData } from "@/services-backend/VaccinationService";
 
-export function HeroSection({ content }: { content: PageContent | null }) {
+export function HeroSection({
+  content,
+  stats: dynamicStats,
+}: {
+  content: PageContent | null;
+  stats: VaccinationStatsData | null;
+}) {
+  const statsToRender = [
+    {
+      label: "Families Trust Us",
+      value:
+        Number(dynamicStats?.parents_trust_siraa_health || 0) === 0
+          ? "0"
+          : `${dynamicStats?.parents_trust_siraa_health}+`,
+
+      icon: Globe,
+      color: "text-emerald-500/80",
+    },
+    {
+      label: "On-Time Vaccinations",
+      value:
+        Number(dynamicStats?.iap_immunisation_schedule || 0) === 0
+          ? "0"
+          : `${dynamicStats?.iap_immunisation_schedule}%`,
+
+      icon: Clock,
+      color: "text-teal-500/80",
+    },
+    {
+      label: "Early Detection",
+      value: "Saves Precious Time",
+      icon: Search,
+      color: "text-orange-500/80",
+    },
+  ];
+
+  const renderValue = (value: string) => {
+    const numericPart = parseInt(value.replace(/[^0-9]/g, ""));
+    const suffix = value.replace(/[0-9]/g, "");
+
+    if (isNaN(numericPart)) {
+      return value;
+    }
+
+    return <CountUp end={numericPart} suffix={suffix} />;
+  };
   return (
     <section className="flex flex-col lg:flex-row  elative overflow-hidden bg-[#F8F9FA] pt-8 pb-12 lg:pt-12 lg:pb-20 min-h-[600px] items-center">
       {/* Background patterns could be added here */}
@@ -131,51 +178,26 @@ export function HeroSection({ content }: { content: PageContent | null }) {
 
             {/* Trust Stats Bar */}
             <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-10 gap-y-6">
-              <div className="flex items-center gap-3">
-                <div className="text-emerald-500/80">
-                  <Globe className="lg:w-8 lg:h-8 w-6 h-6" />
-                </div>
-                <div>
-                  <p className="lg:text-[30px] text-[20px] font-bold text-[#1A1A1A]">
-                    500+
-                  </p>
-                  <p className="lg:text-[20px] text-[15px] text-muted-foreground font-medium">
-                    Families Trust Us
-                  </p>
-                </div>
-              </div>
-
-              <div className="hidden sm:block w-px h-10 bg-border/40"></div>
-
-              <div className="flex items-center gap-3">
-                <div className="text-teal-500/80">
-                  <Clock className="lg:w-8 lg:h-8 w-6 h-6" />
-                </div>
-                <div>
-                  <p className="lg:text-[30px] text-[20px] font-bold text-[#1A1A1A]">
-                    95%
-                  </p>
-                  <p className="lg:text-[20px] text-[15px] text-muted-foreground font-medium">
-                    On-Time Vaccinations
-                  </p>
-                </div>
-              </div>
-
-              <div className="hidden sm:block w-px h-10 bg-border/40"></div>
-
-              <div className="flex items-center gap-3">
-                <div className="text-orange-500/80">
-                  <Search className="lg:w-8 lg:h-8 w-6 h-6" />
-                </div>
-                <div>
-                  <p className="lg:text-[30px] text-[20px] font-bold text-[#1A1A1A]">
-                    Early Detection
-                  </p>
-                  <p className="lg:text-[20px] text-[15px] text-muted-foreground font-medium">
-                    Saves Precious Time
-                  </p>
-                </div>
-              </div>
+              {statsToRender.map((stat, index) => (
+                <>
+                  <div className="flex items-center gap-3" key={index}>
+                    <div className={stat.color}>
+                      <stat.icon className="lg:w-8 lg:h-8 w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="lg:text-[30px] text-[20px] font-bold text-[#1A1A1A]">
+                        {renderValue(stat.value)}
+                      </p>
+                      <p className="lg:text-[20px] text-[15px] text-muted-foreground font-medium">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </div>
+                  {index !== statsToRender.length - 1 && (
+                    <div className="hidden sm:block w-px h-10 bg-border/40"></div>
+                  )}
+                </>
+              ))}
             </div>
           </div>
         </div>

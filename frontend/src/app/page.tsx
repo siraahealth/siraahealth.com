@@ -5,6 +5,7 @@ import { DoctorsSection } from "@/components/home/DoctorsSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import ParentSrories from "@/components/home/ParentStories";
+import { VaccinationBackendService } from "@/services-backend/VaccinationService";
 
 export const metadata: Metadata = {
   title: "Pediatric Vaccination & Development Care",
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   // Fetching directly from the backend services server-side
+  const stats = await VaccinationBackendService.getStats();
+
   const doctors = await DoctorBackendService.getDoctors();
   const heroContent = await PageContentBackendService.getPageContent(
     "home",
@@ -82,7 +85,7 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <main>
-        <HeroSection content={heroContent} />
+        <HeroSection content={heroContent} stats={stats} />
         <DoctorsSection doctors={doctors} />
         <section className="py-20 lg:py-28 bg-primary/5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
