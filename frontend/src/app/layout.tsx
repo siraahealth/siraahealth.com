@@ -6,6 +6,8 @@ import NavbarSwitcher from "@/components/layout/NavbarSwitcher";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import Footer from "@/components/layout/Footer";
 import ScrollOnMount from "@/components/core/ScrollOnMount";
+import GTMScript from "@/components/analytics/GTMScript";
+import GTMFrame from "@/components/analytics/GTMFrame";
 
 const fontSans = Nunito({
   variable: "--font-sans",
@@ -34,10 +36,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="apple-mobile-web-app-title" content="Siraa Health" />
+        <GTMScript />
       </head>
       <body
         className={`${fontSans.variable} ${fontDisplay.variable} antialiased`}
       >
+        <GTMFrame />
         <Providers>
           <div className="min-h-screen bg-background font-sans">
             <NavbarSwitcher />
