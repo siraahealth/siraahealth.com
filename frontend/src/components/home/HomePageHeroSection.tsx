@@ -1,6 +1,7 @@
 import { ArrowDown, PhoneCall, Star } from "lucide-react";
 import type { PageContent } from "@/lib/page-contents";
 import { PHONE_NUMBER } from "@/utils/contant";
+import { ScrollButton } from "@/components/core/ScrollButton";
 
 export default function HomePageHeroSection({
   content,
@@ -34,13 +35,13 @@ export default function HomePageHeroSection({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#booking-form"
+              <ScrollButton
+                sectionId="booking-form"
                 className="px-8 py-4 rounded-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all text-center flex items-center justify-center gap-2"
               >
                 Book Development Assessment
                 <ArrowDown className="w-5 h-5 animate-bounce" />
-              </a>
+              </ScrollButton>
               {PHONE_NUMBER && (
                 <a
                   href={`tel:${PHONE_NUMBER}`}

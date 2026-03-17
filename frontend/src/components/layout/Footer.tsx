@@ -2,6 +2,7 @@ import React from "react";
 import { MapPin, PhoneCall } from "lucide-react";
 import { formattedPhoneNumber } from "@/utils/contant";
 import Link from "next/link";
+import { ScrollButton } from "@/components/core/ScrollButton";
 
 export default function Footer() {
   return (
@@ -83,12 +84,13 @@ export default function Footer() {
                 <span className="text-primary font-bold">Closed</span>
               </li>
             </ul>
-            <a
-              href="#booking-form"
+            <ScrollButton
+              sectionId="booking-form"
+              href="/"
               className="mt-6 block w-full py-3 rounded-xl font-bold bg-primary hover:bg-primary/90 transition-colors text-center text-white"
             >
               Schedule Visit
-            </a>
+            </ScrollButton>
           </div>
         </div>
 

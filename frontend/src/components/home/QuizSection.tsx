@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { QuizService } from "@/services/QuizService";
 import { Button } from "@/components/ui/button";
+import { scrollToSection } from "@/utils/scroll";
 
 const schema = yup.object().shape({
   childAge: yup.string().required("Child age is required"),
@@ -155,13 +156,13 @@ export function QuizSection() {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#booking-form"
+              <button
+                onClick={() => scrollToSection("booking-form")}
                 className="px-8 py-4 rounded-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all text-center flex items-center justify-center gap-2"
               >
                 Book Development Assessment
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </button>
               <a
                 href="https://wa.me/919910731103?text=Hi%20I%20want%20to%20book%20a%20child%20assessment%20with%20Siraa%20Health"
                 target="_blank"

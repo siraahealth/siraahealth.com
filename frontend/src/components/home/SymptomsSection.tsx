@@ -1,4 +1,5 @@
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { ScrollButton } from "@/components/core/ScrollButton";
 
 export function SymptomsSection() {
   return (
@@ -37,12 +38,12 @@ export function SymptomsSection() {
               ))}
             </div>
             <div className="mt-10 text-center">
-              <a
-                href="#booking-form"
+              <ScrollButton
+                sectionId="booking-form"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all"
               >
                 Get Your Child Screened Today <ArrowRight className="w-5 h-5" />
-              </a>
+              </ScrollButton>
             </div>
           </div>
         </div>

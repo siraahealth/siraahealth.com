@@ -1,4 +1,5 @@
 import { Smile, Puzzle, Brain, Users, Activity, HeartHandshake, ArrowRight } from "lucide-react";
+import { ScrollButton } from "@/components/core/ScrollButton";
 
 export function ServicesSection() {
   return (
@@ -68,12 +69,12 @@ export function ServicesSection() {
               <p className="text-muted-foreground font-medium mb-6 flex-grow">
                 {service.desc}
               </p>
-              <a
-                href="#booking-form"
+              <ScrollButton
+                sectionId="booking-form"
                 className="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all"
               >
                 Book Consultation <ArrowRight className="w-4 h-4" />
-              </a>
+              </ScrollButton>
             </div>
           ))}
         </div>
