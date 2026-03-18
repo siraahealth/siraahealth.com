@@ -29,7 +29,7 @@ export default function AppNavbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8">
           <ScrollButton
             sectionId="why-vaccinate"
             href="/vaccination"
@@ -64,7 +64,7 @@ export default function AppNavbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden relative z-50 p-2 text-foreground hover:bg-black/5 rounded-xl transition-colors"
+          className="md:hidden relative z-50 p-2 text-foreground hover:bg-black/5 rounded-xl transition-colors"
           aria-label="Toggle Menu"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -73,7 +73,7 @@ export default function AppNavbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`lg:hidden inset-0 bg-white transition-all duration-300 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] ease-in-out ${
+        className={`md:hidden inset-0 bg-white transition-all duration-300 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"

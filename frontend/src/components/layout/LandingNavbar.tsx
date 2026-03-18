@@ -27,7 +27,7 @@ export default function LandingNavbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-12">
+        <nav className="hidden md:flex items-center gap-12">
           <Link
             href="/vaccination"
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
@@ -43,7 +43,7 @@ export default function LandingNavbar() {
         </nav>
 
         {/* Action Button */}
-        <div className="hidden lg:block">
+        <div className="hidden md:block">
           <ScrollButton
             sectionId="booking-form"
             href="/development"
@@ -56,7 +56,7 @@ export default function LandingNavbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
+          className="md:hidden p-2 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -64,7 +64,7 @@ export default function LandingNavbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`lg:hidden inset-0 bg-white transition-all duration-300 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] ease-in-out ${
+        className={`md:hidden inset-0 bg-white transition-all duration-300 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"

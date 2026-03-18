@@ -122,7 +122,9 @@ export default function RootLayout({
             <NavbarSwitcher />
             {children}
             <Footer />
-            <FloatingWhatsApp />
+            <div className="hidden md:block">
+              <FloatingWhatsApp />
+            </div>
             <ScrollOnMount />
           </div>
         </Providers>
