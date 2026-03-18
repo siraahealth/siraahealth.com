@@ -1,9 +1,17 @@
-import { Smile, Puzzle, Brain, Users, Activity, HeartHandshake, ArrowRight } from "lucide-react";
+import {
+  Smile,
+  Puzzle,
+  Brain,
+  Users,
+  Activity,
+  HeartHandshake,
+  ArrowRight,
+} from "lucide-react";
 import { ScrollButton } from "@/components/core/ScrollButton";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-accent/30">
+    <section id="services" className="py-12 lg:py-20 bg-accent/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">

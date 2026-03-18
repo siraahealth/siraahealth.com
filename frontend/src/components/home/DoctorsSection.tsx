@@ -17,7 +17,7 @@ interface DoctorsSectionProps {
 
 export function DoctorsSection({ doctors }: DoctorsSectionProps) {
   return (
-    <section id="doctors" className="py-20 lg:py-28 bg-white">
+    <section id="doctors" className="py-12 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">

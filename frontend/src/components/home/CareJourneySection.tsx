@@ -1,8 +1,13 @@
-import { Activity, Stethoscope, HeartHandshake, CheckCircle2 } from "lucide-react";
+import {
+  Activity,
+  Stethoscope,
+  HeartHandshake,
+  CheckCircle2,
+} from "lucide-react";
 
 export function CareJourneySection() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-12 lg:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
@@ -16,7 +21,7 @@ export function CareJourneySection() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
           {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-accent -translate-y-1/2 rounded-full z-0"></div>
+          <div className="hidden md:block absolute top-[120px] left-0 w-full h-1 bg-accent rounded-full z-0"></div>
 
           {[
             {
@@ -51,7 +56,7 @@ export function CareJourneySection() {
               <div className="w-20 h-20 bg-white rounded-2xl shadow-xl shadow-primary/10 border-2 border-primary/20 flex items-center justify-center text-primary group-hover:-translate-y-2 group-hover:bg-primary group-hover:text-white transition-all duration-300 mb-6">
                 {item.icon}
               </div>
-              <div className="bg-accent/50 text-primary font-black w-8 h-8 rounded-full flex items-center justify-center mb-3 text-sm">
+              <div className="hidden md:flex bg-accent text-primary font-black w-8 h-8 rounded-full items-center justify-center mb-6 md:mb-3 text-sm border-4 border-white">
                 {item.step}
               </div>
               <h3 className="text-xl font-bold font-display mb-2">

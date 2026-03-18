@@ -2,7 +2,10 @@ import { Smile, Puzzle, Activity, Brain } from "lucide-react";
 
 export function TrustSection() {
   return (
-    <section id="about" className="py-12 bg-white border-y border-border/50">
+    <section
+      id="about"
+      className="py-12 lg:py-20 bg-white border-y border-border/50"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm font-bold text-muted-foreground uppercase tracking-widest mb-8">
           Trusted by 1000+ parents in Gurgaon for

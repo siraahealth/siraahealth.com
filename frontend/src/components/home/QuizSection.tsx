@@ -139,7 +139,7 @@ export function QuizSection() {
 
   if (showResult) {
     return (
-      <section className="py-20 bg-[#F8FAFF]">
+      <section className="py-12 lg:py-20 bg-[#F8FAFF]">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-primary/10 border border-primary/5 text-center space-y-6">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">

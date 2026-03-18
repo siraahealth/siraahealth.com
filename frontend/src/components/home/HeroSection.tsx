@@ -212,7 +212,7 @@ export function HeroSection({
               >
                 <defs>
                   <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
-                    <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 C1.05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
+                    <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
                   </clipPath>
                 </defs>
               </svg>
