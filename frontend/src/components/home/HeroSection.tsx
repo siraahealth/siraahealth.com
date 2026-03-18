@@ -172,7 +172,7 @@ export function HeroSection({
                 href="/development"
                 className="px-8 py-4 rounded-full font-bold bg-white text-foreground border border-border flex items-center justify-center gap-2 hover:border-primary/30 transition-all group lg:flex-1"
               >
-                Check Development Milestones
+                Take a developmental assessment
                 <ChevronRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
