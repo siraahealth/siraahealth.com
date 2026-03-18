@@ -140,7 +140,7 @@ export function HeroSection({
             </div>
 
             {/* 4. Trust Stats Bar */}
-            <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-2 gap-y-2 mb-6 lg:mb-0 order-4 lg:order-none px-2">
+            <div className="flex flex-wrap items-center lg:w-[120%] justify-start space-x-2 gap-x-2 gap-y-2 mb-6 lg:mb-0 order-4 lg:order-none px-2">
               {statsToRender.map((stat, index) => (
                 <Fragment key={index}>
                   <div className="flex items-center gap-2 py-1.5 px-3 lg:p-0">
