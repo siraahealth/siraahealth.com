@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
+import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import {
+  formattedPhoneNumber,
+  PHONE_NUMBER,
+  whatsappUrl,
+} from "@/utils/contant";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
@@ -61,14 +65,27 @@ export default function AppNavbar() {
           </ScrollButton>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden relative z-50 p-2 text-foreground hover:bg-black/5 rounded-xl transition-colors"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile WhatsApp & Menu Button */}
+        <div className="flex items-center gap-2 md:hidden relative z-50">
+          {PHONE_NUMBER && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
+              aria-label="Contact on WhatsApp"
+            >
+              <MessageCircle className="w-4 h-4 text-white" />
+            </a>
+          )}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 text-foreground hover:bg-black/5 rounded-xl transition-colors"
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
