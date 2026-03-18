@@ -10,6 +10,7 @@ import {
   Search,
   Globe,
   Clock,
+  Syringe,
 } from "lucide-react";
 import Image from "next/image";
 import type { PageContent } from "@/services-backend/PageContentService";
@@ -34,6 +35,7 @@ export function HeroSection({
 
       icon: Globe,
       color: "text-emerald-500/80",
+      smallScreenLabel: "Families",
     },
     {
       label: "On-Time Vaccinations",
@@ -44,6 +46,7 @@ export function HeroSection({
 
       icon: Clock,
       color: "text-teal-500/80",
+      smallScreenLabel: "On-Time",
     },
     {
       value: "Early Detection",
@@ -64,250 +67,267 @@ export function HeroSection({
     return <CountUp end={numericPart} suffix={suffix} />;
   };
   return (
-    <section className="flex flex-col lg:flex-row relative overflow-hidden bg-[#F8F9FA] pt-8 pb-12 lg:pt-16 lg:pb-24 min-h-[600px] items-center">
-      {/* Background patterns could be added here */}
+    <section className="relative overflow-hidden bg-[#F8F9FA] pt-6 pb-10 lg:pt-16 lg:pb-24 lg:bg-[#F8F9FA] items-center">
+      {/* 1. Global SVG Definition (only once) */}
+      <svg
+        className="absolute inset-0 w-0 h-0"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <defs>
+          <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
+            <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
+          </clipPath>
+        </defs>
+      </svg>
 
       <div className="container relative">
         <div className="flex flex-col lg:flex-row items-center">
-          {/* Left Content */}
-          <div className="w-full lg:w-1/2 relative z-10 space-y-6">
-            <div className="lg:w-full">
-              <h1 className="text-4xl md:text-5xl lg:text-5xl font-display font-black leading-[1.2] text-foreground mb-6">
+          {/* Content Wrapper */}
+          <div className="w-full lg:w-1/2 relative z-10 flex flex-col space-y-4 md:space-y-8">
+            {/* 1. Header (Top on both) */}
+            <div className="text-left">
+              <h1 className="text-[28px] sm:text-[32px] md:text-5xl lg:text-5xl font-display font-black leading-[1.2] text-foreground mb-3">
                 Protect Your Child from{" "}
-                <span className="text-primary block">Preventable Diseases</span>
-                and Track Their{" "}
-                <span className="text-primary">Development </span>
-                with Experts
+                <span className="text-primary">Preventable Diseases</span> and
+                Track Their <span className="text-primary">Development</span>
               </h1>
-
-              <p className="text-lg md:text-xl text-muted-foreground font-medium mb-6 max-w-xl">
-                Vaccinations, pediatric care, and early milestone screening —
-                all in one trusted clinic.
+              <p className="text-[15px] sm:text-base md:text-xl text-muted-foreground font-medium max-w-xl">
+                Vaccinations, pediatric care, and milestone screening — all in
+                one trusted clinic.
               </p>
             </div>
 
-            {/* Features Row */}
-            <div className="bg-white rounded-[2.5rem] lg:w-[110%] p-4 lg:p-6 shadow-sm border border-border/40 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 items-center gap-y-4 md:gap-y-0 mb-12">
-              <div className="flex">
-                <div className="flex flex-col items-center text-center space-y-4 flex-1">
-                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-primary/80">
-                    <ShieldCheck className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
-                      Safe & Painless
-                    </h4>
-                    <p className="text-[14px] text-muted-foreground font-medium">
-                      Vaccinations
-                    </p>
-                  </div>
-                </div>
+            {/* 2. Image (Middle on mobile, Right on desktop) */}
+            <div className="lg:hidden w-full h-full max-md:max-h-[500px] max-lg:max-h-[600px] aspect-[4/3] relative mb-10">
+              <HeroImageContent content={content} />
+            </div>
 
-                <div className="hidden sm:block w-px h-24 bg-border/60 mx-4"></div>
-              </div>
+            {/* 3. Features Row */}
+            <div className="bg-white lg:bg-white rounded-[22px] lg:rounded-[2.5rem] xl:w-[110%] p-4 sm:p-6 lg:p-6 shadow-xl shadow-primary/10 lg:shadow-sm border border-border/40 flex justify-between items-center mb-6 lg:mb-12">
+              <FeatureItem
+                icon={ShieldCheck}
+                title="Safe & Painless"
+                desc="Vaccinations"
+                color="bg-blue-50"
+                iconColor="text-primary/80"
+              />
+              <div className="hidden md:block w-px h-16 bg-border/60 mx-4"></div>
+              <FeatureItem
+                icon={ClipboardList}
+                title="Milestone"
+                desc="Tracking"
+                color="bg-orange-50"
+                iconColor="text-orange-600/80"
+                underline
+              />
+              <div className="hidden md:block w-px h-16 bg-border/60 mx-4"></div>
+              <FeatureItem
+                icon={UserRound}
+                title="Expert"
+                desc="Care"
+                color="bg-blue-50"
+                iconColor="text-primary/80"
+              />
+              <div className="hidden md:block w-px h-16 bg-border/60 mx-4"></div>
+              <FeatureItem
+                icon={Brain}
+                title="Early Screening"
+                desc="more"
+                color="bg-purple-50"
+                iconColor="text-purple-600/80"
+              />
+            </div>
 
-              <div className="flex">
-                <div className="flex flex-col items-center text-center space-y-4 flex-1">
-                  <div className="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600/80">
-                    <ClipboardList className="w-8 h-8" />
+            {/* 4. Trust Stats Bar */}
+            <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-2 gap-y-2 mb-6 lg:mb-0 order-4 lg:order-none px-2">
+              {statsToRender.map((stat, index) => (
+                <Fragment key={index}>
+                  <div className="flex items-center gap-2 py-1.5 px-3 lg:p-0">
+                    <div className={`${stat.color}`}>
+                      <stat.icon className="w-4 h-4 lg:w-6 lg:h-6" />
+                    </div>
+                    <div className="flex items-center gap-1.5 lg:block">
+                      <p className="text-[16px] lg:text-[20px] font-bold text-[#1A1A1A]">
+                        {renderValue(stat.value)}
+                      </p>
+                      <p className="text-[15px] lg:text-[20px] text-muted-foreground font-medium md:block hidden">
+                        {stat.label}
+                      </p>
+                      <p className="text-[15px] lg:text-[20px] text-muted-foreground font-normal md:hidden block">
+                        {stat.smallScreenLabel}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
-                      Milestone
-                    </h4>
-                    <p className="text-[14px] text-primary font-bold decoration-primary decoration-2 underline-offset-[8px] underline">
-                      Tracking
-                    </p>
-                  </div>
-                </div>
+                </Fragment>
+              ))}
+            </div>
 
-                <div className="hidden md:block w-px h-24 bg-border/60 mx-4"></div>
-              </div>
-
-              <div className="flex">
-                <div className="flex flex-col items-center text-center space-y-4 flex-1">
-                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-primary/80">
-                    <UserRound className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
-                      Expert
-                    </h4>
-                    <p className="text-[14px] text-muted-foreground font-medium">
-                      Pediatric Care
-                    </p>
-                  </div>
-                </div>
-
-                <div className="hidden sm:block w-px h-24 bg-border/60 mx-4"></div>
-              </div>
-
-              <div className="flex">
-                <div className="flex flex-col items-center text-center space-y-4 flex-1">
-                  <div className="w-16 h-16 rounded-full bg-purple-50 flex items-center justify-center text-purple-600/80">
-                    <Brain className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h4 className="text-[17px] font-bold text-[#1A1A1A] leading-tight mb-1">
-                      Early Screening for
-                    </h4>
-                    <p className="text-[14px] text-muted-foreground font-medium">
-                      Speech & Learning
-                    </p>
-                  </div>
-                </div>
+            {/* 5. CTA Buttons */}
+            {/* Mobile CTA (segmented) */}
+            <div className="lg:hidden order-5">
+              <div className="flex w-full rounded-2xl overflow-hidden border border-border shadow-lg shadow-primary/10 bg-white">
+                <Link
+                  href="/vaccination"
+                  className="flex-1 px-4 py-4 bg-primary text-white font-bold text-sm flex items-center justify-center gap-2"
+                >
+                  <Syringe className="w-4 h-4" />
+                  <span>Book a Vaccination Appointment</span>
+                </Link>
+                <Link
+                  href="/development"
+                  className="flex-1 px-4 py-4 text-foreground font-bold text-sm flex items-center justify-center gap-2"
+                >
+                  <span>Take Developmental Assessment</span>
+                  <ChevronRight className="w-4 h-4 text-primary" />
+                </Link>
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 lg:w-[115%]">
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex flex-row gap-3 lg:w-[115%] order-5 lg:order-none">
               <Link
                 href="/vaccination"
-                className="px-8 py-4 rounded-full font-bold bg-primary text-white flex items-center justify-center gap-2 hover:bg-primary/90 transition-all group lg:flex-1"
+                className="px-6 py-4 rounded-full font-bold bg-primary text-white flex items-center justify-center gap-2 hover:bg-primary/90 transition-all group lg:flex-1 text-base"
               >
-                Book Vaccination Appointment
+                <span>Book a Vaccination Appointment</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/development"
-                className="px-8 py-4 rounded-full font-bold bg-white text-foreground border border-border flex items-center justify-center gap-2 hover:border-primary/30 transition-all group lg:flex-1"
+                className="px-6 py-4 rounded-full font-bold bg-white text-foreground border border-border flex items-center justify-center gap-2 hover:border-primary/30 transition-all group lg:flex-1 text-base"
               >
-                Take a developmental assessment
+                <span>Take Developmental Assessment</span>
                 <ChevronRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-
-            {/* Trust Stats Bar */}
-            <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-5 gap-y-6">
-              {statsToRender.map((stat, index) => (
-                <Fragment key={index}>
-                  <div className="flex items-center gap-3">
-                    <div className={stat.color}>
-                      <stat.icon className="lg:w-6 lg:h-6 w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="lg:text-[20px] text-[18px] font-bold text-[#1A1A1A]">
-                        {renderValue(stat.value)}
-                      </p>
-                      <p className="lg:text-[20px] text-[17px] text-muted-foreground font-medium">
-                        {stat.label}
-                      </p>
-                    </div>
-                  </div>
-                  {index !== statsToRender.length - 1 && (
-                    <div className="hidden sm:block w-px h-10 bg-border/40"></div>
-                  )}
-                </Fragment>
-              ))}
-            </div>
           </div>
 
-          {/* Image Container - Bottom on mobile, Right on desktop */}
-          <div className="lg:absolute lg:-right-[100px] mt-20  lg:top-0 lg:w-[62%] w-full lg:h-full h-[75%] lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
-            <div className="relative h-full w-full">
-              <svg
-                className="absolute inset-0 w-0 h-0"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <defs>
-                  <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
-                    <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
-                  </clipPath>
-                </defs>
-              </svg>
-
-              {/* Decorative: Dotted grid pattern */}
-              <div
-                className="absolute -top-6 left-[5%] lg:left-[10%] w-20 h-20 lg:w-28 lg:h-28 z-10 pointer-events-none"
-                aria-hidden="true"
-              >
-                <svg
-                  width="100%"
-                  height="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <pattern
-                      id="dot-grid"
-                      x="0"
-                      y="0"
-                      width="12"
-                      height="12"
-                      patternUnits="userSpaceOnUse"
-                    >
-                      <circle
-                        cx="2"
-                        cy="2"
-                        r="2"
-                        fill="#3B82F6"
-                        fillOpacity="0.35"
-                      />
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#dot-grid)" />
-                </svg>
-              </div>
-
-              {/* Decorative: Circular arc ring */}
-              <div
-                className="absolute inset-0 z-10 pointer-events-none scale-95 lg:scale-110"
-                aria-hidden="true"
-              >
-                <svg
-                  width="100%"
-                  height="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 500 500"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <circle
-                    cx="300"
-                    cy="250"
-                    r="230"
-                    fill="none"
-                    stroke="#3B82F6"
-                    strokeWidth="2"
-                    strokeOpacity="0.2"
-                    strokeDasharray="6 8"
-                  />
-                </svg>
-              </div>
-
-              <div
-                className="relative overflow-hidden shadow-2xl bg-white/70 h-full w-full"
-                style={{
-                  clipPath: "url(#hero-blob)",
-                  WebkitClipPath: "url(#hero-blob)",
-                }}
-              >
-                {content?.image ? (
-                  <Image
-                    src={content.image || ""}
-                    alt="Doctor with child"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                ) : (
-                  <div className="w-full h-full bg-muted flex items-center justify-center">
-                    <p className="text-muted-foreground">Hero Image</p>
-                  </div>
-                )}
-
-                {/* White Overlay Border */}
-                <div
-                  className="absolute top-0 left-0 w-full h-full pointer-events-none border-[12px] border-white/20"
-                  style={{
-                    clipPath: "url(#hero-blob)",
-                    WebkitClipPath: "url(#hero-blob)",
-                  }}
-                ></div>
-              </div>
-            </div>
+          {/* Desktop Image Container (Positioned absolutely behind/side content) */}
+          <div className="hidden lg:block lg:absolute lg:top-0 lg:right-[-120px] lg:w-[65%] lg:h-full z-0">
+            <HeroImageContent content={content} />
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function FeatureItem({
+  icon: Icon,
+  title,
+  desc,
+  color,
+  iconColor,
+  underline = false,
+}: {
+  icon: any;
+  title: string;
+  desc: string;
+  color: string;
+  iconColor: string;
+  underline?: boolean;
+}) {
+  return (
+    <div className="flex items-stretch relative mx-auto">
+      <div className="flex flex-col items-center text-center space-y-2 lg:space-y-4">
+        <div
+          className={`w-12 h-12 lg:w-16 lg:h-16 rounded-2xl lg:rounded-full ${color} flex items-center justify-center ${iconColor}`}
+        >
+          <Icon className="w-6 h-6 lg:w-8 lg:h-8" />
+        </div>
+        <div>
+          <h4 className="text-[13px] lg:text-[17px] font-bold text-[#1A1A1A] leading-tight">
+            {title}
+          </h4>
+          <p
+            className={`text-[12px] lg:text-[14px] ${
+              underline
+                ? "text-primary font-bold decoration-primary decoration-2 underline-offset-[4px] lg:underline-offset-[8px] underline"
+                : "text-muted-foreground font-medium"
+            }`}
+          >
+            {desc}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HeroImageContent({ content }: { content: PageContent | null }) {
+  return (
+    <div className="relative h-full w-full">
+      {/* Decorative: Dotted grid pattern */}
+      <div
+        className="absolute -top-6 left-[5%] lg:left-[10%] w-20 h-20 lg:w-28 lg:h-28 z-10 pointer-events-none"
+        aria-hidden="true"
+      >
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern
+              id="dot-grid"
+              x="0"
+              y="0"
+              width="12"
+              height="12"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="2" cy="2" r="2" fill="#3B82F6" fillOpacity="0.35" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#dot-grid)" />
+        </svg>
+      </div>
+
+      {/* Decorative: Circular arc ring */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none scale-95 lg:scale-110"
+        aria-hidden="true"
+      >
+        <svg
+          width="100%"
+          height="100%"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 500 500"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <circle
+            cx="300"
+            cy="250"
+            r="230"
+            fill="none"
+            stroke="#3B82F6"
+            strokeWidth="2"
+            strokeOpacity="0.2"
+            strokeDasharray="6 8"
+          />
+        </svg>
+      </div>
+
+      <div
+        className="relative overflow-hidden shadow-2xl bg-white/70 h-full w-full rounded-[2rem]"
+        style={{
+          clipPath: "url(#hero-blob)",
+          WebkitClipPath: "url(#hero-blob)",
+        }}
+      >
+        {content?.image ? (
+          <div className="relative w-full h-full min-h-[300px] lg:min-h-0">
+            <Image
+              src={content.image || ""}
+              alt="Doctor with child"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full bg-muted flex items-center justify-center">
+            <p className="text-muted-foreground">Hero Image</p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
