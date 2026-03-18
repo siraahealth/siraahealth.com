@@ -64,7 +64,7 @@ export function HeroSection({
     return <CountUp end={numericPart} suffix={suffix} />;
   };
   return (
-    <section className="flex flex-col lg:flex-row  elative overflow-hidden bg-[#F8F9FA] pt-8 pb-12 lg:pt-12 lg:pb-20 min-h-[600px] items-center">
+    <section className="flex flex-col lg:flex-row relative overflow-hidden bg-[#F8F9FA] pt-8 pb-12 lg:pt-16 lg:pb-24 min-h-[600px] items-center">
       {/* Background patterns could be added here */}
 
       <div className="container relative">
@@ -201,99 +201,112 @@ export function HeroSection({
               ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Right Image Container - Absolute on desktop */}
-      <div className="lg:absolute lg:-right-[100px] lg:top-[100px] lg:w-[62%] lg:h-[75%] lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
-        <svg
-          className="absolute inset-0 w-0 h-0"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <defs>
-            <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
-              <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 C1.05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
-            </clipPath>
-          </defs>
-        </svg>
-
-        {/* Decorative: Dotted grid pattern - top-left of image area */}
-        <div
-          className="absolute -top-2 left-[15%] w-28 h-28 z-10 pointer-events-none"
-          aria-hidden="true"
-        >
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern
-                id="dot-grid"
-                x="0"
-                y="0"
-                width="12"
-                height="12"
-                patternUnits="userSpaceOnUse"
+          {/* Image Container - Bottom on mobile, Right on desktop */}
+          <div className="lg:absolute lg:-right-[100px] mt-20  lg:top-0 lg:w-[62%] w-full lg:h-full h-[75%] lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
+            {/* <div className="lg:absolute lg:-right-[100px] p-4 lg:p-0 w-full h-full lg:w-[70%] top-0 lg:order-last"> */}
+            <div className="relative h-full w-full">
+              <svg
+                className="absolute inset-0 w-0 h-0"
+                aria-hidden="true"
+                focusable="false"
               >
-                <circle cx="2" cy="2" r="2" fill="#3B82F6" fillOpacity="0.35" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#dot-grid)" />
-          </svg>
-        </div>
+                <defs>
+                  <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
+                    <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 C1.05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
+                  </clipPath>
+                </defs>
+              </svg>
 
-        {/* Decorative: Circular arc ring around the blob */}
-        <div
-          className="absolute inset-0 z-10 pointer-events-none"
-          aria-hidden="true"
-        >
-          <svg
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 500 500"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <circle
-              cx="300"
-              cy="250"
-              r="230"
-              fill="none"
-              stroke="#3B82F6"
-              strokeWidth="2"
-              strokeOpacity="0.2"
-              strokeDasharray="6 8"
-            />
-          </svg>
-        </div>
+              {/* Decorative: Dotted grid pattern */}
+              <div
+                className="absolute -top-6 left-[5%] lg:left-[10%] w-20 h-20 lg:w-28 lg:h-28 z-10 pointer-events-none"
+                aria-hidden="true"
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <pattern
+                      id="dot-grid"
+                      x="0"
+                      y="0"
+                      width="12"
+                      height="12"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <circle
+                        cx="2"
+                        cy="2"
+                        r="2"
+                        fill="#3B82F6"
+                        fillOpacity="0.35"
+                      />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#dot-grid)" />
+                </svg>
+              </div>
 
-        <div
-          className="relative overflow-hidden shadow-2xl bg-white/70 h-full"
-          style={{
-            clipPath: "url(#hero-blob)",
-            WebkitClipPath: "url(#hero-blob)",
-          }}
-        >
-          {content?.image ? (
-            <Image
-              src={content.image}
-              alt="Doctor with child"
-              fill
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <div className="w-full h-full aspect-[4/3] lg:aspect-auto bg-muted flex items-center justify-center">
-              <p className="text-muted-foreground">Hero Image</p>
+              {/* Decorative: Circular arc ring */}
+              <div
+                className="absolute inset-0 z-10 pointer-events-none scale-95 lg:scale-110"
+                aria-hidden="true"
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 500 500"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <circle
+                    cx="300"
+                    cy="250"
+                    r="230"
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="2"
+                    strokeOpacity="0.2"
+                    strokeDasharray="6 8"
+                  />
+                </svg>
+              </div>
+
+              <div
+                className="relative overflow-hidden shadow-2xl bg-white/70 h-full w-full"
+                style={{
+                  clipPath: "url(#hero-blob)",
+                  WebkitClipPath: "url(#hero-blob)",
+                }}
+              >
+                {content?.image ? (
+                  <Image
+                    src={content.image || ""}
+                    alt="Doctor with child"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                ) : (
+                  <div className="w-full h-full bg-muted flex items-center justify-center">
+                    <p className="text-muted-foreground">Hero Image</p>
+                  </div>
+                )}
+
+                {/* White Overlay Border */}
+                <div
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none border-[12px] border-white/20"
+                  style={{
+                    clipPath: "url(#hero-blob)",
+                    WebkitClipPath: "url(#hero-blob)",
+                  }}
+                ></div>
+              </div>
             </div>
-          )}
-
-          {/* White Overlay Border */}
-          <div
-            className="absolute top-0 left-0 w-full h-full pointer-events-none border-[12px] border-white/20"
-            style={{
-              clipPath: "url(#hero-blob)",
-              WebkitClipPath: "url(#hero-blob)",
-            }}
-          ></div>
+          </div>
         </div>
       </div>
     </section>
