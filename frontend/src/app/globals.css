@@ -98,7 +98,7 @@
 }
 
 /* Vaccination advantages pagination below cards */
-.vaccination-advantages-pagination {
+.swiper-pagination-custom-style-pagination {
   position: static !important;
   bottom: auto !important;
   margin-top: 16px;
@@ -106,3 +106,4 @@
   justify-content: center;
   gap: 8px;
 }
+
