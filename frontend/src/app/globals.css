@@ -81,3 +81,28 @@
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
+
+/* Swiper Pagination */
+.swiper-pagination {
+  bottom: 24px !important;
+}
+.swiper-pagination-bullet {
+  background: #e2e8f0;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: hsl(var(--primary));
+  width: 24px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Vaccination advantages pagination below cards */
+.vaccination-advantages-pagination {
+  position: static !important;
+  bottom: auto !important;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}

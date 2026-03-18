@@ -1,38 +1,7 @@
-"use client";
-
-import { Shield, Heart, Users, CheckCircle } from "lucide-react";
+import { VaccinationAdvantageSwiper } from "../swipers/VaccinationAdvantageSwiper";
+import { advantages } from "@/utils/contant";
 
 export function VaccinationAdvantages() {
-  const advantages = [
-    {
-      title: "Prevent Dangerous Diseases",
-      description:
-        "Vaccines protect children from diseases like measles, polio, and pneumonia.",
-      icon: Shield,
-      color: "blue",
-    },
-    {
-      title: "Build Strong Immunity",
-      description:
-        "Vaccines train the immune system to fight infections early.",
-      icon: Heart,
-      color: "red",
-    },
-    {
-      title: "Protect the Community",
-      description:
-        "Vaccination prevents outbreaks and protects other children.",
-      icon: Users,
-      color: "purple",
-    },
-    {
-      title: "Safe & Well Tested",
-      description: "Vaccines are carefully tested and monitored for safety.",
-      icon: CheckCircle,
-      color: "green",
-    },
-  ];
-
   return (
     <section
       className="py-20 lg:py-28 bg-white overflow-hidden"
@@ -46,11 +15,11 @@ export function VaccinationAdvantages() {
           <div className="w-24 h-1.5 bg-yellow-400 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {advantages.map((adv, index) => (
             <div
               key={index}
-              className="group bg-white rounded-3xl p-8 border border-border hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/5 transition-all duration-500 animate-fade-in-up"
+              className="group bg-white rounded-[2.5rem] p-8 border border-border hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/5 transition-all duration-500 animate-fade-in-up h-full flex flex-col"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div
@@ -67,6 +36,9 @@ export function VaccinationAdvantages() {
             </div>
           ))}
         </div>
+
+        {/* Mobile Carousel View */}
+        <VaccinationAdvantageSwiper className="md:hidden" />
       </div>
     </section>
   );

@@ -87,18 +87,6 @@ export function DoctorsSection({ doctors }: DoctorsSectionProps) {
         </div>
       </div>
 
-      <style jsx global>{`
-        .swiper-pagination-bullet {
-          background: #e2e8f0;
-          opacity: 1;
-        }
-        .swiper-pagination-bullet-active {
-          background: hsl(var(--primary));
-          width: 24px;
-          border-radius: 4px;
-          transition: width 0.3s ease;
-        }
-      `}</style>
     </section>
   );
 }
