@@ -107,3 +107,21 @@
   gap: 8px;
 }
 
+.care-journey-pagination {
+  position: static !important;
+  bottom: auto !important;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.care-journey-swiper .swiper-slide {
+  opacity: 0.35;
+  transform: scale(0.92);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.care-journey-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}

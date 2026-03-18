@@ -86,7 +86,6 @@ export function DoctorsSection({ doctors }: DoctorsSectionProps) {
           </button>
         </div>
       </div>
-
     </section>
   );
 }
