@@ -70,7 +70,7 @@ export function HeroSection({
       <div className="container relative">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Content */}
-          <div className="w-full lg:w-1/2 relative z-10 space-y-8">
+          <div className="w-full lg:w-1/2 relative z-10 space-y-6">
             <div className="lg:w-full">
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-display font-black leading-[1.2] text-foreground mb-6">
                 Protect Your Child from{" "}
@@ -178,18 +178,18 @@ export function HeroSection({
             </div>
 
             {/* Trust Stats Bar */}
-            <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-10 gap-y-6">
+            <div className="flex flex-wrap items-center lg:w-[120%] justify-start gap-x-5 gap-y-6">
               {statsToRender.map((stat, index) => (
                 <Fragment key={index}>
                   <div className="flex items-center gap-3">
                     <div className={stat.color}>
-                      <stat.icon className="lg:w-8 lg:h-8 w-6 h-6" />
+                      <stat.icon className="lg:w-6 lg:h-6 w-5 h-5" />
                     </div>
                     <div>
-                      <p className="lg:text-[30px] text-[20px] font-bold text-[#1A1A1A]">
+                      <p className="lg:text-[20px] text-[18px] font-bold text-[#1A1A1A]">
                         {renderValue(stat.value)}
                       </p>
-                      <p className="lg:text-[20px] text-[15px] text-muted-foreground font-medium">
+                      <p className="lg:text-[20px] text-[17px] text-muted-foreground font-medium">
                         {stat.label}
                       </p>
                     </div>
@@ -204,7 +204,6 @@ export function HeroSection({
 
           {/* Image Container - Bottom on mobile, Right on desktop */}
           <div className="lg:absolute lg:-right-[100px] mt-20  lg:top-0 lg:w-[62%] w-full lg:h-full h-[75%] lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
-            {/* <div className="lg:absolute lg:-right-[100px] p-4 lg:p-0 w-full h-full lg:w-[70%] top-0 lg:order-last"> */}
             <div className="relative h-full w-full">
               <svg
                 className="absolute inset-0 w-0 h-0"
