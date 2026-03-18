@@ -47,7 +47,7 @@ export function CareJourneySection() {
   return (
     <section className="py-12 lg:py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-6 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
             Our Simple 4-Step Care Journey
           </h2>
@@ -64,23 +64,23 @@ export function CareJourneySection() {
           {items.map((item, i) => {
             const Icon = iconMap[item.icon];
             return (
-            <div
-              key={i}
-              className="relative z-10 flex flex-col items-center text-center group"
-            >
-              <div className="w-20 h-20 bg-white rounded-2xl shadow-xl shadow-primary/10 border-2 border-primary/20 flex items-center justify-center text-primary group-hover:-translate-y-2 group-hover:bg-primary group-hover:text-white transition-all duration-300 mb-6">
-                <Icon className="w-8 h-8" />
+              <div
+                key={i}
+                className="relative z-10 flex flex-col items-center text-center group"
+              >
+                <div className="w-20 h-20 bg-white rounded-2xl shadow-xl shadow-primary/10 border-2 border-primary/20 flex items-center justify-center text-primary group-hover:-translate-y-2 group-hover:bg-primary group-hover:text-white transition-all duration-300 mb-6">
+                  <Icon className="w-8 h-8" />
+                </div>
+                <div className="hidden md:flex bg-accent text-primary font-black w-8 h-8 rounded-full items-center justify-center mb-6 md:mb-3 text-sm border-4 border-white">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold font-display mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground font-medium text-sm px-4">
+                  {item.desc}
+                </p>
               </div>
-              <div className="hidden md:flex bg-accent text-primary font-black w-8 h-8 rounded-full items-center justify-center mb-6 md:mb-3 text-sm border-4 border-white">
-                {item.step}
-              </div>
-              <h3 className="text-xl font-bold font-display mb-2">
-                {item.title}
-              </h3>
-              <p className="text-muted-foreground font-medium text-sm px-4">
-                {item.desc}
-              </p>
-            </div>
             );
           })}
         </div>
