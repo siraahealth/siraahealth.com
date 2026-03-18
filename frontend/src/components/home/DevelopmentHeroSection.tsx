@@ -1,6 +1,6 @@
 import { ArrowDown, PhoneCall, Star } from "lucide-react";
 import Image from "next/image";
-import type { PageContent } from "@/lib/page-contents";
+import type { PageContent } from "@/services-backend/PageContentService";
 import { PHONE_NUMBER } from "@/utils/contant";
 import { ScrollButton } from "@/components/core/ScrollButton";
 

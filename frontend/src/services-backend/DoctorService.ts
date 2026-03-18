@@ -1,5 +1,12 @@
 import { BaseBackendService } from "./BaseService";
-import type { Doctor } from "@/lib/doctors";
+
+export interface Doctor {
+  id: number;
+  name: string;
+  designation: string;
+  experience: number;
+  image?: string;
+}
 
 export class DoctorBackendService extends BaseBackendService {
   public static async getDoctors(): Promise<Doctor[]> {

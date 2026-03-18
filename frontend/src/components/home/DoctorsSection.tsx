@@ -2,7 +2,7 @@
 
 import { Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import type { Doctor } from "@/lib/doctors";
+import type { Doctor } from "@/services-backend/DoctorService";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 

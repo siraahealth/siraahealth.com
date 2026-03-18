@@ -12,7 +12,7 @@ import {
   Clock,
 } from "lucide-react";
 import Image from "next/image";
-import type { PageContent } from "@/lib/page-contents";
+import type { PageContent } from "@/services-backend/PageContentService";
 import Link from "next/link";
 import { CountUp } from "../ui/CountUp";
 import { VaccinationStatsData } from "@/services-backend/VaccinationService";
