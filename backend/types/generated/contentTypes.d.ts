@@ -511,7 +511,6 @@ export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    icon: Schema.Attribute.Media<'images'>;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -522,8 +521,6 @@ export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
     page: Schema.Attribute.Enumeration<['home', 'development']>;
     publishedAt: Schema.Attribute.DateTime;
     section: Schema.Attribute.String;
-    tag_line: Schema.Attribute.String;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

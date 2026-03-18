@@ -65,31 +65,6 @@ export default function DevelopmentHeroSection({
                   className="object-cover !relative"
                 />
               )}
-
-              {/* Status Badge Overlay */}
-              <div className="absolute bottom-6 px-6 w-full animate-fade-in-up delay-500">
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/20 flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-                    {content?.icon && (
-                      <Image
-                        src={content.icon}
-                        alt="Indian pediatrician and child during consultation"
-                        fill
-                        className="object-cover !relative"
-                      />
-                    )}
-                  </div>
-
-                  <div>
-                    <p className="font-display font-bold text-sm">
-                      {content?.title}
-                    </p>
-                    <p className="text-xs text-muted-foreground font-medium">
-                      {content?.tag_line}
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

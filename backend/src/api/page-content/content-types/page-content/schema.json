@@ -11,21 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": false
-    },
-    "tag_line": {
-      "type": "string",
-      "required": false
-    },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "image": {
       "type": "media",
       "multiple": false,
