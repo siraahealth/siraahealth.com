@@ -112,7 +112,7 @@ export function HeroSection({ content }: { content: PageContent | null }) {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 lg:w-[140%]">
+            <div className="flex flex-col sm:flex-row gap-4 lg:w-[115%]">
               <Link
                 href="/vaccination"
                 className="px-8 py-4 rounded-full font-bold bg-primary text-white flex items-center justify-center gap-2 hover:bg-primary/90 transition-all group lg:flex-1"
@@ -182,7 +182,7 @@ export function HeroSection({ content }: { content: PageContent | null }) {
       </div>
 
       {/* Right Image Container - Absolute on desktop */}
-      <div className="lg:absolute lg:top-0 lg:right-0 lg:w-1/2 lg:h-full mt-12 lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
+      <div className="lg:absolute lg:-right-[100px] lg:top-[100px] lg:w-[62%] lg:h-[75%] lg:mt-0 z-0 px-4 lg:px-0 aspect-[4/3] md:aspect-video lg:aspect-auto">
         <svg
           className="absolute inset-0 w-0 h-0"
           aria-hidden="true"
@@ -190,10 +190,57 @@ export function HeroSection({ content }: { content: PageContent | null }) {
         >
           <defs>
             <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
-              <path d="M0.35,0 C0.65,0 0.9,0.1 0.98,0.4 C1.05,0.7 0.92,0.95 0.65,0.99 C0.38,1.03 0.05,0.85 0.02,0.6 C-0.01,0.35 0.1,0 0.35,0 Z" />
+              <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 C1.05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
             </clipPath>
           </defs>
         </svg>
+
+        {/* Decorative: Dotted grid pattern - top-left of image area */}
+        <div
+          className="absolute -top-2 left-[15%] w-28 h-28 z-10 pointer-events-none"
+          aria-hidden="true"
+        >
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern
+                id="dot-grid"
+                x="0"
+                y="0"
+                width="12"
+                height="12"
+                patternUnits="userSpaceOnUse"
+              >
+                <circle cx="2" cy="2" r="2" fill="#3B82F6" fillOpacity="0.35" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dot-grid)" />
+          </svg>
+        </div>
+
+        {/* Decorative: Circular arc ring around the blob */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          aria-hidden="true"
+        >
+          <svg
+            width="100%"
+            height="100%"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 500 500"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <circle
+              cx="300"
+              cy="250"
+              r="230"
+              fill="none"
+              stroke="#3B82F6"
+              strokeWidth="2"
+              strokeOpacity="0.2"
+              strokeDasharray="6 8"
+            />
+          </svg>
+        </div>
 
         <div
           className="relative overflow-hidden shadow-2xl bg-white/70 h-full"
