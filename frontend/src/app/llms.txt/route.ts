@@ -1,7 +1,3 @@
-function envOrDefault(value: string | undefined, fallback: string) {
-  return value && value.trim().length > 0 ? value.trim() : fallback;
-}
-
 function toUrlList(value: string | undefined): string[] {
   if (!value) return [];
   return value
@@ -11,35 +7,17 @@ function toUrlList(value: string | undefined): string[] {
 }
 
 export async function GET() {
-  const baseUrl = envOrDefault(
-    process.env.NEXT_PUBLIC_FRONTEND_URL,
-    "https://sirrahealth.com",
-  ).replace(/\/+$/, "");
+  const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
-  const phone = envOrDefault(
-    process.env.NEXT_PUBLIC_PHONE_NUMBER,
-    "+91 99107 31103",
-  );
+  const phone = process.env.NEXT_PUBLIC_PHONE_NUMBER;
 
-  const email = envOrDefault(
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL,
-    "siraahealthinfo@gmail.com",
-  );
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 
-  const instagram =
-    envOrDefault(
-      process.env.NEXT_PUBLIC_INSTAGRAM_URL,
-      "https://www.instagram.com/SiraaHealth",
-    ) || "";
+  const instagram = "https://www.instagram.com/SiraaHealth";
 
-  const facebook =
-    envOrDefault(
-      process.env.NEXT_PUBLIC_FACEBOOK_URL,
-      "https://www.facebook.com/people/Siraababy/61587920614614",
-    ) || "";
+  const facebook = "https://www.facebook.com/people/Siraababy/61587920614614";
 
-  const extraSocials = toUrlList(process.env.NEXT_PUBLIC_SOCIAL_URLS);
-  const socials = [instagram, facebook, ...extraSocials].filter(Boolean);
+  const socials = [instagram, facebook];
 
   const lines = [
     "LLMs.txt",
