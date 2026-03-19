@@ -12,7 +12,7 @@ export default function LandingNavbar() {
 
   return (
     <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 h-20 transition-all duration-300">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-between">
+      <div className="container mx-auto h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
