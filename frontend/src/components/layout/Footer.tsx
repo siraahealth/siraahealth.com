@@ -83,8 +83,7 @@ export default function Footer() {
                 <span>Mon - Sat:</span> <span>9:00 AM - 7:00 PM</span>
               </li>
               <li className="flex justify-between pt-1">
-                <span>Sunday:</span>{" "}
-                <span className="text-primary font-bold">Closed</span>
+                <span>Sunday:</span> <span>9:00 AM - 6:00 PM</span>
               </li>
             </ul>
             <ScrollButton
