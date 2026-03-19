@@ -11,6 +11,15 @@ export default (config: any, { strapi }: { strapi: Core.Strapi }) => {
       const allowedOrigin = process.env.ALLOWED_ORIGIN;
       const allowedReferral = process.env.ALLOWED_REFERRAL;
 
+      const parseList = (value?: string) =>
+        (value || "")
+          .split(",")
+          .map((v) => v.trim())
+          .filter(Boolean);
+
+      const allowedOrigins = parseList(allowedOrigin);
+      const allowedReferrals = parseList(allowedReferral);
+
       // 1. Check Custom Token
       if (customToken) {
         let token =
@@ -28,9 +37,9 @@ export default (config: any, { strapi }: { strapi: Core.Strapi }) => {
       }
 
       // 2. Check Origin
-      if (allowedOrigin) {
+      if (allowedOrigins.length > 0) {
         const origin = ctx.request.headers["origin"];
-        if (origin !== allowedOrigin) {
+        if (!origin || !allowedOrigins.includes(origin)) {
           ctx.status = 403;
           ctx.body = { error: "Forbidden: Origin not allowed" };
           return;
@@ -38,9 +47,12 @@ export default (config: any, { strapi }: { strapi: Core.Strapi }) => {
       }
 
       // 3. Check Referral
-      if (allowedReferral) {
+      if (allowedReferrals.length > 0) {
         const referer = ctx.request.headers["referer"];
-        if (!referer || !referer.startsWith(allowedReferral)) {
+        const allowed = !!referer
+          ? allowedReferrals.some((ref) => referer.startsWith(ref))
+          : false;
+        if (!allowed) {
           ctx.status = 403;
           ctx.body = { error: "Forbidden: Referral not allowed" };
           return;
