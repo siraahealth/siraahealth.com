@@ -2,6 +2,7 @@
 NEXT_PUBLIC_FRONTEND_URL="http://localhost:3000"
 NEXT_PUBLIC_PHONE_NUMBER="+XYZ"
 NEXT_PUBLIC_NODE_ENV="production"
+NEXT_PUBLIC_CONTACT_EMAIL="test@example.com
 
 # Starpi CMS
 NEXT_PUBLIC_STRAPI_URL="http://localhost:1337"

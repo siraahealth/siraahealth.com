@@ -72,20 +72,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
   const schemaOrg = {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
     name: "Siraa Health",
     url: baseUrl.toString(),
     logo: new URL("/assets/siraa-logo.png", baseUrl).toString(),
-    telephone: phoneNumber || undefined,
+    telephone: phoneNumber,
+    email: contactEmail,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Golf Course Road",
+      streetAddress: "Golf course road",
       addressLocality: "Gurgaon",
       addressRegion: "Haryana",
       addressCountry: "IN",
     },
+    sameAs: [
+      "https://www.instagram.com/SiraaHealth",
+      "https://www.facebook.com/people/Siraababy/61587920614614",
+    ],
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -101,6 +107,7 @@ export default function RootLayout({
         closes: "19:00",
       },
     ],
+    openingHours: ["Mo-Sa 09:00-19:00"],
   };
 
   return (

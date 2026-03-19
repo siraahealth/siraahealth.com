@@ -38,6 +38,7 @@ jobs:
           cd frontend
           echo "NEXT_PUBLIC_FRONTEND_URL=${{ vars.NEXT_PUBLIC_FRONTEND_URL }}" >> .env
           echo "NEXT_PUBLIC_PHONE_NUMBER=${{ vars.NEXT_PUBLIC_PHONE_NUMBER }}" >> .env
+          echo "NEXT_PUBLIC_CONTACT_EMAIL=${{ vars.NEXT_PUBLIC_CONTACT_EMAIL }}" >> .env
           echo "NEXT_PUBLIC_STRAPI_URL=${{ vars.NEXT_PUBLIC_STRAPI_URL }}" >> .env
           echo "CUSTOM_TOKEN=${{ secrets.CUSTOM_TOKEN }}" >> .env
           echo "NEXT_PUBLIC_GTM_ID=${{ vars.NEXT_PUBLIC_GTM_ID }}" >> .env
