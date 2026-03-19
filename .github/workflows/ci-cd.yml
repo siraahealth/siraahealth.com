@@ -56,7 +56,7 @@ jobs:
           username: ${{ secrets.HOSTINGER_USER }}
           key: ${{ secrets.HOSTINGER_SSH_KEY }}
           source: "./frontend"
-          target: "/root/websites/codevally"
+          target: "/root/websites/siraa-health"
           strip_components: 0
 
       - name: Restart server
@@ -70,7 +70,7 @@ jobs:
             export NVM_DIR="/root/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use 20
-            pm2 restart codevally_frontend_3000 || pm2 start "npm run start" --name codevally_frontend_3000
+            pm2 restart siraa_health_frontend_3000 || pm2 start "npm run start" --name siraa_health_frontend_3000
 
   backend:
     runs-on: ubuntu-latest
@@ -136,7 +136,7 @@ jobs:
           username: ${{ secrets.HOSTINGER_USER }}
           key: ${{ secrets.HOSTINGER_SSH_KEY }}
           source: "./backend"
-          target: "/root/websites/codevally"
+          target: "/root/websites/siraa-health"
           strip_components: 0
 
       - name: Restart server
@@ -150,4 +150,4 @@ jobs:
             export NVM_DIR="/root/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use 20
-            pm2 restart codevally_backend_1337 || pm2 start "npm run start" --name codevally_backend_1337
+            pm2 restart siraa_health_backend_1337 || pm2 start "npm run start" --name siraa_health_backend_1337
