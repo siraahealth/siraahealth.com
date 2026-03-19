@@ -17,6 +17,7 @@ import {
 import { Controller } from "react-hook-form";
 import { FrontendService } from "@/services/FrontendService";
 import { bookingSchema } from "@/validation/booking-schema";
+import { pushEvent } from "@/utils/gtm";
 
 const frontendService = new FrontendService();
 
@@ -56,13 +57,23 @@ export function BookingForm() {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    pushEvent("appointment_form_submit_attempt", {
+      child_age: data.child_age || "",
+      primary_concern: data.primary_concern || "",
+    });
+
     try {
       await frontendService.createBooking(data);
       setSubmitStatus("success");
+      pushEvent("appointment_booking_success", {
+        child_age: data.child_age || "",
+        primary_concern: data.primary_concern || "",
+      });
       reset();
     } catch (error) {
       console.error(error);
       setSubmitStatus("error");
+      pushEvent("appointment_booking_error");
     } finally {
       setIsSubmitting(false);
     }

@@ -1,9 +1,12 @@
-import { ArrowDown, PhoneCall, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import type { PageContent } from "@/services-backend/PageContentService";
-import { PHONE_NUMBER } from "@/utils/contant";
-import { ScrollButton } from "@/components/core/ScrollButton";
+import { DevelopmentHeroCTAs } from "@/components/home/DevelopmentHeroCTAs";
 
+/**
+ * Server component — h1, badge, p, and image are all SSR'd for SEO.
+ * Interactive CTAs are delegated to the DevelopmentHeroCTAs client island.
+ */
 export default function DevelopmentHeroSection({
   content,
 }: {
@@ -24,35 +27,19 @@ export default function DevelopmentHeroSection({
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.15] text-foreground mb-6 text-balance">
               <span>
-                Worried About Your Child’s{" "}
+                Worried About Your Child&apos;s{" "}
                 <span className="text-primary">Speech or Development?</span>
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 font-medium max-w-xl">
               Early screening and evidence-based therapy for speech delay,
-              autism, and developmental delays by Gurgaon's leading pediatric
+              autism, and developmental delays by Gurgaon&apos;s leading pediatric
               specialists.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <ScrollButton
-                sectionId="booking-form"
-                className="px-8 py-4 rounded-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all text-center flex items-center justify-center gap-2"
-              >
-                Book Development Assessment
-                <ArrowDown className="w-5 h-5 animate-bounce" />
-              </ScrollButton>
-              {PHONE_NUMBER && (
-                <a
-                  href={`tel:${PHONE_NUMBER}`}
-                  className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
-                >
-                  <PhoneCall className="w-5 h-5 text-primary" />
-                  Check your child's development in 60 seconds
-                </a>
-              )}
-            </div>
+            {/* Client island — only the buttons are interactive/tracked */}
+            <DevelopmentHeroCTAs />
           </div>
 
           <div className="relative animate-fade-in-up delay-200 lg:ml-auto">

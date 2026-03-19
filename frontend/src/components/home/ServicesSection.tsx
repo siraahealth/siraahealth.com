@@ -5,13 +5,12 @@ import {
   Users,
   Activity,
   HeartHandshake,
-  ArrowRight,
 } from "lucide-react";
-import { ScrollButton } from "@/components/core/ScrollButton";
 import {
   ServicesSwiper,
   type ServiceSwiperItem,
 } from "@/components/swipers/ServicesSwiper";
+import { ServiceBookButton } from "@/components/home/ServiceBookButton";
 
 export function ServicesSection() {
   const iconMap = {
@@ -103,12 +102,8 @@ export function ServicesSection() {
                 <p className="text-muted-foreground font-medium mb-6 flex-grow">
                   {service.desc}
                 </p>
-                <ScrollButton
-                  sectionId="booking-form"
-                  className="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all"
-                >
-                  Book Consultation <ArrowRight className="w-4 h-4" />
-                </ScrollButton>
+                {/* Client island — only the button is interactive/tracked */}
+                <ServiceBookButton service={service.title} />
               </div>
             );
           })}

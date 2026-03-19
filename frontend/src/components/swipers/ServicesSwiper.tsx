@@ -15,6 +15,7 @@ import { ScrollButton } from "@/components/core/ScrollButton";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { pushEvent } from "@/utils/gtm";
 
 const iconMap = {
   Smile,
@@ -70,6 +71,7 @@ export function ServicesSwiper({ services, className }: ServicesSwiperProps) {
                 </p>
                 <ScrollButton
                   sectionId="booking-form"
+                  onTrack={() => pushEvent("service_book_click", { service: service.title, device: "mobile" })}
                   className="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all"
                 >
                   Book Consultation <ArrowRight className="w-4 h-4" />

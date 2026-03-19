@@ -15,6 +15,7 @@ import {
 import { QuizService } from "@/services/QuizService";
 import { Button } from "@/components/ui/button";
 import { scrollToSection } from "@/utils/scroll";
+import { pushEvent } from "@/utils/gtm";
 
 const schema = yup.object().shape({
   childAge: yup.string().required("Child age is required"),
@@ -77,6 +78,16 @@ export function QuizSection() {
 
     const isValid = await trigger(fieldsToValidate);
     if (isValid) {
+      const completedStep = step + 1;
+      const answerMap: Record<number, unknown> = {
+        1: watch("childAge"),
+        2: watch("symptoms"),
+        3: watch("concerns"),
+      };
+      pushEvent("quiz_step_complete", {
+        step: completedStep,
+        answer: answerMap[completedStep],
+      });
       setStep((s) => s + 1);
       setSubmitError(null);
     }
@@ -108,6 +119,11 @@ export function QuizSection() {
         ],
       };
       await QuizService.submitQuiz(formattedData);
+      pushEvent("quiz_submission_success", {
+        child_age: data.childAge,
+        symptoms: data.symptoms,
+        concerns: data.concerns,
+      });
       setShowResult(true);
       reset();
     } catch (error: any) {
@@ -157,7 +173,10 @@ export function QuizSection() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => scrollToSection("booking-form")}
+                onClick={() => {
+                  pushEvent("quiz_result_cta_click", { cta: "book_assessment" });
+                  scrollToSection("booking-form");
+                }}
                 className="px-8 py-4 rounded-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all text-center flex items-center justify-center gap-2"
               >
                 Book Development Assessment
@@ -167,6 +186,7 @@ export function QuizSection() {
                 href="https://wa.me/919910731103?text=Hi%20I%20want%20to%20book%20a%20child%20assessment%20with%20Siraa%20Health"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => pushEvent("quiz_result_cta_click", { cta: "whatsapp" })}
                 className="px-8 py-4 rounded-full font-bold text-lg bg-secondary/20 text-foreground hover:bg-secondary/30 border-2 border-secondary transition-all text-center"
               >
                 Chat on WhatsApp

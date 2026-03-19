@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito, Quicksand } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import NavbarSwitcher from "@/components/layout/NavbarSwitcher";
@@ -8,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollOnMount from "@/components/core/ScrollOnMount";
 import GTMScript from "@/components/analytics/GTMScript";
 import GTMFrame from "@/components/analytics/GTMFrame";
+import GTMRouteTracker from "@/components/analytics/GTMRouteTracker";
 
 const baseUrl = new URL(
   process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000",
@@ -118,12 +120,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
-        <GTMScript />
       </head>
       <body
         className={`${fontSans.variable} ${fontDisplay.variable} antialiased`}
       >
+        <GTMScript />
         <GTMFrame />
+        <Suspense fallback={null}>
+          <GTMRouteTracker />
+        </Suspense>
         <Providers>
           <div className="min-h-screen bg-background font-sans">
             <NavbarSwitcher />

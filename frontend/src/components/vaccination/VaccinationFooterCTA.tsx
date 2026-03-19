@@ -1,5 +1,9 @@
-import { ScrollButton } from "@/components/core/ScrollButton";
+import { VaccinationBookButton } from "@/components/vaccination/VaccinationBookButton";
 
+/**
+ * Server component — heading is SSR'd for SEO.
+ * The booking CTA is delegated to the VaccinationBookButton client island.
+ */
 export function VaccinationFooterCTA() {
   return (
     <section className="py-20 lg:py-32 bg-blue-600 relative overflow-hidden">
@@ -12,12 +16,8 @@ export function VaccinationFooterCTA() {
         </h2>
 
         <div className="flex justify-center">
-          <ScrollButton
-            sectionId="vaccination-form"
-            className="px-10 py-5 rounded-full font-bold bg-yellow-400 text-black hover:bg-yellow-500 transition-all hover:scale-105 shadow-xl shadow-blue-900/20 text-xl"
-          >
-            Book Appointment
-          </ScrollButton>
+          {/* Client island — Book Appointment CTA with GTM tracking */}
+          <VaccinationBookButton />
         </div>
       </div>
     </section>

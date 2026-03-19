@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
+import { pushEvent } from "@/utils/gtm";
 
 export default function AppNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +50,7 @@ export default function AppNavbar() {
               </span>
               <a
                 href={`tel:${PHONE_NUMBER}`}
+                onClick={() => pushEvent("phone_call_click", { source: "app_navbar_desktop" })}
                 className="font-display font-bold text-primary text-lg leading-tight"
               >
                 {formattedPhoneNumber}
@@ -59,6 +61,7 @@ export default function AppNavbar() {
           <ScrollButton
             sectionId="booking-form"
             href="/milestones/Thick-DelhiNCR"
+            onTrack={() => pushEvent("navbar_cta_click", { cta: "book_assessment", navbar: "app" })}
             className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
             Book Assessment
@@ -72,6 +75,7 @@ export default function AppNavbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => pushEvent("whatsapp_cta_click", { source: "app_navbar" })}
               className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
               aria-label="Contact on WhatsApp"
             >
@@ -79,7 +83,11 @@ export default function AppNavbar() {
             </a>
           )}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              const opening = !isOpen;
+              setIsOpen(opening);
+              if (opening) pushEvent("mobile_menu_open", { navbar: "app" });
+            }}
             className="p-2 text-foreground hover:bg-black/5 rounded-xl transition-colors"
             aria-label="Toggle Menu"
           >
@@ -118,17 +126,19 @@ export default function AppNavbar() {
                     </span>
                   </div>
                   <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className="font-display font-bold text-primary text-2xl block"
-                  >
-                    {formattedPhoneNumber}
-                  </a>
+                href={`tel:${PHONE_NUMBER}`}
+                onClick={() => pushEvent("phone_call_click", { source: "app_navbar_menu" })}
+                className="font-display font-bold text-primary text-2xl block"
+              >
+                {formattedPhoneNumber}
+              </a>
                 </div>
               )}
 
               <ScrollButton
                 sectionId="booking-form"
                 href="/milestones/Thick-DelhiNCR"
+                onTrack={() => pushEvent("navbar_cta_click", { cta: "book_assessment", navbar: "app", source: "mobile_menu" })}
                 className="block w-full text-center px-8 py-4 rounded-2xl font-bold bg-secondary text-secondary-foreground text-xl shadow-xl shadow-secondary/20 hover:bg-yellow-400 active:scale-95 transition-all"
               >
                 Book Assessment

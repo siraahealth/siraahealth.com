@@ -6,6 +6,7 @@ import { PHONE_NUMBER, whatsappUrl } from "@/utils/contant";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
+import { pushEvent } from "@/utils/gtm";
 
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,12 +32,14 @@ export default function LandingNavbar() {
         <nav className="hidden md:flex items-center gap-12">
           <Link
             href="/vaccinations/Thick-DelhiNCR"
+            onClick={() => pushEvent("navbar_cta_click", { cta: "vaccination", navbar: "landing" })}
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
           >
             Vaccination
           </Link>
           <Link
             href="/milestones/Thick-DelhiNCR"
+            onClick={() => pushEvent("navbar_cta_click", { cta: "development", navbar: "landing" })}
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
           >
             Development
@@ -48,6 +51,7 @@ export default function LandingNavbar() {
           <ScrollButton
             sectionId="booking-form"
             href="/milestones/Thick-DelhiNCR"
+            onTrack={() => pushEvent("navbar_cta_click", { cta: "book_appointment", navbar: "landing" })}
             className="px-8 py-3.5 rounded-full font-bold bg-[#3B82F6] text-white hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95"
           >
             Book Appointment
@@ -61,6 +65,7 @@ export default function LandingNavbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => pushEvent("whatsapp_cta_click", { source: "landing_navbar" })}
               className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
               aria-label="Contact on WhatsApp"
             >
@@ -68,7 +73,11 @@ export default function LandingNavbar() {
             </a>
           )}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              const opening = !isOpen;
+              setIsOpen(opening);
+              if (opening) pushEvent("mobile_menu_open", { navbar: "landing" });
+            }}
             className="p-2 text-gray-600 hover:bg-gray-50 rounded-xl transition-colors"
             aria-label="Toggle Menu"
           >
@@ -89,14 +98,20 @@ export default function LandingNavbar() {
           <div className="flex flex-col h-full px-6 gap-8">
             <Link
               href="/vaccinations/Thick-DelhiNCR"
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                pushEvent("navbar_cta_click", { cta: "vaccination", navbar: "landing", source: "mobile_menu" });
+              }}
               className="text-lg font-bold text-[#1A1A1A]"
             >
               Vaccination
             </Link>
             <Link
               href="/milestones/Thick-DelhiNCR"
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                pushEvent("navbar_cta_click", { cta: "development", navbar: "landing", source: "mobile_menu" });
+              }}
               className="text-lg font-bold text-[#1A1A1A]"
             >
               Development
@@ -105,6 +120,7 @@ export default function LandingNavbar() {
             <ScrollButton
               sectionId="booking-form"
               href="/milestones/Thick-DelhiNCR"
+              onTrack={() => pushEvent("navbar_cta_click", { cta: "book_appointment", navbar: "landing", source: "mobile_menu" })}
               className="mt-4 block text-lg w-full text-center px-8 py-4 rounded-2xl font-bold bg-[#3B82F6] text-white shadow-xl shadow-blue-500/20"
             >
               Book Appointment

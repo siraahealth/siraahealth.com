@@ -1,6 +1,7 @@
 "use client";
 import { MessageCircle } from "lucide-react";
 import { whatsappUrl } from "@/utils/contant";
+import { pushEvent } from "@/utils/gtm";
 
 export function FloatingWhatsApp() {
   return (
@@ -8,6 +9,7 @@ export function FloatingWhatsApp() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => pushEvent("whatsapp_cta_click", { source: "floating_button" })}
       className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-5 py-4 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:shadow-[#25D366]/40 hover:-translate-y-1 transition-all duration-300 group"
       aria-label="Chat with us on WhatsApp"
     >
