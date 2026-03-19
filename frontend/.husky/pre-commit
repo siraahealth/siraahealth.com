@@ -1,0 +1,22 @@
+#!/bin/sh
+# .husky/pre-commit
+# Runs TypeScript type check + ESLint before every commit.
+# Blocks the commit if either check fails.
+
+echo "🔍 Pre-commit: checking frontend..."
+
+# --- TypeScript ---
+echo "\n📐 Type checking (tsc --noEmit)..."
+npm run type-check || {
+  echo "\n❌ TypeScript errors found. Fix them before committing."
+  exit 1
+}
+
+# --- ESLint ---
+echo "\n🧹 Linting (eslint)..."
+npm run lint -- --max-warnings=0 || {
+  echo "\n❌ ESLint violations found. Fix them before committing."
+  exit 1
+}
+
+echo "\n✅ All checks passed!"
