@@ -1,5 +1,12 @@
 import { BaseBackendService } from "./BaseService";
-import type { Doctor } from "@/lib/doctors";
+
+export interface Doctor {
+  id: number;
+  name: string;
+  designation: string;
+  experience: number;
+  image?: string;
+}
 
 export class DoctorBackendService extends BaseBackendService {
   public static async getDoctors(): Promise<Doctor[]> {
@@ -21,12 +28,12 @@ export class DoctorBackendService extends BaseBackendService {
       }
 
       return data.map((doc: any) => ({
-        id: doc.id,
-        name: doc.name,
-        designation: doc.designation,
-        experience: doc.experience,
-        image: doc.image?.url
-          ? `${this.STRAPI_URL}${doc.image?.url}`
+        id: doc?.id,
+        name: doc?.name,
+        designation: doc?.designation,
+        experience: doc?.experience,
+        image: doc?.image?.url
+          ? `${this.STRAPI_URL}${doc?.image?.url}`
           : undefined,
       }));
     } catch (err) {

@@ -2,13 +2,30 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        lg: "2rem",
+        "2xl": "2rem",
+        "3xl": "0",
+      },
+      screens: {
+        "2xl": "1440px",
+      },
+    },
     extend: {
       borderRadius: {
-        lg: ".5625rem", /* 9px */
-        md: ".375rem", /* 6px */
-        sm: ".1875rem", /* 3px */
+        lg: ".5625rem" /* 9px */,
+        md: ".375rem" /* 6px */,
+        sm: ".1875rem" /* 3px */,
       },
       colors: {
         // Flat / base colors (regular buttons)
@@ -73,7 +90,7 @@ export default {
         "sidebar-accent": {
           DEFAULT: "hsl(var(--sidebar-accent) / <alpha-value>)",
           foreground: "hsl(var(--sidebar-accent-foreground) / <alpha-value>)",
-          border: "var(--sidebar-accent-border)"
+          border: "var(--sidebar-accent-border)",
         },
         status: {
           online: "rgb(34 197 94)",

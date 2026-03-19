@@ -11,21 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "tag_line": {
-      "type": "string",
-      "required": false
-    },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -40,7 +25,8 @@
     "page": {
       "type": "enumeration",
       "enum": [
-        "home"
+        "home",
+        "milestones"
       ]
     }
   }

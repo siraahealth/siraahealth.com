@@ -1,6 +1,9 @@
 import React from "react";
+import Image from "next/image";
 import { MapPin, PhoneCall } from "lucide-react";
 import { formattedPhoneNumber } from "@/utils/contant";
+import Link from "next/link";
+import { ScrollButton } from "@/components/core/ScrollButton";
 
 export default function Footer() {
   return (
@@ -9,9 +12,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <img
+              <Image
                 src="/assets/siraa-logo.png"
                 alt="Siraa Health"
+                width={64}
+                height={64}
                 className="w-16 h-16 object-contain bg-white rounded-lg p-2"
               />
               <span className="font-display font-black text-2xl tracking-tight">
@@ -28,36 +33,25 @@ export default function Footer() {
             <h4 className="font-display font-bold text-xl mb-6">Quick Links</h4>
             <ul className="space-y-3 text-white/70 font-medium">
               <li>
-                <a
-                  href="#home"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/" className="hover:text-primary transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#about"
+                <Link
+                  href="/vaccinations/Thick-DelhiNCR"
                   className="hover:text-primary transition-colors"
                 >
-                  About Us
-                </a>
+                  Vaccination
+                </Link>
               </li>
               <li>
-                <a
-                  href="#services"
+                <Link
+                  href="/milestones/Thick-DelhiNCR"
                   className="hover:text-primary transition-colors"
                 >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#doctors"
-                  className="hover:text-primary transition-colors"
-                >
-                  Our Doctors
-                </a>
+                  Development
+                </Link>
               </li>
             </ul>
           </div>
@@ -93,12 +87,13 @@ export default function Footer() {
                 <span className="text-primary font-bold">Closed</span>
               </li>
             </ul>
-            <a
-              href="#booking-form"
+            <ScrollButton
+              sectionId="booking-form"
+              href="/milestones/Thick-DelhiNCR"
               className="mt-6 block w-full py-3 rounded-xl font-bold bg-primary hover:bg-primary/90 transition-colors text-center text-white"
             >
               Schedule Visit
-            </a>
+            </ScrollButton>
           </div>
         </div>
 
@@ -106,12 +101,15 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm font-medium">
             <p>© 2026 Siraa Health. All Rights Reserved</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white">
+              <Link href="/privacy-policy" className="hover:text-white">
                 Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white">
+              </Link>
+              <Link href="/terms-of-service" className="hover:text-white">
                 Terms of Service
-              </a>
+              </Link>
+              <Link href="/medical-disclaimer" className="hover:text-white">
+                Medical Disclaimer
+              </Link>
             </div>
           </div>
 

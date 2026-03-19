@@ -38,8 +38,11 @@ jobs:
           cd frontend
           echo "NEXT_PUBLIC_FRONTEND_URL=${{ vars.NEXT_PUBLIC_FRONTEND_URL }}" >> .env
           echo "NEXT_PUBLIC_PHONE_NUMBER=${{ vars.NEXT_PUBLIC_PHONE_NUMBER }}" >> .env
+          echo "NEXT_PUBLIC_CONTACT_EMAIL=${{ vars.NEXT_PUBLIC_CONTACT_EMAIL }}" >> .env
           echo "NEXT_PUBLIC_STRAPI_URL=${{ vars.NEXT_PUBLIC_STRAPI_URL }}" >> .env
           echo "CUSTOM_TOKEN=${{ secrets.CUSTOM_TOKEN }}" >> .env
+          echo "NEXT_PUBLIC_GTM_ID=${{ vars.NEXT_PUBLIC_GTM_ID }}" >> .env
+          echo "NEXT_PUBLIC_NODE_ENV=${{ vars.NEXT_PUBLIC_NODE_ENV }}" >> .env
 
           # Install dependencies and build frontend
           npm install
@@ -53,7 +56,7 @@ jobs:
           username: ${{ secrets.HOSTINGER_USER }}
           key: ${{ secrets.HOSTINGER_SSH_KEY }}
           source: "./frontend"
-          target: "/root/websites/codevally"
+          target: "/root/websites/siraa-health"
           strip_components: 0
 
       - name: Restart server
@@ -67,7 +70,7 @@ jobs:
             export NVM_DIR="/root/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use 20
-            pm2 restart codevally_frontend_3000 || pm2 start "npm run start" --name codevally_frontend_3000
+            pm2 restart siraa_health_frontend_3000 || pm2 start "npm run start" --name siraa_health_frontend_3000
 
   backend:
     runs-on: ubuntu-latest
@@ -133,7 +136,7 @@ jobs:
           username: ${{ secrets.HOSTINGER_USER }}
           key: ${{ secrets.HOSTINGER_SSH_KEY }}
           source: "./backend"
-          target: "/root/websites/codevally"
+          target: "/root/websites/siraa-health"
           strip_components: 0
 
       - name: Restart server
@@ -147,4 +150,4 @@ jobs:
             export NVM_DIR="/root/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use 20
-            pm2 restart codevally_backend_1337 || pm2 start "npm run start" --name codevally_backend_1337
+            pm2 restart siraa_health_backend_1337 || pm2 start "npm run start" --name siraa_health_backend_1337
