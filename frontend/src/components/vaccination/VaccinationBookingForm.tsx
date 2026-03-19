@@ -17,6 +17,7 @@ import {
 import { Controller } from "react-hook-form";
 import { FrontendService } from "@/services/FrontendService";
 import { vaccinationBookingSchema } from "@/validation/vaccination-booking-schema";
+import { pushEvent } from "@/utils/gtm";
 
 const frontendService = new FrontendService();
 
@@ -51,14 +52,22 @@ export function VaccinationBookingForm() {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    pushEvent("vaccination_form_submit_attempt", {
+      child_age: data.child_age || "",
+    });
+
     try {
       // We pass the data to createVaccinationBooking
       await frontendService.createVaccinationBooking(data);
       setSubmitStatus("success");
+      pushEvent("vaccination_booking_success", {
+        child_age: data.child_age || "",
+      });
       reset();
     } catch (error) {
       console.error(error);
       setSubmitStatus("error");
+      pushEvent("vaccination_booking_error");
     } finally {
       setIsSubmitting(false);
     }

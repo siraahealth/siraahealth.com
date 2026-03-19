@@ -15,16 +15,19 @@ interface ScrollButtonProps {
   href?: string;
   className?: string;
   children: React.ReactNode;
+  /** Optional callback fired when the button is clicked — use for GTM tracking. */
+  onTrack?: () => void;
 }
 
 /**
  * A client component button that smooth-scrolls to a given section id.
  * Handles both same-page scroll and cross-page navigation + scroll.
  */
-export function ScrollButton({ sectionId, href, className, children }: ScrollButtonProps) {
+export function ScrollButton({ sectionId, href, className, children, onTrack }: ScrollButtonProps) {
   const router = useRouter();
 
   const handleClick = () => {
+    onTrack?.();
     const element = document.getElementById(sectionId);
     if (element) {
       // Element is on the current page — scroll directly

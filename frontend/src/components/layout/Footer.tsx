@@ -1,10 +1,14 @@
-import React from "react";
 import Image from "next/image";
 import { MapPin, PhoneCall } from "lucide-react";
-import { formattedPhoneNumber } from "@/utils/contant";
+import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 import Link from "next/link";
-import { ScrollButton } from "@/components/core/ScrollButton";
+import { FooterScheduleButton } from "@/components/layout/FooterScheduleButton";
+import { FooterPhoneLink } from "@/components/layout/FooterPhoneLink";
 
+/**
+ * Server component — all text content, links, and structure are SSR'd for SEO.
+ * Interactive CTAs are delegated to client islands (FooterScheduleButton, FooterPhoneLink).
+ */
 export default function Footer() {
   return (
     <footer className="bg-foreground text-white pt-20 pb-10">
@@ -24,8 +28,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 font-medium leading-relaxed">
-              Gurgaon's dedicated pediatric neurodevelopment clinic focusing on
-              holistic child growth through evidence-based therapies.
+              Gurgaon&apos;s dedicated pediatric neurodevelopment clinic
+              focusing on holistic child growth through evidence-based
+              therapies.
             </p>
           </div>
 
@@ -69,7 +74,15 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <PhoneCall className="w-5 h-5 text-primary shrink-0" />
-                <span>{formattedPhoneNumber}</span>
+                {PHONE_NUMBER ? (
+                  /* Client island — phone link with GTM tracking */
+                  <FooterPhoneLink
+                    href={`tel:${PHONE_NUMBER}`}
+                    label={formattedPhoneNumber}
+                  />
+                ) : (
+                  <span>{formattedPhoneNumber}</span>
+                )}
               </li>
             </ul>
           </div>
@@ -87,13 +100,8 @@ export default function Footer() {
                 <span className="text-primary font-bold">Closed</span>
               </li>
             </ul>
-            <ScrollButton
-              sectionId="booking-form"
-              href="/milestones/Thick-DelhiNCR"
-              className="mt-6 block w-full py-3 rounded-xl font-bold bg-primary hover:bg-primary/90 transition-colors text-center text-white"
-            >
-              Schedule Visit
-            </ScrollButton>
+            {/* Client island — Schedule Visit CTA with GTM tracking */}
+            <FooterScheduleButton />
           </div>
         </div>
 
