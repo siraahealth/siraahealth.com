@@ -518,7 +518,7 @@ export interface ApiPageContentPageContent extends Struct.CollectionTypeSchema {
       'api::page-content.page-content'
     > &
       Schema.Attribute.Private;
-    page: Schema.Attribute.Enumeration<['home', 'development']>;
+    page: Schema.Attribute.Enumeration<['home', 'milestones']>;
     publishedAt: Schema.Attribute.DateTime;
     section: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

@@ -36,7 +36,7 @@ export default function AppNavbar() {
         <div className="hidden md:flex items-center gap-8">
           <ScrollButton
             sectionId="why-vaccinate"
-            href="/vaccination"
+            href="/vaccinations/Thick-DelhiNCR"
             className="text-sm font-bold text-foreground hover:text-primary transition-colors"
           >
             Why Vaccinate
@@ -58,7 +58,7 @@ export default function AppNavbar() {
 
           <ScrollButton
             sectionId="booking-form"
-            href="/development"
+            href="/milestones/Thick-DelhiNCR"
             className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
             Book Assessment
@@ -101,7 +101,7 @@ export default function AppNavbar() {
             <div className="space-y-4">
               <ScrollButton
                 sectionId="why-vaccinate"
-                href="/vaccination"
+                href="/vaccinations/Thick-DelhiNCR"
                 className="block text-2xl font-display font-bold text-foreground hover:text-primary transition-colors border-b border-border/30 pb-4"
               >
                 Why Vaccinate
@@ -128,7 +128,7 @@ export default function AppNavbar() {
 
               <ScrollButton
                 sectionId="booking-form"
-                href="/development"
+                href="/milestones/Thick-DelhiNCR"
                 className="block w-full text-center px-8 py-4 rounded-2xl font-bold bg-secondary text-secondary-foreground text-xl shadow-xl shadow-secondary/20 hover:bg-yellow-400 active:scale-95 transition-all"
               >
                 Book Assessment

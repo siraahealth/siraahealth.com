@@ -39,7 +39,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/vaccination"
+                  href="/vaccinations/Thick-DelhiNCR"
                   className="hover:text-primary transition-colors"
                 >
                   Vaccination
@@ -47,7 +47,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/development"
+                  href="/milestones/Thick-DelhiNCR"
                   className="hover:text-primary transition-colors"
                 >
                   Development
@@ -89,7 +89,7 @@ export default function Footer() {
             </ul>
             <ScrollButton
               sectionId="booking-form"
-              href="/development"
+              href="/milestones/Thick-DelhiNCR"
               className="mt-6 block w-full py-3 rounded-xl font-bold bg-primary hover:bg-primary/90 transition-colors text-center text-white"
             >
               Schedule Visit

@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description:
     "Protect your child with timely vaccinations at Siraa Health. Professional pediatric care and a stress-free experience.",
   alternates: {
-    canonical: "/vaccination",
+    canonical: "/vaccinations/Thick-DelhiNCR",
   },
   openGraph: {
     title: "Vaccination Services",
     description:
       "Protect your child with timely vaccinations at Siraa Health. Professional pediatric care and a stress-free experience.",
-    url: "/vaccination",
+    url: "/vaccinations/Thick-DelhiNCR",
     images: ["/assets/siraa-logo.png"],
   },
   twitter: {

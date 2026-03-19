@@ -6,8 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date("2026-03-17T12:18:49.812Z");
   const routes = [
     "",
-    "/development",
-    "/vaccination",
+    "/milestones/Thick-DelhiNCR",
+    "/vaccinations/Thick-DelhiNCR",
     "/privacy-policy",
     "/terms-of-service",
     "/medical-disclaimer",

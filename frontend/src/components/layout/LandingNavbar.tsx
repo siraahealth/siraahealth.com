@@ -30,13 +30,13 @@ export default function LandingNavbar() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-12">
           <Link
-            href="/vaccination"
+            href="/vaccinations/Thick-DelhiNCR"
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
           >
             Vaccination
           </Link>
           <Link
-            href="/development"
+            href="/milestones/Thick-DelhiNCR"
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
           >
             Development
@@ -47,7 +47,7 @@ export default function LandingNavbar() {
         <div className="hidden md:block">
           <ScrollButton
             sectionId="booking-form"
-            href="/development"
+            href="/milestones/Thick-DelhiNCR"
             className="px-8 py-3.5 rounded-full font-bold bg-[#3B82F6] text-white hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95"
           >
             Book Appointment
@@ -88,14 +88,14 @@ export default function LandingNavbar() {
         <div className="bg-white py-6">
           <div className="flex flex-col h-full px-6 gap-8">
             <Link
-              href="/vaccination"
+              href="/vaccinations/Thick-DelhiNCR"
               onClick={() => setIsOpen(false)}
               className="text-lg font-bold text-[#1A1A1A]"
             >
               Vaccination
             </Link>
             <Link
-              href="/development"
+              href="/milestones/Thick-DelhiNCR"
               onClick={() => setIsOpen(false)}
               className="text-lg font-bold text-[#1A1A1A]"
             >
@@ -104,7 +104,7 @@ export default function LandingNavbar() {
 
             <ScrollButton
               sectionId="booking-form"
-              href="/development"
+              href="/milestones/Thick-DelhiNCR"
               className="mt-4 block text-lg w-full text-center px-8 py-4 rounded-2xl font-bold bg-[#3B82F6] text-white shadow-xl shadow-blue-500/20"
             >
               Book Appointment

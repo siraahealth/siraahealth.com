@@ -16,13 +16,13 @@ export const metadata: Metadata = {
   description:
     "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
   alternates: {
-    canonical: "/development",
+    canonical: "/milestones/Thick-DelhiNCR",
   },
   openGraph: {
     title: "Child Development Assessment & Therapy",
     description:
       "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
-    url: "/development",
+    url: "/milestones/Thick-DelhiNCR",
     images: ["/assets/siraa-logo.png"],
   },
   twitter: {
@@ -38,7 +38,7 @@ export default async function DevelopmentPage() {
   // Fetching directly from the backend services server-side
   const doctors = await DoctorBackendService.getDoctors();
   const heroContent = await PageContentBackendService.getPageContent(
-    "development",
+    "milestones",
     "hero",
   );
   const faqSchema = {

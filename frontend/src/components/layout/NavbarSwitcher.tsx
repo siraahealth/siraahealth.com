@@ -8,7 +8,7 @@ export default function NavbarSwitcher() {
   const pathname = usePathname();
 
   // Special pages use AppNavbar
-  const isAppPage = pathname === "/development" || pathname === "/vaccination";
+  const isAppPage = pathname === "/milestones/Thick-DelhiNCR" || pathname === "/vaccinations/Thick-DelhiNCR";
 
   if (isAppPage) {
     return <AppNavbar />;
