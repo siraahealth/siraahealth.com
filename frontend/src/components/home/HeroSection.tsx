@@ -120,7 +120,6 @@ export function HeroSection({
                 desc="Tracking"
                 color="bg-orange-50"
                 iconColor="text-orange-600/80"
-                underline
               />
               <div className="hidden md:block w-px h-16 bg-border/60 mx-4"></div>
               <FeatureItem
@@ -171,7 +170,12 @@ export function HeroSection({
               <div className="flex w-full rounded-2xl overflow-hidden border border-border/60 shadow-xl shadow-primary/5 bg-white relative h-[72px] sm:h-[84px] mx-auto">
                 <Link
                   href="/vaccinations/Thick-DelhiNCR"
-                  onClick={() => pushEvent("hero_cta_click", { cta: "vaccination", device: "mobile" })}
+                  onClick={() =>
+                    pushEvent("hero_cta_click", {
+                      cta: "vaccination",
+                      device: "mobile",
+                    })
+                  }
                   className="absolute left-0 top-0 h-full w-[55%] bg-primary text-white font-black text-[12px] sm:text-[14px] leading-tight flex items-center z-10 pl-3 sm:pl-4 pr-10"
                   style={{
                     clipPath: "polygon(0 0, 100% 0, 85% 100%, 0 100%)",
@@ -189,7 +193,12 @@ export function HeroSection({
                 </Link>
                 <Link
                   href="/milestones/Thick-DelhiNCR"
-                  onClick={() => pushEvent("hero_cta_click", { cta: "development_assessment", device: "mobile" })}
+                  onClick={() =>
+                    pushEvent("hero_cta_click", {
+                      cta: "development_assessment",
+                      device: "mobile",
+                    })
+                  }
                   className="absolute right-0 top-0 h-full w-[45%] bg-white text-foreground font-black text-[12px] sm:text-[14px] leading-tight flex items-center justify-end pr-3 sm:pr-4 pl-8"
                 >
                   <div className="flex items-center gap-1 sm:gap-1.5">
@@ -208,7 +217,12 @@ export function HeroSection({
             <div className="hidden md:flex flex-row gap-4 lg:w-[115%] order-5 z-20">
               <Link
                 href="/vaccinations/Thick-DelhiNCR"
-                onClick={() => pushEvent("hero_cta_click", { cta: "vaccination", device: "desktop" })}
+                onClick={() =>
+                  pushEvent("hero_cta_click", {
+                    cta: "vaccination",
+                    device: "desktop",
+                  })
+                }
                 className="px-8 py-5 rounded-full font-black bg-primary text-white flex items-center justify-center gap-2 hover:bg-primary/90 transition-all group lg:flex-1 text-base shadow-lg shadow-primary/10"
               >
                 <span>Book a Vaccination Appointment</span>
@@ -216,7 +230,12 @@ export function HeroSection({
               </Link>
               <Link
                 href="/milestones/Thick-DelhiNCR"
-                onClick={() => pushEvent("hero_cta_click", { cta: "development_assessment", device: "desktop" })}
+                onClick={() =>
+                  pushEvent("hero_cta_click", {
+                    cta: "development_assessment",
+                    device: "desktop",
+                  })
+                }
                 className="px-8 py-5 rounded-full font-black bg-white text-foreground border border-border flex items-center justify-center gap-2 hover:border-primary/30 transition-all group lg:flex-1 text-base shadow-md"
               >
                 <span>Take a Developmental Assessment</span>
@@ -241,14 +260,12 @@ function FeatureItem({
   desc,
   color,
   iconColor,
-  underline = false,
 }: {
   icon: any;
   title: string;
   desc: string;
   color: string;
   iconColor: string;
-  underline?: boolean;
 }) {
   return (
     <div className="flex items-stretch relative mx-auto">
@@ -262,13 +279,7 @@ function FeatureItem({
           <h4 className="text-[13px] lg:text-[17px] font-bold text-[#1A1A1A] leading-tight">
             {title}
           </h4>
-          <p
-            className={`text-[12px] lg:text-[14px] ${
-              underline
-                ? "text-primary font-bold decoration-primary decoration-2 underline-offset-[4px] lg:underline-offset-[8px] underline"
-                : "text-muted-foreground font-medium"
-            }`}
-          >
+          <p className="text-[12px] lg:text-[14px] text-muted-foreground font-medium">
             {desc}
           </p>
         </div>
