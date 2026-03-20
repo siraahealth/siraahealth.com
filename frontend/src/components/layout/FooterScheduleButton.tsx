@@ -10,8 +10,8 @@ import { pushEvent } from "@/utils/gtm";
 export function FooterScheduleButton() {
   return (
     <ScrollButton
-      sectionId="booking-form"
-      href="/milestones/Thick-DelhiNCR"
+      sectionId="vaccination-form"
+      href="/vaccinations/Thick-DelhiNCR"
       onTrack={() => pushEvent("footer_cta_click", { cta: "schedule_visit" })}
       className="mt-6 block w-full py-3 rounded-xl font-bold bg-primary hover:bg-primary/90 transition-colors text-center text-white"
     >
