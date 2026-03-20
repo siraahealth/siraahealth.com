@@ -36,7 +36,7 @@ export default function AppNavbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           <span className="text-sm font-bold text-foreground transition-colors">
-            Talk to a specialist
+            Talk to a Specialist
           </span>
 
           {PHONE_NUMBER && (
@@ -115,7 +115,7 @@ export default function AppNavbar() {
           <div className="bg-white px-6">
             <div className="space-y-4">
               <span className="block text-2xl font-display font-bold text-foreground transition-colors border-b border-border/30 pb-4">
-                Talk to a specialist
+                Talk to a Specialist
               </span>
             </div>
 
