@@ -35,7 +35,7 @@ export function TrustSection() {
             <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-primary group-hover:text-white text-primary">
               <Brain className="w-8 h-8" />
             </div>
-            <span className="font-bold font-display">Behavior Therapy</span>
+            <span className="font-bold font-display">Behavioural Therapy</span>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowDown, PhoneCall } from "lucide-react";
+import { ArrowDown, ClipboardList } from "lucide-react";
 import { ScrollButton } from "@/components/core/ScrollButton";
-import { PHONE_NUMBER } from "@/utils/contant";
 import { pushEvent } from "@/utils/gtm";
 
 /**
@@ -20,21 +19,21 @@ export function DevelopmentHeroCTAs() {
         }
         className="px-8 py-4 rounded-full font-bold text-lg bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all text-center flex items-center justify-center gap-2"
       >
-        Book Development Assessment
-        <ArrowDown className="w-5 h-5 animate-bounce" />
+        <span className="flex-1">Book Development Assessment</span>
+        <ArrowDown className="w-5 h-5 animate-bounce flex-0" />
       </ScrollButton>
-      {PHONE_NUMBER && (
-        <a
-          href={`tel:${PHONE_NUMBER}`}
-          onClick={() =>
-            pushEvent("phone_call_click", { source: "development_hero" })
-          }
-          className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
-        >
-          <PhoneCall className="w-5 h-5 text-primary" />
+      <ScrollButton
+        sectionId="quiz-section"
+        onTrack={() =>
+          pushEvent("development_hero_cta_click", { cta: "start_quiz" })
+        }
+        className="px-8 py-4 rounded-full font-bold text-lg bg-white text-foreground border-2 border-border hover:border-primary/30 hover:bg-accent/50 transition-all text-center flex items-center justify-center gap-2"
+      >
+        <ClipboardList className="w-5 h-5 text-primary flex-0" />
+        <span className="flex-1">
           Check your child&apos;s development in 60 seconds
-        </a>
-      )}
+        </span>
+      </ScrollButton>
     </div>
   );
 }

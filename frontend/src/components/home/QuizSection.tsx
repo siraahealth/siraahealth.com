@@ -208,7 +208,7 @@ export function QuizSection() {
   }
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section id="quiz-section" className="py-20 lg:py-28 bg-white">
       <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="bg-white rounded-[3rem] p-8 sm:p-12 shadow-2xl shadow-primary/10 border border-primary/10 relative overflow-hidden">
           {/* Decorative blobs */}
