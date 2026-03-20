@@ -64,4 +64,4 @@ npm run start
 
 - [Strapi Documentation](https://docs.strapi.io)
 
-trigger
+trigger2
