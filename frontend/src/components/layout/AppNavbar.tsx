@@ -35,13 +35,9 @@ export default function AppNavbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <ScrollButton
-            sectionId="why-vaccinate"
-            href="/vaccinations/Thick-DelhiNCR"
-            className="text-sm font-bold text-foreground hover:text-primary transition-colors"
-          >
-            Why Vaccinate
-          </ScrollButton>
+          <span className="text-sm font-bold text-foreground transition-colors">
+            Talk to a specialist
+          </span>
 
           {PHONE_NUMBER && (
             <div className="flex flex-col items-end border-r border-border/50 pr-8">
@@ -50,7 +46,11 @@ export default function AppNavbar() {
               </span>
               <a
                 href={`tel:${PHONE_NUMBER}`}
-                onClick={() => pushEvent("phone_call_click", { source: "app_navbar_desktop" })}
+                onClick={() =>
+                  pushEvent("phone_call_click", {
+                    source: "app_navbar_desktop",
+                  })
+                }
                 className="font-display font-bold text-primary text-lg leading-tight"
               >
                 {formattedPhoneNumber}
@@ -61,10 +61,15 @@ export default function AppNavbar() {
           <ScrollButton
             sectionId="booking-form"
             href="/milestones/Thick-DelhiNCR"
-            onTrack={() => pushEvent("navbar_cta_click", { cta: "book_assessment", navbar: "app" })}
+            onTrack={() =>
+              pushEvent("navbar_cta_click", {
+                cta: "book_appointment",
+                navbar: "app",
+              })
+            }
             className="px-6 py-3 rounded-full font-bold bg-secondary text-secondary-foreground hover:bg-yellow-400 transition-all hover:shadow-lg active:scale-95"
           >
-            Book Assessment
+            Book an appointment
           </ScrollButton>
         </div>
 
@@ -75,7 +80,9 @@ export default function AppNavbar() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => pushEvent("whatsapp_cta_click", { source: "app_navbar" })}
+              onClick={() =>
+                pushEvent("whatsapp_cta_click", { source: "app_navbar" })
+              }
               className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
               aria-label="Contact on WhatsApp"
             >
@@ -107,13 +114,9 @@ export default function AppNavbar() {
         <div className="flex flex-col h-full py-6 gap-6 bg-white">
           <div className="bg-white px-6">
             <div className="space-y-4">
-              <ScrollButton
-                sectionId="why-vaccinate"
-                href="/vaccinations/Thick-DelhiNCR"
-                className="block text-2xl font-display font-bold text-foreground hover:text-primary transition-colors border-b border-border/30 pb-4"
-              >
-                Why Vaccinate
-              </ScrollButton>
+              <span className="block text-2xl font-display font-bold text-foreground transition-colors border-b border-border/30 pb-4">
+                Talk to a specialist
+              </span>
             </div>
 
             <div className="mt-auto space-y-6">
@@ -126,22 +129,32 @@ export default function AppNavbar() {
                     </span>
                   </div>
                   <a
-                href={`tel:${PHONE_NUMBER}`}
-                onClick={() => pushEvent("phone_call_click", { source: "app_navbar_menu" })}
-                className="font-display font-bold text-primary text-2xl block"
-              >
-                {formattedPhoneNumber}
-              </a>
+                    href={`tel:${PHONE_NUMBER}`}
+                    onClick={() =>
+                      pushEvent("phone_call_click", {
+                        source: "app_navbar_menu",
+                      })
+                    }
+                    className="font-display font-bold text-primary text-2xl block"
+                  >
+                    {formattedPhoneNumber}
+                  </a>
                 </div>
               )}
 
               <ScrollButton
                 sectionId="booking-form"
                 href="/milestones/Thick-DelhiNCR"
-                onTrack={() => pushEvent("navbar_cta_click", { cta: "book_assessment", navbar: "app", source: "mobile_menu" })}
+                onTrack={() =>
+                  pushEvent("navbar_cta_click", {
+                    cta: "book_appointment",
+                    navbar: "app",
+                    source: "mobile_menu",
+                  })
+                }
                 className="block w-full text-center px-8 py-4 rounded-2xl font-bold bg-secondary text-secondary-foreground text-xl shadow-xl shadow-secondary/20 hover:bg-yellow-400 active:scale-95 transition-all"
               >
-                Book Assessment
+                Book an appointment
               </ScrollButton>
             </div>
           </div>

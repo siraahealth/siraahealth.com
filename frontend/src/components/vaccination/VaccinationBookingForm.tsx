@@ -83,8 +83,8 @@ export function VaccinationBookingForm() {
           Booking Request Received!
         </h3>
         <p className="text-muted-foreground font-medium mb-8">
-          Thank you for choosing Siraa Health. Our team will contact you within
-          24 hours to confirm your vaccination appointment.
+          Thank you for choosing Siraa Health. Our team will contact you shortly
+          to confirm your vaccination appointment.
         </p>
         <Button
           onClick={() => setSubmitStatus("idle")}
