@@ -79,6 +79,16 @@ export function HeroSection({
           <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
             <path d="M0.65,0 C0.75,0 0.95,0.05 0.95,0.05 05,0.75 0.85,0.95 1,0.98 C0.25,1.05 0,0.95 0.15,0.65 C0,0.25 0.15,0.05 0.55,0 Z" />
           </clipPath>
+          <pattern
+            id="dot-grid"
+            x="0"
+            y="0"
+            width="12"
+            height="12"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle cx="2" cy="2" r="2" fill="#3B82F6" fillOpacity="0.35" />
+          </pattern>
         </defs>
       </svg>
 
@@ -293,29 +303,17 @@ function HeroImageContent({ content }: { content: PageContent | null }) {
     <div className="relative h-full w-full">
       {/* Decorative: Dotted grid pattern */}
       <div
-        className="absolute -top-6 left-[5%] lg:left-[10%] w-20 h-20 lg:w-28 lg:h-28 z-10 pointer-events-none"
+        className="absolute -top-6 left-[5%] lg:left-[10%] w-20 h-20 lg:w-28 lg:h-28 z-20 mt-10 pointer-events-none"
         aria-hidden="true"
       >
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="dot-grid"
-              x="0"
-              y="0"
-              width="12"
-              height="12"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="2" cy="2" r="2" fill="#3B82F6" fillOpacity="0.35" />
-            </pattern>
-          </defs>
           <rect width="100%" height="100%" fill="url(#dot-grid)" />
         </svg>
       </div>
 
       {/* Decorative: Circular arc ring */}
       <div
-        className="absolute inset-0 z-10 pointer-events-none scale-95 lg:scale-110"
+        className="absolute inset-0 z-20 pointer-events-none scale-95 lg:scale-110"
         aria-hidden="true"
       >
         <svg
