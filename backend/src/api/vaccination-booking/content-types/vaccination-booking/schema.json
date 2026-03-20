@@ -4,13 +4,17 @@
   "info": {
     "singularName": "vaccination-booking",
     "pluralName": "vaccination-bookings",
-    "displayName": "Vaccination Booking"
+    "displayName": "Vaccination Requests"
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
+    "patient_id": {
+      "type": "string",
+      "unique": true
+    },
     "parent_name": {
       "type": "string",
       "required": true

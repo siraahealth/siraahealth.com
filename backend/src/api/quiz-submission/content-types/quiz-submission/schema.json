@@ -11,6 +11,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "patient_id": {
+      "type": "string",
+      "unique": true
+    },
     "parentName": {
       "type": "string",
       "required": true

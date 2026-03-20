@@ -4,13 +4,17 @@
   "info": {
     "singularName": "booking",
     "pluralName": "bookings",
-    "displayName": "Booking"
+    "displayName": "Milestone Requests"
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
+    "patient_id": {
+      "type": "string",
+      "unique": true
+    },
     "parent_name": {
       "type": "string",
       "required": true
