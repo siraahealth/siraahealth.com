@@ -90,8 +90,8 @@ export function BookingForm() {
             Booking Request Received!
           </h3>
           <p className="text-muted-foreground font-medium mb-8">
-            Thank you for reaching out. Our team will contact you within 24
-            hours to confirm your appointment.
+            Thank you for reaching out. Our team will contact you shortly to
+            confirm your appointment.
           </p>
           <Button
             onClick={() => setSubmitStatus("idle")}

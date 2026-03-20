@@ -30,16 +30,13 @@ export class VaccinationBookingBackendService extends BaseBackendService {
 
       if (!res.ok) {
         const errorData = await res.json();
-        console.error("Strapi Vaccination Booking Error:", errorData);
-        throw new Error("Failed to create vaccination booking in Strapi");
+        console.error("Vaccination Booking Error:", errorData);
+        throw new Error("Failed to create vaccination booking");
       }
 
       return await res.json();
     } catch (err) {
-      console.error(
-        "VaccinationBookingBackendService.createVaccinationBooking Error:",
-        err,
-      );
+      console.error("create vaccination booking Error:", err);
       throw err;
     }
   }

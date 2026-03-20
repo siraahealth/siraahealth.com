@@ -34,13 +34,13 @@ export class BookingBackendService extends BaseBackendService {
 
       if (!res.ok) {
         const errorData = await res.json();
-        console.error("Strapi Booking Error:", errorData);
-        throw new Error("Failed to create booking in Strapi");
+        console.error("Booking Error:", errorData);
+        throw new Error("Failed to create booking");
       }
 
       return await res.json();
     } catch (err) {
-      console.error("BookingBackendService.createBooking Error:", err);
+      console.error("create booking Error:", err);
       throw err;
     }
   }

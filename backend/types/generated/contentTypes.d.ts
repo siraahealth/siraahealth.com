@@ -433,7 +433,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
   collectionName: 'bookings';
   info: {
-    displayName: 'Booking';
+    displayName: 'Milestone Requests';
     pluralName: 'bookings';
     singularName: 'booking';
   };
@@ -453,6 +453,7 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     parent_name: Schema.Attribute.String & Schema.Attribute.Required;
+    patient_id: Schema.Attribute.String & Schema.Attribute.Unique;
     phone_number: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -550,6 +551,7 @@ export interface ApiQuizSubmissionQuizSubmission
       Schema.Attribute.Private;
     parentName: Schema.Attribute.String & Schema.Attribute.Required;
     parentNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    patient_id: Schema.Attribute.String & Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     quiz: Schema.Attribute.JSON & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -562,7 +564,7 @@ export interface ApiVaccinationBookingVaccinationBooking
   extends Struct.CollectionTypeSchema {
   collectionName: 'vaccination_bookings';
   info: {
-    displayName: 'Vaccination Booking';
+    displayName: 'Vaccination Requests';
     pluralName: 'vaccination-bookings';
     singularName: 'vaccination-booking';
   };
@@ -581,6 +583,7 @@ export interface ApiVaccinationBookingVaccinationBooking
     > &
       Schema.Attribute.Private;
     parent_name: Schema.Attribute.String & Schema.Attribute.Required;
+    patient_id: Schema.Attribute.String & Schema.Attribute.Unique;
     phone_number: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
