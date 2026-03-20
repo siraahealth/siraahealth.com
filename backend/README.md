@@ -19,11 +19,13 @@ This is the backend service for **Siraa Health**, powered by [Strapi](https://st
 ### Installation
 
 1. Navigate to the backend directory:
+
    ```bash
    cd backend
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -61,3 +63,5 @@ npm run start
 ## Additional Resources
 
 - [Strapi Documentation](https://docs.strapi.io)
+
+trigger

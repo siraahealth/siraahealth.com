@@ -22,6 +22,7 @@ This is the frontend application for **Siraa Health**, built with [Next.js](http
 ### Installation
 
 1. Clone the repository and navigate to the frontend directory:
+
    ```bash
    cd frontend
    ```
@@ -66,3 +67,5 @@ npm run start
 - `npm run start`: Starts the application in production mode.
 - `npm run lint`: Runs ESLint to find and fix problems in the code.
 - `npm run type-check`: Runs TypeScript compiler to check for type errors.
+
+trigger
