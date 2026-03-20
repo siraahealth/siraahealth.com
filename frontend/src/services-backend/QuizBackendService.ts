@@ -16,13 +16,13 @@ export class QuizBackendService extends BaseBackendService {
 
       if (!res.ok) {
         const errorData = await res.json();
-        console.error("Strapi Quiz Submission Error:", errorData);
-        throw new Error("Failed to submit quiz to Strapi");
+        console.error("Quiz Submission Error:", errorData);
+        throw new Error("Failed to submit quiz");
       }
 
       return await res.json();
     } catch (err) {
-      console.error("Failed to create quiz submission in Strapi", err);
+      console.error("Failed to create quiz submission", err);
       throw err;
     }
   }

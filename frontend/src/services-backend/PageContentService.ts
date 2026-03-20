@@ -19,8 +19,8 @@ export class PageContentBackendService extends BaseBackendService {
 
       if (!res.ok) {
         const errorData = await res.json();
-        console.error("Strapi Page Content Fetch Error:", errorData);
-        throw new Error("Failed to fetch page content from Strapi");
+        console.error("Page Content Fetch Error:", errorData);
+        throw new Error("Failed to fetch page content");
       }
 
       const { data } = await res.json();
@@ -38,7 +38,7 @@ export class PageContentBackendService extends BaseBackendService {
         image: doc?.image?.url ? this.STRAPI_URL + doc.image.url : undefined,
       };
     } catch (err) {
-      console.error("Failed to fetch page contents from Strapi", err);
+      console.error("Failed to fetch page contents", err);
       throw err;
     }
   }
