@@ -24,6 +24,9 @@ export class BaseBackendService {
     const res = await fetch(`${this.STRAPI_URL}${path}`, {
       ...options,
       headers,
+      next: {
+        revalidate: 120, // Revalidate every 2 minutes
+      },
     });
 
     return res;
