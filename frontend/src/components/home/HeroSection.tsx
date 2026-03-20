@@ -99,13 +99,14 @@ export function HeroSection({
             {/* 1. Header (Top on both) */}
             <div className="text-left">
               <h1 className="text-[28px] sm:text-[32px] md:text-5xl lg:text-5xl font-display font-black leading-[1.2] text-foreground mb-3">
-                Protect Your Child from{" "}
-                <span className="text-primary">Preventable Diseases</span> and
-                Track Their <span className="text-primary">Development</span>
+                <p>They Grow Fast.</p>
+                <p>
+                  We Help Them <span className="text-primary">Grow Well.</span>
+                </p>
               </h1>
               <p className="text-[15px] sm:text-base md:text-xl text-muted-foreground font-medium max-w-xl">
-                Vaccinations, pediatric care, and milestone screening — all in
-                one trusted clinic.
+                Vaccinations, developmental screening, and milestone care, all
+                in one trusted centre.
               </p>
             </div>
 
