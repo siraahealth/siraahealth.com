@@ -2,6 +2,58 @@ import type { NextConfig } from "next";
 
 const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 const url = new URL(strapiUrl);
+const strapiOrigin = url.origin;
+const isProd = process.env.NODE_ENV === "production";
+
+function buildContentSecurityPolicy(): string {
+  const devEval =
+    process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : "";
+
+  const directives = [
+    "default-src 'self'",
+    [
+      "img-src",
+      "'self'",
+      "data:",
+      "blob:",
+      strapiOrigin,
+      "https://www.googletagmanager.com",
+      "https://www.google-analytics.com",
+      "https://stats.g.doubleclick.net",
+    ].join(" "),
+    "font-src 'self'",
+    "style-src 'self' 'unsafe-inline'",
+    [
+      "script-src",
+      "'self'",
+      "'unsafe-inline'",
+      "https://www.googletagmanager.com",
+      devEval.trim(),
+    ]
+      .filter(Boolean)
+      .join(" "),
+    "frame-src https://www.googletagmanager.com",
+    [
+      "connect-src",
+      "'self'",
+      "https://www.googletagmanager.com",
+      "https://www.google-analytics.com",
+      "https://region1.google-analytics.com",
+      "https://analytics.google.com",
+      "https://stats.g.doubleclick.net",
+    ].join(" "),
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+  ];
+
+  if (isProd) {
+    directives.push("upgrade-insecure-requests");
+  }
+
+  return directives.join("; ");
+}
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -9,6 +61,10 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
+          {
+            key: "Content-Security-Policy",
+            value: buildContentSecurityPolicy(),
+          },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           {
