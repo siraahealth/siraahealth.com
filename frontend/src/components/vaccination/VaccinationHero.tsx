@@ -3,7 +3,11 @@
 import { CheckCircle2 } from "lucide-react";
 import { VaccinationBookingForm } from "./VaccinationBookingForm";
 
-export function VaccinationHero() {
+export function VaccinationHero({
+  parents_trust_siraa_health,
+}: {
+  parents_trust_siraa_health?: string | null;
+}) {
   const benefits = [
     "Vaccines recommended by pediatric guidelines",
     "Safe and child-friendly vaccination process",
@@ -19,7 +23,11 @@ export function VaccinationHero() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-6">
               <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
               <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
-                Trusted by 500+ Parents
+                Trusted by{" "}
+                {parents_trust_siraa_health
+                  ? `${parents_trust_siraa_health}+`
+                  : ""}{" "}
+                Parents
               </span>
             </div>
 

@@ -34,7 +34,9 @@ export default async function VaccinationPage() {
 
   return (
     <main>
-      <VaccinationHero />
+      <VaccinationHero
+        parents_trust_siraa_health={stats?.parents_trust_siraa_health}
+      />
       {stats && <VaccinationStats stats={stats} />}
       <VaccinationAdvantages />
       <VaccinationSchedule />
