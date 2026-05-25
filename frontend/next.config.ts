@@ -49,6 +49,8 @@ function buildContentSecurityPolicy(): string {
       "https://connect.facebook.net",
       "https://www.facebook.net",
       "https://graph.facebook.com",
+      "https://api2.facebook.com",
+      "https://pixel.facebook.com",
     ].join(" "),
     "object-src 'none'",
     "base-uri 'self'",
