@@ -23,7 +23,7 @@ function buildContentSecurityPolicy(): string {
       "https://www.facebook.com",
       "https://www.facebook.net",
     ].join(" "),
-    "font-src 'self'",
+    "font-src 'self' data: https://fonts.gstatic.com",
     "style-src 'self' 'unsafe-inline'",
     [
       "script-src",
@@ -36,7 +36,7 @@ function buildContentSecurityPolicy(): string {
     ]
       .filter(Boolean)
       .join(" "),
-    "frame-src https://www.googletagmanager.com",
+    "frame-src https://www.googletagmanager.com https://www.facebook.com https://staticxx.facebook.com",
     [
       "connect-src",
       "'self'",
@@ -48,6 +48,7 @@ function buildContentSecurityPolicy(): string {
       "https://www.facebook.com",
       "https://connect.facebook.net",
       "https://www.facebook.net",
+      "https://graph.facebook.com",
     ].join(" "),
     "object-src 'none'",
     "base-uri 'self'",
