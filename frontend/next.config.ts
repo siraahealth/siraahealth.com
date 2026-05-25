@@ -20,6 +20,8 @@ function buildContentSecurityPolicy(): string {
       "https://www.googletagmanager.com",
       "https://www.google-analytics.com",
       "https://stats.g.doubleclick.net",
+      "https://www.facebook.com",
+      "https://www.facebook.net",
     ].join(" "),
     "font-src 'self'",
     "style-src 'self' 'unsafe-inline'",
@@ -28,6 +30,8 @@ function buildContentSecurityPolicy(): string {
       "'self'",
       "'unsafe-inline'",
       "https://www.googletagmanager.com",
+      "https://connect.facebook.net",
+      "https://www.facebook.com",
       devEval.trim(),
     ]
       .filter(Boolean)
@@ -41,6 +45,9 @@ function buildContentSecurityPolicy(): string {
       "https://region1.google-analytics.com",
       "https://analytics.google.com",
       "https://stats.g.doubleclick.net",
+      "https://www.facebook.com",
+      "https://connect.facebook.net",
+      "https://www.facebook.net",
     ].join(" "),
     "object-src 'none'",
     "base-uri 'self'",
