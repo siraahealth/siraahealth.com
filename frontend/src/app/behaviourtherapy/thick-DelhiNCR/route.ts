@@ -882,6 +882,7 @@ function submitForm(src){
   var hsPayload = {
     fields: [
       { name: 'firstname',       value: n },
+      { name: 'email',           value: p.replace(/\\D/g,'') + '@lead.siraahealth.com' },
       { name: 'phone',           value: p },
       { name: 'child_age_range', value: a },
       { name: 'primary_concern', value: c }
