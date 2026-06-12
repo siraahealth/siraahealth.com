@@ -24,7 +24,7 @@ function buildContentSecurityPolicy(): string {
       "https://www.facebook.net",
     ].join(" "),
     "font-src 'self' data: https://fonts.gstatic.com",
-    "style-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     [
       "script-src",
       "'self'",
@@ -51,6 +51,9 @@ function buildContentSecurityPolicy(): string {
       "https://graph.facebook.com",
       "https://api2.facebook.com",
       "https://pixel.facebook.com",
+      "https://api.hsforms.com",
+      "https://forms.hsforms.com",
+      "https://js-na2.hsforms.net",
     ].join(" "),
     "object-src 'none'",
     "base-uri 'self'",
