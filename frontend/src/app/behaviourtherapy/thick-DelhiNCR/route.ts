@@ -898,8 +898,16 @@ function submitForm(src){
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(hsPayload)
-  }).then(function(r){ console.log('[Siraa] HubSpot:', r.status); })
-    .catch(function(e){ console.error('[Siraa] HubSpot error:', e); });
+  }).then(function(r){
+    return r.json().then(function(data){
+      console.log('[Siraa] HubSpot status:', r.status, JSON.stringify(data));
+      if(r.status === 200){
+        console.log('[Siraa] Lead submitted successfully!');
+      } else {
+        console.error('[Siraa] HubSpot error:', JSON.stringify(data));
+      }
+    });
+  }).catch(function(e){ console.error('[Siraa] HubSpot fetch error:', e); });
   // ── END HUBSPOT ───────────────────────────────────
 
   closeDrawer();
@@ -983,7 +991,7 @@ function triggerPopup(){
 }
 
 // Trigger 1: 10 seconds on ALL devices
-setTimeout(triggerPopup, 10000);
+setTimeout(triggerPopup, 24000);
 
 // Trigger 2: 4 scroll direction changes (proxy for 4 "scroll events")
 var scrollCount = 0;
