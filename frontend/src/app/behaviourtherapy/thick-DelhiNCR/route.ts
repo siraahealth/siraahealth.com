@@ -742,6 +742,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;f
       <div id="ff-desktop">
         <div class="fr"><label>Parent's Name *</label><input type="text" id="fn-d" placeholder="Your full name"/></div>
         <div class="fr"><label>Mobile Number *</label><input type="tel" id="fp-d" placeholder="+91 XXXXX XXXXX"/></div>
+        <div class="fr"><label>Email Address *</label><input type="email" id="fe-d" placeholder="your@email.com"/></div>
         <div class="fr"><label>Child's Age *</label>
           <select id="fa-d">
             <option value="">Select age</option>
@@ -809,6 +810,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;f
   <div id="ff-mobile">
     <div class="fr"><label>Parent's Name *</label><input type="text" id="fn-m" placeholder="Your full name"/></div>
     <div class="fr"><label>Mobile Number *</label><input type="tel" id="fp-m" placeholder="+91 XXXXX XXXXX"/></div>
+        <div class="fr"><label>Email Address *</label><input type="email" id="fe-m" placeholder="your@email.com"/></div>
     <div class="fr"><label>Child's Age *</label>
       <select id="fa-m">
         <option value="">Select age</option>
@@ -872,14 +874,16 @@ function submitForm(src){
   var sfx=src==='m'?'-m':(src==='p'?'-p':'-d');
   var n=document.getElementById('fn'+sfx).value.trim();
   var p=document.getElementById('fp'+sfx).value.trim();
+  var e=document.getElementById('fe'+sfx).value.trim();
   var a=document.getElementById('fa'+sfx).value;
   var c=document.getElementById('fc'+sfx).value;
-  if(!n||!p||!a||!c){alert('Please fill in all required fields.');return;}
+  if(!n||!p||!e||!a||!c){alert('Please fill in all required fields.');return;}
 
   // ── HUBSPOT SUBMISSION ────────────────────────────
   var hsPayload = {
     fields: [
       { name: 'firstname',           value: n },
+      { name: 'email',               value: e },
       { name: 'phone',               value: p },
       { name: 'child_age_range',     value: a },
       { name: 'primary_concern',     value: c },
@@ -929,6 +933,7 @@ function submitForm(src){
     <div class="popup-body">
       <div class="fr"><label>Parent's Name *</label><input type="text" id="fn-p" placeholder="Your full name"/></div>
       <div class="fr"><label>Mobile Number *</label><input type="tel" id="fp-p" placeholder="+91 XXXXX XXXXX"/></div>
+        <div class="fr"><label>Email Address *</label><input type="email" id="fe-p" placeholder="your@email.com"/></div>
       <div class="fr"><label>Child's Age *</label>
         <select id="fa-p">
           <option value="">Select age</option>
