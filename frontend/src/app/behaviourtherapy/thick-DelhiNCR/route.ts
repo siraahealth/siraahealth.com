@@ -875,22 +875,43 @@ function submitForm(src){
   var a=document.getElementById('fa'+sfx).value;
   var c=document.getElementById('fc'+sfx).value;
   if(!n||!p||!a||!c){alert('Please fill in all required fields.');return;}
+
+  // ── HUBSPOT SUBMISSION ────────────────────────────
+  var hsPayload = {
+    fields: [
+      { name: 'firstname',           value: n },
+      { name: 'phone',               value: p },
+      { name: 'child_age_range',     value: a },
+      { name: 'primary_concern',     value: c },
+      { name: 'hs_lead_status',      value: 'NEW' }
+    ],
+    context: {
+      pageUri: window.location.href,
+      pageName: document.title
+    }
+  };
+  var hsCookie = document.cookie.match(/hubspotutk=([^;]+)/);
+  if(hsCookie) hsPayload.context.hutk = hsCookie[1];
+  fetch('https://api.hsforms.com/submissions/v3/integration/submit/246180888/f7aef44d-b5e1-4225-96ba-96cf5a76f97c', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(hsPayload)
+  }).then(function(r){ console.log('[Siraa] HubSpot:', r.status); })
+    .catch(function(e){ console.error('[Siraa] HubSpot error:', e); });
+  // ── END HUBSPOT ───────────────────────────────────
+
   closeDrawer();
   document.getElementById('main').style.display='none';
   document.querySelector('.mobile-form-bar').style.display='none';
   document.getElementById('ty').classList.add('show');
   window.scrollTo(0,0);
 
-  // Fire thank_you_page_view — tracks actual form completions
+  // Fire thank_you_page_view
   if(window.siraaTrack){
     window.siraaTrack('thank_you_page_view', {
-      form_name        : attribution.form_name || formSuffix,
+      form_name        : src === 'm' ? 'mobile_drawer' : src === 'p' ? 'popup_15sec' : 'desktop_sidebar',
       service_interest : c,
-      child_age_range  : a,
-      utm_source       : attribution.utm_source   || 'direct',
-      utm_medium       : attribution.utm_medium   || '',
-      utm_campaign     : attribution.utm_campaign || '',
-      utm_term         : attribution.utm_term     || ''
+      child_age_range  : a
     });
   }
 }
