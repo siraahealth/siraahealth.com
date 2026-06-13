@@ -9,9 +9,10 @@ const html = `
 <title>Behaviour Therapy for Children in Gurgaon - Siraa Health</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet"/>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;font-size:14px;}
+body{font-family:'Inter',system-ui,sans-serif;color:#333333;background:#F5F0FC;font-size:14px;}
 
 /* NAV */
 .nav{background:#ffffff;border-bottom:1px solid #EDD8F0;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;}
@@ -22,7 +23,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;f
 
 /* LAYOUT */
 .wrap{max-width:1080px;margin:0 auto;padding:1.2rem;width:100%;}
-.layout{display:flex;gap:1.4rem;align-items:flex-start;}
+.layout{display:flex;gap:1.4rem;align-items:flex-start;width:100%;box-sizing:border-box;}
 .main-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:1.2rem;word-break:normal;overflow-wrap:normal;}
 .right-col{width:278px;flex-shrink:0;position:sticky;top:68px;}
 
