@@ -21,9 +21,9 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;f
 .nav-cta:hover{background:#22A05A;}
 
 /* LAYOUT */
-.wrap{max-width:1080px;margin:0 auto;padding:1.2rem;}
+.wrap{max-width:1080px;margin:0 auto;padding:1.2rem;width:100%;}
 .layout{display:flex;gap:1.4rem;align-items:flex-start;}
-.main-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:1.2rem;}
+.main-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:1.2rem;word-break:normal;overflow-wrap:normal;}
 .right-col{width:278px;flex-shrink:0;position:sticky;top:68px;}
 
 /* HERO */
@@ -34,7 +34,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;f
 .tag{font-size:11px;font-weight:800;padding:5px 13px;border-radius:50px;text-transform:uppercase;letter-spacing:0.4px;font-family:'Nunito',sans-serif;}
 .tag-green{background:#E8F5F3;color:#0B7A6E;}
 .tag-coral{background:#FDF0F0;color:#E8614A;}
-.hero h1{font-family:'Nunito',sans-serif;font-size:1.7rem;font-weight:900;color:#E8614A;line-height:1.2;margin-bottom:12px;}
+.hero h1{font-family:'Nunito',sans-serif;font-size:1.7rem;font-weight:900;color:#E8614A;line-height:1.2;margin-bottom:12px;word-break:normal;overflow-wrap:break-word;}
 .hero h1 em{font-style:normal;color:#6B5B95;}
 .hero-sub{font-size:13.5px;color:#555;line-height:1.8;margin-bottom:16px;}
 .trust-strip{display:flex;flex-wrap:wrap;gap:7px;}
@@ -50,7 +50,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#fdf9f4;f
 /* CARDS */
 .card{background:#ffffff;border-radius:12px;padding:1.5rem;border:1px solid #D0E8E4;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
 .sec-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:#0B7A6E;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
-.card h2{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;color:#E8614A;margin-bottom:1rem;line-height:1.3;}
+.card h2{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;color:#E8614A;margin-bottom:1rem;line-height:1.3;word-break:normal;overflow-wrap:break-word;hyphens:none;}
 .card p{font-size:13px;color:#555;line-height:1.8;margin-bottom:8px;}
 
 /* SIGNS */
