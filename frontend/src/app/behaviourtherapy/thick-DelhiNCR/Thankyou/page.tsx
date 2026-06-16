@@ -28,43 +28,4 @@ export default function ThankYouPage() {
           color: #fff;
         }
         .ty-page h1 {
-          font-family: 'Nunito', sans-serif;
-          font-size: 2.2rem;
-          font-weight: 900;
-          color: #E8614A;
-          margin-bottom: 10px;
-        }
-        .ty-sub {
-          font-size: 1.1rem;
-          color: #444;
-          margin-bottom: 8px;
-          line-height: 1.7;
-          max-width: 460px;
-        }
-        .ty-detail {
-          font-size: 13.5px;
-          color: #888;
-          max-width: 400px;
-          line-height: 1.8;
-        }
-        .ty-brand {
-          font-family: 'Nunito', sans-serif;
-          font-weight: 900;
-          font-size: 16px;
-          color: #E8614A;
-          margin-top: 2.5rem;
-        }
-      `}} />
-      <div className="ty-page">
-        <div className="ty-check">&#10003;</div>
-        <h1>Thank You!</h1>
-        <p className="ty-sub">We have received your query.</p>
-        <p className="ty-detail">
-          Our expert will call you shortly. If you need to reach us sooner, call{' '}
-          <strong>+91 99107 31103</strong> directly.
-        </p>
-        <div className="ty-brand">Siraa Health</div>
-      </div>
-    </>
-  );
-}
+          font-family: 'Nunito',
