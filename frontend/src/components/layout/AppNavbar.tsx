@@ -28,7 +28,7 @@ export default function AppNavbar() {
               className="w-12 h-12 md:w-16 md:h-16 object-contain"
             />
             <span className="font-display font-black text-xl md:text-2xl tracking-tight text-foreground">
-              Siraa <span className="text-primary">Health</span>
+              Siraa Health
             </span>
           </div>
         </Link>
