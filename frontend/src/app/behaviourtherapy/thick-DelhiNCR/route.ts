@@ -463,7 +463,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
     alt="Siraa Health mascot" 
     style="height:52px;width:auto;display:block;flex-shrink:0;background:transparent;"/>
   <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;line-height:1;letter-spacing:-0.3px;">
-    <span style="color:#1a1a2e;">Siraa</span>&nbsp;<span style="color:#2a68fc;">Health</span>
+    Siraa Health
   </span>
 </div>
   <button class="nav-cta" onclick="openForm()">Book a Consultation</button>
