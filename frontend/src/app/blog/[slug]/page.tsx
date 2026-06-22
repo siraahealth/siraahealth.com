@@ -42,7 +42,6 @@ export async function generateMetadata({ params }: any) {
     },
     other: {
       "application/ld+json": JSON.stringify(jsonLd),
-      ...(faqSchema ? { "application/ld+json-faq": JSON.stringify(faqSchema) } : {}),
     },
   };
 }
@@ -66,6 +65,7 @@ export default async function BlogPostPage({ params }: any) {
   return (
     <main className="max-w-4xl mx-auto px-4 py-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <div className="mb-4 text-sm text-gray-400">
         <a href="/" className="hover:text-teal-600">Home</a> › <a href="/blog" className="hover:text-teal-600">Blog</a> › {blog.title}
       </div>
