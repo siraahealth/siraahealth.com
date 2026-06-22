@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: any) {
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://siraahealth.com/blog/" + slug }
   };
 
-  const faqMatches = [...(blog.content || "").matchAll(/Q:\s*(.+?)\nA:\s*(.+?)(?=\nQ:|$)/gs)];
+  const faqMatches = [...(blog.content || "").matchAll(/Q:\s*([^\n]+)\nA:\s*([^\n]+(?:\n(?!Q:)[^\n]+)*)/g)];
   const faqSchema = faqMatches.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -51,7 +51,7 @@ export default async function BlogPostPage({ params }: any) {
   const blog = await BlogBackendService.getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const faqMatches = [...(blog.content || "").matchAll(/Q:\s*(.+?)\nA:\s*(.+?)(?=\nQ:|$)/gs)];
+  const faqMatches = [...(blog.content || "").matchAll(/Q:\s*([^\n]+)\nA:\s*([^\n]+(?:\n(?!Q:)[^\n]+)*)/g)];
   const faqSchema = faqMatches.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
