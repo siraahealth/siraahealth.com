@@ -7,6 +7,20 @@ export async function generateMetadata({ params }: any) {
   const { slug } = await params;
   const blog = await BlogBackendService.getBlogBySlug(slug);
   if (!blog) return { title: "Not Found" };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": blog.title,
+    "description": blog.excerpt || blog.seo_description,
+    "datePublished": blog.publishedAt,
+    "dateModified": blog.updatedAt || blog.publishedAt,
+    "image": blog.featured_image ? [blog.featured_image] : [],
+    "author": blog.author ? { "@type": "Person", "name": blog.author.name, "jobTitle": blog.author.qualification } : { "@type": "Organization", "name": "Siraa Health" },
+    "publisher": { "@type": "Organization", "name": "Siraa Health", "logo": { "@type": "ImageObject", "url": "https://siraahealth.com/assets/siraa-logo.png" } },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://siraahealth.com/blog/" + slug }
+  };
+
   return {
     title: blog.seo_title || blog.title,
     description: blog.seo_description || blog.excerpt,
@@ -14,6 +28,9 @@ export async function generateMetadata({ params }: any) {
       title: blog.og_title || blog.title,
       description: blog.og_description || blog.excerpt,
       images: blog.og_image ? [blog.og_image] : [],
+    },
+    other: {
+      "application/ld+json": JSON.stringify(jsonLd),
     },
   };
 }
