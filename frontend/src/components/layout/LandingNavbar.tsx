@@ -44,6 +44,13 @@ export default function LandingNavbar() {
           >
             Development
           </Link>
+          <Link
+            href="/blog"
+            onClick={() => pushEvent("navbar_cta_click", { cta: "blog", navbar: "landing" })}
+            className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
+          >
+            Blog
+          </Link>
         </nav>
 
         {/* Action Button */}
