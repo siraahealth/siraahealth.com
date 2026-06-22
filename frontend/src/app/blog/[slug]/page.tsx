@@ -1,6 +1,7 @@
 import { BlogBackendService } from "@/services-backend/BlogService";
 import { notFound } from "next/navigation";
 import BlogLeadForm from "@/components/blog/BlogLeadForm";
+import ReactMarkdown from "react-markdown";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: any) {
@@ -87,7 +88,7 @@ export default async function BlogPostPage({ params }: any) {
         {blog.reading_time && <span>{blog.reading_time} min read</span>}
       </div>
       {blog.featured_image && <img src={blog.featured_image} alt={blog.title} className="w-full rounded-xl mb-8 object-cover max-h-96" />}
-      <div className="prose prose-lg max-w-none mb-10 whitespace-pre-line">{blog.content}</div>
+      <div className="prose prose-lg max-w-none mb-10"><ReactMarkdown>{blog.content}</ReactMarkdown></div>
       {blog.faqs && blog.faqs.length > 0 && (
         <div className="mb-10">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
