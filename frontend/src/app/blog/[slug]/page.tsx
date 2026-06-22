@@ -21,6 +21,17 @@ export async function generateMetadata({ params }: any) {
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://siraahealth.com/blog/" + slug }
   };
 
+  const faqMatches = [...(blog.content || "").matchAll(/Q:\s*(.+?)\nA:\s*(.+?)(?=\nQ:|$)/gs)];
+  const faqSchema = faqMatches.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqMatches.map((m: RegExpMatchArray) => ({
+      "@type": "Question",
+      "name": m[1].trim(),
+      "acceptedAnswer": { "@type": "Answer", "text": m[2].trim() }
+    }))
+  } : null;
+
   return {
     title: blog.seo_title || blog.title,
     description: blog.seo_description || blog.excerpt,
@@ -31,6 +42,7 @@ export async function generateMetadata({ params }: any) {
     },
     other: {
       "application/ld+json": JSON.stringify(jsonLd),
+      ...(faqSchema ? { "application/ld+json-faq": JSON.stringify(faqSchema) } : {}),
     },
   };
 }
