@@ -22,8 +22,21 @@ export default async function BlogPostPage({ params }: any) {
   const { slug } = await params;
   const blog = await BlogBackendService.getBlogBySlug(slug);
   if (!blog) notFound();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": blog.title,
+    "description": blog.excerpt,
+    "datePublished": blog.publishedAt,
+    "author": blog.author ? { "@type": "Person", "name": blog.author.name } : { "@type": "Organization", "name": "Siraa Health" },
+    "publisher": { "@type": "Organization", "name": "Siraa Health", "logo": { "@type": "ImageObject", "url": "https://siraahealth.com/assets/siraa-logo.png" } },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://siraahealth.com/blog/" + slug }
+  };
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mb-4 text-sm text-gray-400">
         <a href="/" className="hover:text-teal-600">Home</a> › <a href="/blog" className="hover:text-teal-600">Blog</a> › {blog.title}
       </div>
