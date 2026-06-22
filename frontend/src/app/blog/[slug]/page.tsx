@@ -51,6 +51,17 @@ export default async function BlogPostPage({ params }: any) {
   const blog = await BlogBackendService.getBlogBySlug(slug);
   if (!blog) notFound();
 
+  const faqMatches = [...(blog.content || "").matchAll(/Q:\s*(.+?)\nA:\s*(.+?)(?=\nQ:|$)/gs)];
+  const faqSchema = faqMatches.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqMatches.map((m) => ({
+      "@type": "Question",
+      "name": m[1].trim(),
+      "acceptedAnswer": { "@type": "Answer", "text": m[2].trim() }
+    }))
+  } : null;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
