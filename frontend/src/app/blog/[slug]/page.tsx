@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: any) {
     "headline": blog.title,
     "description": blog.excerpt || blog.seo_description,
     "datePublished": blog.publishedAt,
-    "dateModified": blog.updatedAt || blog.publishedAt,
+    "dateModified": blog.publishedAt,
     "image": blog.featured_image ? [blog.featured_image] : [],
     "author": blog.author ? { "@type": "Person", "name": blog.author.name, "jobTitle": blog.author.qualification } : { "@type": "Organization", "name": "Siraa Health" },
     "publisher": { "@type": "Organization", "name": "Siraa Health", "logo": { "@type": "ImageObject", "url": "https://siraahealth.com/assets/siraa-logo.png" } },
