@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: any) {
         {blog.reading_time && <span>{blog.reading_time} min read</span>}
       </div>
       {blog.featured_image && <img src={blog.featured_image} alt={blog.title} className="w-full rounded-xl mb-8 object-cover max-h-96" />}
-      <div className="prose prose-lg max-w-none mb-10"><ReactMarkdown>{(blog.content || "").split("\nFAQs\n")[0].split("\n\n\nFAQs\n")[0]}</ReactMarkdown></div>
+      <div className="prose prose-lg max-w-none mb-10"><ReactMarkdown>{(blog.content || "").split("\n\nFAQs\n")[0].split("\nFAQs\n")[0].split("\n\n\nFAQs\n")[0].split("FAQs\n")[0]}</ReactMarkdown></div>
       <FAQAccordion content={blog.content || ""} />
       {blog.faqs && blog.faqs.length > 0 && (
         <div className="mb-10">
