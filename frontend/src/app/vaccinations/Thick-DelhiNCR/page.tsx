@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default async function VaccinationPage() {
-  const stats = await VaccinationBackendService.getStats();
+  const stats = await VaccinationBackendService.getStats().catch(() => null);
 
   return (
     <main>

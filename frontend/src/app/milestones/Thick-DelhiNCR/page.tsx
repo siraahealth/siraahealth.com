@@ -36,11 +36,11 @@ export const metadata: Metadata = {
 
 export default async function DevelopmentPage() {
   // Fetching directly from the backend services server-side
-  const doctors = await DoctorBackendService.getDoctors();
+  const doctors = await DoctorBackendService.getDoctors().catch(() => []);
   const heroContent = await PageContentBackendService.getPageContent(
     "milestones",
     "hero",
-  );
+  ).catch(() => null);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
