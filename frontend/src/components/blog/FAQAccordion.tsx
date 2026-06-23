@@ -13,7 +13,7 @@ export default function FAQAccordion({ content }: { content: string }) {
   
   if (faqMatches.length === 0) return null;
   
-  const faqs: FAQ[] = faqMatches.map(m => ({
+  const faqs = faqMatches.map(m => ({
     question: m[1].trim(),
     answer: m[2].trim()
   }));
@@ -30,7 +30,7 @@ export default function FAQAccordion({ content }: { content: string }) {
             >
               <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
               <span className="text-2xl text-teal-600 flex-shrink-0">
-                {openIndex === i ? "−" : "+"}
+                {openIndex === i ? "\u2212" : "+"}
               </span>
             </button>
             {openIndex === i && (
