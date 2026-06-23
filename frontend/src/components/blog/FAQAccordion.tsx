@@ -9,7 +9,7 @@ interface FAQ {
 export default function FAQAccordion({ content }: { content: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   
-  const faqMatches = [...content.matchAll(/Q:\s*([^\n]+)\nA:\s*([^\n]+(?:\n(?!Q:)[^\n]+)*)/g)];
+  const faqMatches = [...content.matchAll(/(?:###\s*)?Q:\s*([^\n]+)\n+(?:\*\*A:\*\*|A:)\s*([^\n]+(?:\n(?!(?:###\s*)?Q:)[^\n]+)*)/g)];
   
   if (faqMatches.length === 0) return null;
   
