@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import BlogLeadForm from "@/components/blog/BlogLeadForm";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import remarkGfm from "remark-gfm";
 import FAQAccordion from "@/components/blog/FAQAccordion";
 export const dynamic = "force-dynamic";
 
