@@ -1,3 +1,4 @@
+// lead tracking enabled
 import { NextResponse } from "next/server";
 import { BookingBackendService } from "@/services-backend/BookingServices";
 
