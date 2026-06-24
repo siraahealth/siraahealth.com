@@ -817,6 +817,18 @@ function submitForm(src){
   if(!n){ alert('Please enter your name.'); return; }
   if(digits.length !== 10){ alert('Please enter a valid 10-digit mobile number.'); return; }
 
+
+  // ── STRAPI BACKUP ────────────────────────────
+  fetch('https://api.siraahealth.com/api/leads', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 26751362fade0f930e83271cd011cd12a1a460f15148d767ca08b6ed0f3b648db6d87cb9418ab153456368ff6cb7dd6d995b2aa9d0cc503c4320710e4b1f7bc9d393a0821bb2d980b7cc8061919f4cad448462184f0cf4cfef0905a7ae832eb9e61fa476a7e0945c93fecea6d8f6cd6084726d625285d57512c54eb816b07041'
+    },
+    body: JSON.stringify({ data: { firstname: n, phone: p, source: 'behaviour_therapy_page' } })
+  }).catch(function(e){ console.error('[Siraa] Strapi backup error:', e); });
+  // ── END STRAPI BACKUP ─────────────────────────
+
   // ── HUBSPOT FORMS API ────────────────────────────
   var hsPayload = {
     fields: [
