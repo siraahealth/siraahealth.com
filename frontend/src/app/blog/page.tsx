@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage({ searchParams }: any) {
-  const page = parseInt(searchParams?.page || "1");
-  const category = searchParams?.category || undefined;
+  const resolvedParams = await searchParams;
+  const page = parseInt(resolvedParams?.page || "1");
+  const category = resolvedParams?.category || undefined;
   const { blogs, total } = await BlogBackendService.getBlogs(page, 9, category);
   const categories = await BlogBackendService.getCategories();
   const totalPages = Math.ceil(total / 9);
