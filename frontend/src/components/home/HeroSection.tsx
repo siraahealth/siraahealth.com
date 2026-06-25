@@ -347,7 +347,7 @@ function HeroImageContent({ content }: { content: PageContent | null }) {
         {content?.image ? (
           <div className="relative w-full h-full min-h-[300px] lg:min-h-0">
             <Image
-              src="/assets/lead-child.png"
+              src={content.image || ""}
               alt="Doctor with child"
               fill
               className="object-cover"
