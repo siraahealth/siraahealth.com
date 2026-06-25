@@ -19,7 +19,7 @@ const CONCERNS = [
 
 type FormState = "idle" | "loading" | "success" | "error";
 
-export function LeadFormSection() {
+export function LeadFormSection({ heroImage }: { heroImage?: string | null }) {
   const [form, setForm] = useState({ parentName: "", phone: "", childAge: "", concern: "" });
   const [state, setState] = useState<FormState>("idle");
 
@@ -66,7 +66,7 @@ export function LeadFormSection() {
             <div className="relative w-full max-w-sm">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-50 to-amber-100 rounded-[40%_60%_55%_45%] scale-110 opacity-60" />
               <img
-                src="/assets/lead-child.png"
+                src={heroImage || "/assets/lead-child.png"}
                 alt="Happy child with toys"
                 style={{ width: "100%", objectFit: "contain", filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.12))", position: "relative", zIndex: 10 }}
               />

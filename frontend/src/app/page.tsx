@@ -103,7 +103,7 @@ export default async function Home() {
         </section>
 
         {/* 5. Lead form — free guidance call capture */}
-        <LeadFormSection />
+        <LeadFormSection heroImage={heroContent?.image} />
 
         {/* 6. Blog preview — 3 latest articles */}
         <BlogPreviewSection />

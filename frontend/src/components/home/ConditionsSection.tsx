@@ -79,7 +79,7 @@ const CONDITIONS = [
 
 export function ConditionsSection() {
   return (
-    <section className="py-12 lg:py-20 bg-[#F8F9FA] border-t border-border/40">
+    <section id="conditions" id="conditions" className="py-12 lg:py-20 bg-[#F8F9FA] border-t border-border/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
