@@ -7,6 +7,7 @@ import NavbarSwitcher from "@/components/layout/NavbarSwitcher";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import Footer from "@/components/layout/Footer";
 import ScrollOnMount from "@/components/core/ScrollOnMount";
+import { ExitPopup } from "@/components/ExitPopup";
 import GTMScript from "@/components/analytics/GTMScript";
 import GTMFrame from "@/components/analytics/GTMFrame";
 import GTMRouteTracker from "@/components/analytics/GTMRouteTracker";
@@ -138,6 +139,7 @@ export default function RootLayout({
               <FloatingWhatsApp />
             </div>
             <ScrollOnMount />
+            <ExitPopup />
           </div>
         </Providers>
       </body>
