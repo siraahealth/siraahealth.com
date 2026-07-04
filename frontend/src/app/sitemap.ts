@@ -1,3 +1,5 @@
+import { LANDING_PAGES } from "@/content/landingPages";
+const landingUrls = LANDING_PAGES.map((p) => ({ url: `https://siraahealth.com${p.path}`, lastModified: new Date("2026-07-04"), changeFrequency: "monthly" as const, priority: 0.9 }));
 import { MetadataRoute } from "next";
 
 const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
@@ -24,14 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       `${STRAPI_URL}/api/blogs?fields[0]=slug&fields[1]=updatedAt&status=published&pagination[pageSize]=100`,
       { headers: { Authorization: `Bearer ${CUSTOM_TOKEN}` }, cache: "no-store" }
     );
-    if (!res.ok) return staticRoutes;
+    if (!res.ok) return [...staticRoutes, ...landingUrls];
     const { data } = await res.json();
     const blogRoutes = (data || []).map((blog: any) => ({
       url: `${baseUrl}/blog/${blog.slug}`,
       lastModified: new Date(blog.updatedAt),
     }));
-    return [...staticRoutes, ...blogRoutes];
+    return [...staticRoutes, ...landingUrls, ...blogRoutes];
   } catch {
-    return staticRoutes;
+    return [...staticRoutes, ...landingUrls];
   }
 }
