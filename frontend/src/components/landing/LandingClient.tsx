@@ -193,7 +193,7 @@ export function DesktopStickyForm({ serviceType, pagePath, advice }: { serviceTy
   const [done, setDone] = useState(false);
   if (done) return <aside className="hidden lg:block"><ThankYou /></aside>;
   return (
-    <aside className="hidden lg:block" id="fa">
+    <aside className="hidden lg:block pt-14 md:pt-20 pr-5" id="fa">
       <div className="sticky top-28 space-y-5">
         <div className="rounded-2xl bg-white border border-[#EDD8F0] overflow-hidden shadow-lg">
           <div className="px-6 py-4 text-white relative" style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)" }}>
