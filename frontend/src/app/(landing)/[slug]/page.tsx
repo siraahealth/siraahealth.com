@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { getLandingPage, landingSlugs, LANDING_PAGES } from "@/content/landingPages";
 import { LANDING_SITE, clinicSchema, faqSchema, medicalPageSchema, breadcrumbSchema } from "@/lib/landingSeo";
 import {
-  LandingFAQ, LandingReviews, DesktopStickyForm, MobileBookSection, LandingPageWrapper,
+  LandingFAQ, LandingReviews, DesktopStickyForm, MobileBookSection, MobileCTABar,
 } from "@/components/landing/LandingClient";
 
 export const dynamicParams = false;
@@ -70,7 +70,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const waHref = `https://wa.me/${LANDING_SITE.whatsapp}?text=${encodeURIComponent("Hi, I'd like to consult a pediatrician at Siraa Health.")}`;
 
   return (
-    <LandingPageWrapper serviceType={serviceType} pagePath={page.path}>
+    <>
       <div className="bg-[#F5F0FC] text-[#2d2d2d]" id="main">
         {schemas.map((s, i) => (
           <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
@@ -199,6 +199,6 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           <DesktopStickyForm serviceType={serviceType} pagePath={page.path} advice={page.advice} />
         </div>
       </div>
-    </LandingPageWrapper>
+    <MobileCTABar serviceType={serviceType} pagePath={page.path} /></>
   );
 }
