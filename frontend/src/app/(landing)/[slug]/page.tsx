@@ -213,10 +213,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
                     </div>
                   </div>
                 </div>
-                <div className="lg:hidden rounded-3xl p-6 text-white" style={{ background: "linear-gradient(135deg, #6B5B95, #8B5B95)" }}>
-                  <p className="text-[17px] leading-relaxed">&ldquo;{page.advice}&rdquo;</p>
-                  <p className="mt-4 text-white/50 text-sm">{LANDING_SITE.doctor.name} · {LANDING_SITE.doctor.creds}</p>
-                </div>
+
               </div>
 
               {/* Home care */}

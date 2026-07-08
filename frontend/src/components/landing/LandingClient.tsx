@@ -47,17 +47,23 @@ export const Chocolate = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-/* ── Star-clipped floating hero image ── */
+/* ── Blob-clipped floating hero image ── */
 export function HeroStarImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px] mx-auto lg:mx-0">
+    <div className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] mx-auto lg:mx-0">
+      {/* Hidden SVG blob clipPath definition */}
+      <svg width="0" height="0" className="absolute"><defs>
+        <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
+          <path d="M0.44,0.02 C0.6,-0.02,0.78,0.05,0.9,0.18 C1.02,0.32,1.04,0.52,0.96,0.68 C0.88,0.84,0.72,0.96,0.54,0.99 C0.36,1.02,0.18,0.96,0.08,0.82 C-0.02,0.68,-0.02,0.48,0.06,0.32 C0.14,0.16,0.28,0.06,0.44,0.02"/>
+        </clipPath>
+      </defs></svg>
       {/* Floating animation container */}
       <div className="animate-float relative">
         {/* Glow / shadow underneath */}
         <div className="absolute inset-4 blur-2xl opacity-30 bg-white/40 rounded-full" />
-        {/* Star-clipped image */}
+        {/* Blob-clipped image — shows full image, organic rounded shape */}
         <div className="relative w-full h-full" style={{
-          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+          clipPath: "url(#hero-blob)",
           filter: "drop-shadow(0 12px 30px rgba(107,91,149,0.25))",
         }}>
           <img src={src} alt={alt} className="w-full h-full object-cover" loading="eager" />
@@ -198,7 +204,7 @@ function LeadForm({ formName, serviceType, pagePath, onSubmitted, compact = fals
         Talk to an Expert for Free
       </button>
       {!compact && <>
-        <p className="text-[11px] text-[#999] text-center leading-relaxed">Your details are confidential. Response within 24 hours.</p>
+
         <div className="flex items-center justify-center gap-4 text-[11px] text-[#999]">
           <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 12 12" fill="#2DBF6E"><circle cx="6" cy="6" r="5" opacity=".2"/><path d="M4 6l2 2 3-3" stroke="#2DBF6E" fill="none" strokeWidth="1.2"/></svg>4870+ families</span>
           <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 12 12" fill="#2DBF6E"><circle cx="6" cy="6" r="5" opacity=".2"/><path d="M4 6l2 2 3-3" stroke="#2DBF6E" fill="none" strokeWidth="1.2"/></svg>Free consultation</span>
