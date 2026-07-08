@@ -211,7 +211,7 @@ export function DesktopStickyForm({ serviceType, pagePath }: { serviceType: stri
 
   return (
     <aside className="hidden lg:block relative" id="fa" ref={placeholderRef} style={{ minHeight: "100%" }}>
-      <div ref={formRef} style={style} className="space-y-4 pr-5 pt-5">
+      <div ref={formRef} style={style} className="space-y-4 pr-5 pt-0">
         <div className="rounded-3xl bg-white overflow-hidden shadow-[0_4px_30px_rgba(107,91,149,0.1)] border border-[#EDD8F0]">
           <div className="px-6 py-5 text-white relative" style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)" }}>
             <span className="inline-block bg-white text-[#E8614A] font-bold text-[10px] rounded-full px-2.5 py-0.5 uppercase tracking-wider mb-2">Free</span>

@@ -80,13 +80,25 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <Teddy className="top-[3200px] left-[6%] w-8 h-8 rotate-12" />
         <Rocket className="top-[3600px] right-[5%] w-6 h-6 -rotate-[20deg]" />
 
-        {/* ═══ TWO-COLUMN GRID ═══ */}
+        {/* ── Trust strip (above hero) ── */}
+        <div className="border-b border-[#EDD8F0] bg-white/60 backdrop-blur-sm">
+          <div className="mx-auto max-w-6xl px-5 py-2.5 flex items-center justify-center gap-5 flex-wrap text-[12px] text-[#2d2d2d] font-medium">
+            {["Expert Pediatricians", "Personalized Care Plans", "Child-Friendly Clinic", "4870+ Families Trust Us", "Same-Day Appointments"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2DBF6E]" />
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* ═══ TWO-COLUMN GRID — starts at hero so form aligns with image ═══ */}
         <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[1fr_380px] lg:gap-10 lg:items-start">
 
           {/* ════ LEFT COLUMN ════ */}
           <div className="pb-28 lg:pb-16">
 
-            {/* ── HERO: full-width image + text below (behaviourtherapy style) ── */}
+            {/* ── HERO: full-width image + text below ── */}
             <div className="overflow-hidden rounded-b-3xl lg:rounded-b-[2rem]">
               <img
                 src={heroImage}
