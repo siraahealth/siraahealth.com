@@ -1,6 +1,5 @@
 "use client";
-// Landing client v5 — premium pediatric UX with subtle decorative SVGs.
-// Clean, spacious, playful-but-professional. No emoji. No excessive boxes.
+// Landing client v6 — star-clipped floating hero image, JS-fixed sidebar form, premium UX.
 import { useEffect, useRef, useState, useCallback } from "react";
 import { LANDING_SITE } from "@/lib/landingSeo";
 
@@ -21,7 +20,7 @@ const getAttribution = (pagePath: string) => {
   } catch { return {}; }
 };
 
-/* ── Decorative SVGs (subtle, scattered) ── */
+/* ── Decorative SVGs ── */
 export const Star = ({ className = "" }: { className?: string }) => (
   <svg className={`absolute pointer-events-none opacity-[0.08] ${className}`} width="24" height="24" viewBox="0 0 24 24" fill="#6B5B95">
     <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
@@ -48,6 +47,44 @@ export const Chocolate = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
+/* ── Star-clipped floating hero image ── */
+export function HeroStarImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px] mx-auto lg:mx-0">
+      {/* Floating animation container */}
+      <div className="animate-float relative">
+        {/* Glow / shadow underneath */}
+        <div className="absolute inset-4 blur-2xl opacity-30 bg-white/40 rounded-full" />
+        {/* Star-clipped image */}
+        <div className="relative w-full h-full" style={{
+          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+          filter: "drop-shadow(0 12px 30px rgba(107,91,149,0.25))",
+        }}>
+          <img src={src} alt={alt} className="w-full h-full object-cover" loading="eager" />
+        </div>
+        {/* Small decorative orbiting elements */}
+        <svg className="absolute -top-3 -right-2 w-6 h-6 opacity-40 animate-spin-slow" viewBox="0 0 24 24" fill="#FFC24B">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+        <svg className="absolute -bottom-1 -left-3 w-4 h-4 opacity-30" viewBox="0 0 24 24" fill="#2DBF6E">
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        <svg className="absolute top-1/2 -right-4 w-3 h-3 opacity-25" viewBox="0 0 24 24" fill="#E8614A">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+      </div>
+      {/* CSS for float animation */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 12s linear infinite; }
+        @media (prefers-reduced-motion: reduce) { .animate-float, .animate-spin-slow { animation: none; } }
+      `}} />
+    </div>
+  );
+}
+
 /* ── Lead submission ── */
 const submitLead = async (name: string, phone: string, formName: string, pagePath: string, serviceType: string) => {
   const digits = phone.replace(/\D/g, "");
@@ -57,11 +94,7 @@ const submitLead = async (name: string, phone: string, formName: string, pagePat
     body: JSON.stringify({ firstname: name, phone, source: "landing_page", concern: serviceType }),
   }).catch(() => null);
   const hsPayload: Record<string, unknown> = {
-    fields: [
-      { name: "firstname", value: name },
-      { name: "email", value: `${digits}@lead.siraahealth.com` },
-      { name: "phone", value: phone },
-    ],
+    fields: [{ name: "firstname", value: name }, { name: "email", value: `${digits}@lead.siraahealth.com` }, { name: "phone", value: phone }],
     context: { pageUri: window.location.href, pageName: document.title },
   };
   try { const m = document.cookie.match(/hubspotutk=([^;]+)/); if (m) (hsPayload.context as Record<string, string>).hutk = m[1]; } catch {}
@@ -75,7 +108,7 @@ const submitLead = async (name: string, phone: string, formName: string, pagePat
   push("form_submit", { form_name: formName, service: serviceType, ...attr });
 };
 
-/* ── FAQ (clean, no boxes) ── */
+/* ── FAQ ── */
 export function LandingFAQ({ faqs }: { faqs: { q: string; a: string }[] }) {
   return (
     <div className="divide-y divide-[#EDD8F0]">
@@ -93,7 +126,7 @@ export function LandingFAQ({ faqs }: { faqs: { q: string; a: string }[] }) {
   );
 }
 
-/* ── Reviews (clean cards, no heavy borders) ── */
+/* ── Reviews ── */
 export function LandingReviews() {
   const reviews = [
     { text: "Our son was not saying a single word at 2.5. Within four months at Siraa he was putting two and three words together. The parent coaching made the biggest difference.", author: "Priya M.", loc: "DLF Phase 4" },
@@ -189,12 +222,38 @@ function ThankYou() {
   );
 }
 
-/* ── Desktop sticky form ── */
+/* ── Desktop fixed form (JS-controlled positioning) ── */
 export function DesktopStickyForm({ serviceType, pagePath, advice }: { serviceType: string; pagePath: string; advice: string }) {
   const [done, setDone] = useState(false);
+  const placeholderRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const [style, setStyle] = useState<React.CSSProperties>({});
+
+  useEffect(() => {
+    const update = () => {
+      if (!placeholderRef.current || !formRef.current) return;
+      const ph = placeholderRef.current.getBoundingClientRect();
+      const topGap = 112;
+      const pageBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+      const footerBuffer = 80;
+
+      if (ph.top > topGap) {
+        setStyle({ position: "absolute", top: 0, width: ph.width });
+      } else if (pageBottom > footerBuffer) {
+        setStyle({ position: "fixed", top: topGap, width: ph.width });
+      } else {
+        setStyle({ position: "absolute", bottom: footerBuffer, width: ph.width });
+      }
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => { window.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+  }, []);
+
   return (
-    <aside className="hidden lg:block pt-14 md:pt-20 pr-5" id="fa">
-      <div className="sticky top-28 space-y-5">
+    <aside className="hidden lg:block relative" id="fa" ref={placeholderRef} style={{ minHeight: "100%" }}>
+      <div ref={formRef} style={style} className="space-y-5 pr-5 pt-5">
         <div className="rounded-3xl bg-white overflow-hidden shadow-[0_4px_30px_rgba(107,91,149,0.1)]">
           <div className="px-6 py-5 text-white relative" style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)" }}>
             <span className="inline-block bg-white text-[#E8614A] font-bold text-[10px] rounded-full px-2.5 py-0.5 uppercase tracking-wider mb-2">Free</span>
