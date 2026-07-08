@@ -1,5 +1,5 @@
 "use client";
-// Landing client v6 — star-clipped floating hero image, JS-fixed sidebar form, premium UX.
+// Landing client v7 — behaviourtherapy-style hero (full-width image + text below), no blob, no doctor quote.
 import { useEffect, useRef, useState, useCallback } from "react";
 import { LANDING_SITE } from "@/lib/landingSeo";
 
@@ -46,50 +46,6 @@ export const Chocolate = ({ className = "" }: { className?: string }) => (
     <rect x="2" y="6" width="18" height="14" rx="3"/><path d="M6 6V4a5 5 0 0 1 10 0v2" fill="none" stroke="#8B6BAF" strokeWidth="1.5"/>
   </svg>
 );
-
-/* ── Blob-clipped floating hero image ── */
-export function HeroStarImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] mx-auto lg:mx-0">
-      {/* Hidden SVG blob clipPath definition */}
-      <svg width="0" height="0" className="absolute"><defs>
-        <clipPath id="hero-blob" clipPathUnits="objectBoundingBox">
-          <path d="M0.44,0.02 C0.6,-0.02,0.78,0.05,0.9,0.18 C1.02,0.32,1.04,0.52,0.96,0.68 C0.88,0.84,0.72,0.96,0.54,0.99 C0.36,1.02,0.18,0.96,0.08,0.82 C-0.02,0.68,-0.02,0.48,0.06,0.32 C0.14,0.16,0.28,0.06,0.44,0.02"/>
-        </clipPath>
-      </defs></svg>
-      {/* Floating animation container */}
-      <div className="animate-float relative">
-        {/* Glow / shadow underneath */}
-        <div className="absolute inset-4 blur-2xl opacity-30 bg-white/40 rounded-full" />
-        {/* Blob-clipped image — shows full image, organic rounded shape */}
-        <div className="relative w-full h-full" style={{
-          clipPath: "url(#hero-blob)",
-          filter: "drop-shadow(0 12px 30px rgba(107,91,149,0.25))",
-        }}>
-          <img src={src} alt={alt} className="w-full h-full object-cover" loading="eager" />
-        </div>
-        {/* Small decorative orbiting elements */}
-        <svg className="absolute -top-3 -right-2 w-6 h-6 opacity-40 animate-spin-slow" viewBox="0 0 24 24" fill="#FFC24B">
-          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
-        </svg>
-        <svg className="absolute -bottom-1 -left-3 w-4 h-4 opacity-30" viewBox="0 0 24 24" fill="#2DBF6E">
-          <circle cx="12" cy="12" r="10"/>
-        </svg>
-        <svg className="absolute top-1/2 -right-4 w-3 h-3 opacity-25" viewBox="0 0 24 24" fill="#E8614A">
-          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>
-        </svg>
-      </div>
-      {/* CSS for float animation */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
-        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .animate-float { animation: float 4s ease-in-out infinite; }
-        .animate-spin-slow { animation: spin-slow 12s linear infinite; }
-        @media (prefers-reduced-motion: reduce) { .animate-float, .animate-spin-slow { animation: none; } }
-      `}} />
-    </div>
-  );
-}
 
 /* ── Lead submission ── */
 const submitLead = async (name: string, phone: string, formName: string, pagePath: string, serviceType: string) => {
@@ -203,13 +159,10 @@ function LeadForm({ formName, serviceType, pagePath, onSubmitted, compact = fals
         style={{ background: "linear-gradient(135deg, #2DBF6E, #22A05A)" }}>
         Talk to an Expert for Free
       </button>
-      {!compact && <>
-
-        <div className="flex items-center justify-center gap-4 text-[11px] text-[#999]">
-          <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 12 12" fill="#2DBF6E"><circle cx="6" cy="6" r="5" opacity=".2"/><path d="M4 6l2 2 3-3" stroke="#2DBF6E" fill="none" strokeWidth="1.2"/></svg>4870+ families</span>
-          <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 12 12" fill="#2DBF6E"><circle cx="6" cy="6" r="5" opacity=".2"/><path d="M4 6l2 2 3-3" stroke="#2DBF6E" fill="none" strokeWidth="1.2"/></svg>Free consultation</span>
-        </div>
-      </>}
+      {!compact && <div className="flex items-center justify-center gap-4 text-[11px] text-[#999]">
+        <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 12 12" fill="#2DBF6E"><circle cx="6" cy="6" r="5" opacity=".2"/><path d="M4 6l2 2 3-3" stroke="#2DBF6E" fill="none" strokeWidth="1.2"/></svg>4870+ families</span>
+        <span className="flex items-center gap-1"><svg width="12" height="12" viewBox="0 0 12 12" fill="#2DBF6E"><circle cx="6" cy="6" r="5" opacity=".2"/><path d="M4 6l2 2 3-3" stroke="#2DBF6E" fill="none" strokeWidth="1.2"/></svg>Free consultation</span>
+      </div>}
     </div>
   );
 }
@@ -228,8 +181,8 @@ function ThankYou() {
   );
 }
 
-/* ── Desktop fixed form (JS-controlled positioning) ── */
-export function DesktopStickyForm({ serviceType, pagePath, advice }: { serviceType: string; pagePath: string; advice: string }) {
+/* ── Desktop fixed form (JS positioning, no doctor quote) ── */
+export function DesktopStickyForm({ serviceType, pagePath }: { serviceType: string; pagePath: string }) {
   const [done, setDone] = useState(false);
   const placeholderRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
@@ -242,7 +195,6 @@ export function DesktopStickyForm({ serviceType, pagePath, advice }: { serviceTy
       const topGap = 112;
       const pageBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
       const footerBuffer = 80;
-
       if (ph.top > topGap) {
         setStyle({ position: "absolute", top: 0, width: ph.width });
       } else if (pageBottom > footerBuffer) {
@@ -259,8 +211,8 @@ export function DesktopStickyForm({ serviceType, pagePath, advice }: { serviceTy
 
   return (
     <aside className="hidden lg:block relative" id="fa" ref={placeholderRef} style={{ minHeight: "100%" }}>
-      <div ref={formRef} style={style} className="space-y-5 pr-5 pt-5">
-        <div className="rounded-3xl bg-white overflow-hidden shadow-[0_4px_30px_rgba(107,91,149,0.1)]">
+      <div ref={formRef} style={style} className="space-y-4 pr-5 pt-5">
+        <div className="rounded-3xl bg-white overflow-hidden shadow-[0_4px_30px_rgba(107,91,149,0.1)] border border-[#EDD8F0]">
           <div className="px-6 py-5 text-white relative" style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)" }}>
             <span className="inline-block bg-white text-[#E8614A] font-bold text-[10px] rounded-full px-2.5 py-0.5 uppercase tracking-wider mb-2">Free</span>
             <h3 className="font-semibold text-xl leading-snug">Talk to an Expert<br/>for Free</h3>
@@ -268,10 +220,6 @@ export function DesktopStickyForm({ serviceType, pagePath, advice }: { serviceTy
           <div className="p-5">
             {done ? <ThankYou /> : <LeadForm formName="desktop_sidebar" serviceType={serviceType} pagePath={pagePath} onSubmitted={() => setDone(true)} />}
           </div>
-        </div>
-        <div className="rounded-3xl p-5 text-white text-sm leading-relaxed" style={{ background: "linear-gradient(135deg, #6B5B95, #8B6BAF)" }}>
-          <p className="opacity-90">&ldquo;{advice}&rdquo;</p>
-          <p className="mt-3 text-white/60 text-xs">{LANDING_SITE.doctor.name} · {LANDING_SITE.doctor.creds}</p>
         </div>
         <a href={`tel:${LANDING_SITE.phone}`} onClick={() => push("call_click", { location: "sticky_desktop" })}
           className="flex items-center justify-center gap-2 rounded-2xl border border-[#EDD8F0] text-[#1a1a1a] font-medium py-3 hover:bg-[#F5F0FC] transition text-sm">
