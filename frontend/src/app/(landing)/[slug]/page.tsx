@@ -1,19 +1,17 @@
-// Dynamic landing route v4: form starts inside hero, sticks on scroll (matches behaviourtherapy layout).
-// Two-column grid wraps hero+content together so sticky form begins at hero level.
+// Landing route v5: premium pediatric UX — clean layout, subtle decorative SVGs, no excessive boxes.
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getLandingPage, landingSlugs, LANDING_PAGES } from "@/content/landingPages";
 import { LANDING_SITE, clinicSchema, faqSchema, medicalPageSchema, breadcrumbSchema } from "@/lib/landingSeo";
 import {
   LandingFAQ, LandingReviews, DesktopStickyForm, MobileBookSection, MobileCTABar,
+  Star, Teddy, Rocket, Ball, Chocolate,
 } from "@/components/landing/LandingClient";
 
 export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return landingSlugs().map((slug) => ({ slug }));
-}
+export function generateStaticParams() { return landingSlugs().map((slug) => ({ slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -21,44 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!page) return {};
   const url = LANDING_SITE.url + page.path;
   return {
-    title: page.seoTitle,
-    description: page.metaDescription,
+    title: page.seoTitle, description: page.metaDescription,
     alternates: { canonical: url },
     openGraph: { title: page.seoTitle, description: page.metaDescription, url, type: "website" },
   };
 }
-
-const Section = ({ id, title, eyebrow, label, tone, children }: {
-  id?: string; title?: string; eyebrow?: string; label?: string; tone?: "tint"; children: React.ReactNode;
-}) => (
-  <section id={id} className={`py-10 md:py-14 ${tone === "tint" ? "bg-[#FDF0F0]/60 rounded-3xl px-5 md:px-8 my-4" : ""}`}>
-    {label && <div className="inline-block rounded-full bg-[#F5F0FC] border border-[#EDD8F0] text-[#6B5B95] text-xs font-semibold px-3 py-1 mb-3 uppercase tracking-wide">{label}</div>}
-    {eyebrow && <p className="text-[#E8614A] font-semibold uppercase tracking-wide text-sm mb-2">{eyebrow}</p>}
-    {title && <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-[#1a1a1a]">{title}</h2>}
-    {children}
-  </section>
-);
-
-const Check = ({ items }: { items: string[] }) => (
-  <ul className="grid gap-3 sm:grid-cols-2">
-    {items.map((s) => (
-      <li key={s} className="flex items-start gap-3 rounded-2xl bg-white border border-[#EDD8F0] p-4">
-        <span aria-hidden="true" className="text-[#2DBF6E] mt-0.5">✔</span><span className="text-[#2d2d2d]">{s}</span>
-      </li>
-    ))}
-  </ul>
-);
-
-const Steps = ({ steps }: { steps: { title: string; desc: string }[] }) => (
-  <ol className="space-y-4">
-    {steps.map((s, i) => (
-      <li key={s.title} className="flex gap-4 rounded-2xl bg-white border border-[#EDD8F0] p-5">
-        <span className="shrink-0 w-9 h-9 rounded-full bg-[#E8614A] text-white font-semibold grid place-items-center text-sm" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-        <div><p className="font-semibold text-[#1a1a1a]">{s.title}</p><p className="text-[#2d2d2d]">{s.desc}</p></div>
-      </li>
-    ))}
-  </ol>
-);
 
 export default async function LandingPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -71,134 +36,224 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <div className="bg-[#F5F0FC] text-[#2d2d2d]" id="main">
+      <div className="bg-[#F5F0FC] text-[#2d2d2d] min-h-screen relative overflow-x-hidden" id="main">
         {schemas.map((s, i) => (
           <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
         ))}
 
-        {/* ── ENTIRE PAGE IS ONE TWO-COLUMN GRID (desktop) ── */}
-        {/* Form starts at hero level and sticks as user scrolls through content */}
-        <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[1fr_380px] lg:gap-10 lg:items-start">
+        {/* Scattered decorative elements */}
+        <Star className="top-[320px] left-[5%] w-6 h-6 rotate-12" />
+        <Teddy className="top-[600px] right-[3%] w-10 h-10 -rotate-6" />
+        <Rocket className="top-[900px] left-[8%] w-7 h-7 rotate-[30deg]" />
+        <Ball className="top-[1400px] right-[6%] w-5 h-5" />
+        <Star className="top-[1800px] left-[4%] w-5 h-5 -rotate-12" />
+        <Chocolate className="top-[2200px] right-[4%] w-6 h-6 rotate-6" />
+        <Teddy className="top-[2800px] left-[6%] w-8 h-8 rotate-12" />
+        <Rocket className="top-[3400px] right-[5%] w-6 h-6 -rotate-[20deg]" />
+        <Ball className="top-[3900px] left-[3%] w-6 h-6" />
+        <Star className="top-[4400px] right-[7%] w-5 h-5 rotate-45" />
 
-          {/* ════════ LEFT COLUMN: Hero + all content ════════ */}
+        {/* ═══ TWO-COLUMN GRID (form starts at hero level, sticks on scroll) ═══ */}
+        <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[1fr_380px] lg:gap-10 lg:items-start lg:overflow-visible">
+
+          {/* ════ LEFT COLUMN ════ */}
           <div className="pb-28 lg:pb-16">
 
             {/* ── HERO ── */}
-            <div className="text-white rounded-none lg:rounded-b-3xl px-5 py-14 md:py-20" style={{ background: "linear-gradient(135deg, #6B5B95, #8B6BAF)" }}>
-              <nav aria-label="Breadcrumb" className="text-sm text-white/70 mb-4">
-                <Link href="/" className="hover:text-white">Home</Link> <span aria-hidden="true">›</span> {page.nav}
+            <div className="relative text-white px-6 md:px-10 py-16 md:py-24 lg:rounded-b-[2.5rem]" style={{ background: "linear-gradient(135deg, #6B5B95 0%, #8B6BAF 60%, #A87BC5 100%)" }}>
+              {/* Subtle hero decoration */}
+              <div className="absolute top-8 right-8 w-20 h-20 rounded-full bg-white/5" />
+              <div className="absolute bottom-12 right-24 w-10 h-10 rounded-full bg-white/[0.03]" />
+              <div className="absolute top-1/2 right-12 w-3 h-3 rounded-full bg-white/10" />
+
+              <nav aria-label="Breadcrumb" className="text-sm text-white/60 mb-6">
+                <Link href="/" className="hover:text-white transition">Home</Link>
+                <span className="mx-2 opacity-40">/</span>
+                <span className="text-white/80">{page.nav}</span>
               </nav>
-              <p className="text-5xl mb-4" aria-hidden="true">{page.heroEmoji}</p>
-              <h1 className="text-3xl md:text-5xl font-semibold leading-tight max-w-3xl">{page.h1}</h1>
-              <p className="mt-4 text-lg text-white/90 max-w-2xl">{page.heroSub}</p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#book" className="lg:hidden inline-flex items-center justify-center rounded-full text-white font-semibold min-h-[48px] px-6"
-                  style={{ background: "linear-gradient(135deg, #2DBF6E, #22A05A)" }}>{page.cta}</a>
-                <a href={waHref} target="_blank" rel="noopener" className="inline-flex items-center justify-center rounded-full bg-[#25D366] text-white font-semibold min-h-[48px] px-6">WhatsApp a Pediatrician</a>
-              </div>
-              {/* Stats */}
+
+              <h1 className="text-[2rem] md:text-[2.75rem] lg:text-[3.25rem] font-semibold leading-[1.15] max-w-xl tracking-tight">{page.h1}</h1>
+              <p className="mt-5 text-[17px] text-white/85 max-w-lg leading-relaxed">{page.heroSub}</p>
+
               <div className="mt-8 flex flex-wrap gap-3">
-                {[
-                  { n: "4870+", l: "Families Trust Us" },
-                  { n: "20+", l: "Years Experience" },
-                  { n: "IAP", l: "Certified Vaccination" },
-                ].map((s) => (
-                  <div key={s.l} className="rounded-2xl px-5 py-3 text-center" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08))" }}>
-                    <p className="text-xl font-bold">{s.n}</p>
-                    <p className="text-xs text-white/75">{s.l}</p>
-                  </div>
+                <a href="#book" className="lg:hidden inline-flex items-center justify-center rounded-full text-white font-semibold h-12 px-7 text-sm shadow-lg shadow-black/10"
+                  style={{ background: "linear-gradient(135deg, #2DBF6E, #22A05A)" }}>{page.cta}</a>
+                <a href={waHref} target="_blank" rel="noopener" className="inline-flex items-center justify-center rounded-full bg-[#25D366] text-white font-semibold h-12 px-7 text-sm shadow-lg shadow-black/10">
+                  <svg className="mr-2" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.7-1.3 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-2.6-.8-4.3-2.6-5.6-4.7-.7-1.2-1.1-2.5-.6-3.3.3-.5.8-.8 1.2-.8h.6c.2 0 .5-.1.7.5l.9 2.1c.1.2 0 .4-.1.6l-.5.7c-.1.2-.2.3-.1.6.6 1.1 1.6 2 2.9 2.6.3.1.5.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.4 0 .1 0 .4-.1.3Z"/></svg>
+                  WhatsApp
+                </a>
+              </div>
+
+              {/* Stats — clean, no boxes */}
+              <div className="mt-10 flex gap-8 text-sm">
+                {[{ n: "4870+", l: "Families" }, { n: "20+ yrs", l: "Experience" }, { n: "IAP", l: "Certified" }].map((s) => (
+                  <div key={s.l}><p className="text-xl font-bold">{s.n}</p><p className="text-white/50 text-xs mt-0.5">{s.l}</p></div>
                 ))}
               </div>
             </div>
 
-            {/* ── CONTENT SECTIONS ── */}
-            <div className="px-5">
-              {/* AEO answer block */}
-              <Section>
-                <div className="answer-block rounded-2xl border border-[#EDD8F0] bg-white p-6">
-                  <p className="font-semibold text-[#E8614A] mb-2">{page.answer.q}</p>
-                  <p className="text-lg leading-relaxed text-[#2d2d2d]">{page.answer.a}</p>
-                </div>
-              </Section>
+            {/* ── CONTENT ── */}
+            <div className="px-5 md:px-8">
 
-              <Section label="Signs to watch" title={page.symptomsTitle} tone="tint">
-                <Check items={page.symptoms} />
-              </Section>
+              {/* Answer block — subtle highlight, no box border */}
+              <div className="mt-12 mb-14 answer-block">
+                <p className="text-[#E8614A] font-semibold text-lg mb-3">{page.answer.q}</p>
+                <p className="text-[17px] leading-[1.75] text-[#2d2d2d]">{page.answer.a}</p>
+              </div>
 
-              <Section label="Red flags" title="When Should I Worry?">
-                <div className="rounded-2xl border-l-8 border-[#C0392B] bg-white p-6" role="alert">
-                  <p className="flex items-center gap-2 text-xl font-semibold text-[#C0392B] mb-4"><span aria-hidden="true">⚠</span> See a Doctor Immediately If…</p>
-                  <ul className="grid gap-2 sm:grid-cols-2 mb-6">
-                    {page.redFlags.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-[#2d2d2d]"><span aria-hidden="true" className="text-[#C0392B]">•</span>{f}</li>
-                    ))}
-                  </ul>
-                  <a href={`tel:${LANDING_SITE.phone}`} className="inline-flex items-center justify-center rounded-full bg-[#C0392B] text-white font-semibold min-h-[48px] px-6">📞 Call Siraa Health Now</a>
-                </div>
-              </Section>
-
-              <Section label="Understanding" title={page.causesTitle} tone="tint">
-                <ul className="space-y-3">
-                  {page.causes.map((c) => (
-                    <li key={c} className="flex gap-3 rounded-2xl bg-white border border-[#EDD8F0] p-4 text-[#2d2d2d]">
-                      <span aria-hidden="true" className="text-[#E8614A]">●</span>{c}
-                    </li>
+              {/* Symptoms — clean list, soft background, no card borders */}
+              <div className="mb-14">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Signs to watch</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-6">{page.symptomsTitle}</h2>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  {page.symptoms.map((s) => (
+                    <div key={s} className="flex items-start gap-3 bg-white/70 rounded-2xl px-5 py-4">
+                      <svg className="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#2DBF6E" opacity=".12"/><path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#2DBF6E" strokeWidth="1.8" fill="none" strokeLinecap="round"/></svg>
+                      <span className="text-[15px] text-[#2d2d2d]">{s}</span>
+                    </div>
                   ))}
-                </ul>
-              </Section>
-
-              <Section label="Our approach" title="How We Care for Your Child at Siraa Health">
-                <Steps steps={page.treatment} />
-                <figure className="lg:hidden mt-8 rounded-2xl p-6 text-white" style={{ background: "linear-gradient(135deg, #6B5B95, #8B5B95)" }}>
-                  <blockquote className="text-lg leading-relaxed">&ldquo;{page.advice}&rdquo;</blockquote>
-                  <figcaption className="mt-4 text-white/70">
-                    <span className="font-semibold text-white">{LANDING_SITE.doctor.name}</span> · {LANDING_SITE.doctor.creds} · {LANDING_SITE.doctor.exp} in pediatrics
-                  </figcaption>
-                </figure>
-              </Section>
-
-              <Section label="At home" title={page.homeCareTitle} tone="tint">
-                <Check items={page.homeCare} />
-              </Section>
-
-              <Section label="Parent Stories" title="What families say">
-                <LandingReviews />
-              </Section>
-
-              <Section label="Questions" title="What parents usually ask us">
-                <LandingFAQ faqs={page.faqs} />
-              </Section>
-
-              <Section id="book" label="Book now">
-                <MobileBookSection serviceType={serviceType} pagePath={page.path} />
-                <div className="mt-5 rounded-2xl bg-white border border-[#EDD8F0] p-6">
-                  <p className="font-semibold text-[#1a1a1a] mb-2">{LANDING_SITE.address}</p>
-                  <p className="text-[#666666] text-sm">{LANDING_SITE.hours}</p>
-                  <p className="mt-3"><a className="font-semibold text-[#E8614A] underline" href={`tel:${LANDING_SITE.phone}`}>{LANDING_SITE.phone}</a></p>
                 </div>
-              </Section>
+              </div>
 
-              <Section title="Related Care at Siraa">
-                <ul className="flex flex-wrap gap-3">
+              {/* Red flags — clean alert, single border accent */}
+              <div className="mb-14 bg-white rounded-3xl p-6 md:p-8 border-l-4 border-[#C0392B]" role="alert">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Red flags</p>
+                <h2 className="text-2xl font-semibold text-[#1a1a1a] mb-2">When Should I Worry?</h2>
+                <p className="text-sm text-[#666] mb-5">See a doctor immediately if your child shows any of these signs.</p>
+                <div className="grid gap-2 sm:grid-cols-2 mb-6">
+                  {page.redFlags.map((f) => (
+                    <div key={f} className="flex items-start gap-2.5 py-1.5">
+                      <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-[#C0392B] mt-2" />
+                      <span className="text-[15px] text-[#2d2d2d]">{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href={`tel:${LANDING_SITE.phone}`} className="inline-flex items-center gap-2 rounded-full bg-[#C0392B] text-white font-semibold h-11 px-6 text-sm">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1v3.4a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.3 1z"/></svg>
+                  Call Siraa Health Now
+                </a>
+              </div>
+
+              {/* Causes — simple flowing list, no card per item */}
+              <div className="mb-14">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Understanding</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-6">{page.causesTitle}</h2>
+                <div className="space-y-4">
+                  {page.causes.map((c, i) => (
+                    <div key={c} className="flex gap-4 items-start">
+                      <span className="shrink-0 w-7 h-7 rounded-full bg-[#E8614A]/10 text-[#E8614A] text-xs font-bold grid place-items-center mt-0.5">{i + 1}</span>
+                      <p className="text-[15px] text-[#2d2d2d] leading-relaxed">{c}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* How we care — with lead-child.png image */}
+              <div className="mb-14 relative">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Our approach</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-8">How We Care for Your Child at Siraa Health</h2>
+
+                <div className="grid md:grid-cols-2 gap-8 items-start mb-8">
+                  {/* Steps — left */}
+                  <div className="space-y-5">
+                    {page.treatment.map((s, i) => (
+                      <div key={s.title} className="flex gap-4">
+                        <div className="shrink-0">
+                          <div className="w-10 h-10 rounded-2xl text-white font-bold text-sm grid place-items-center" style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)" }}>{String(i + 1).padStart(2, "0")}</div>
+                          {i < page.treatment.length - 1 && <div className="w-px h-6 bg-[#EDD8F0] mx-auto mt-1" />}
+                        </div>
+                        <div className="pb-2">
+                          <p className="font-semibold text-[#1a1a1a] mb-1">{s.title}</p>
+                          <p className="text-[15px] text-[#2d2d2d] leading-relaxed">{s.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Image — right */}
+                  <div className="relative rounded-3xl overflow-hidden shadow-[0_8px_40px_rgba(107,91,149,0.12)]">
+                    <Image
+                      src="/assets/lead-child.png"
+                      alt="Child receiving care at Siraa Health pediatric clinic"
+                      width={500}
+                      height={600}
+                      className="w-full h-auto object-cover"
+                    />
+                    {/* Subtle overlay badge */}
+                    <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg">
+                      <p className="text-sm font-semibold text-[#1a1a1a]">Evidence-based care</p>
+                      <p className="text-xs text-[#666]">Every decision guided by the latest pediatric science</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Doctor quote — mobile only */}
+                <div className="lg:hidden rounded-3xl p-6 text-white" style={{ background: "linear-gradient(135deg, #6B5B95, #8B5B95)" }}>
+                  <p className="text-[17px] leading-relaxed">&ldquo;{page.advice}&rdquo;</p>
+                  <p className="mt-4 text-white/50 text-sm">{LANDING_SITE.doctor.name} · {LANDING_SITE.doctor.creds}</p>
+                </div>
+              </div>
+
+              {/* Home care — clean checklist */}
+              <div className="mb-14">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">At home</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-6">{page.homeCareTitle}</h2>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  {page.homeCare.map((s) => (
+                    <div key={s} className="flex items-start gap-3 bg-white/70 rounded-2xl px-5 py-4">
+                      <svg className="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#2DBF6E" opacity=".12"/><path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#2DBF6E" strokeWidth="1.8" fill="none" strokeLinecap="round"/></svg>
+                      <span className="text-[15px] text-[#2d2d2d]">{s}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Reviews */}
+              <div className="mb-14">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Parent stories</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-6">What families say</h2>
+                <LandingReviews />
+              </div>
+
+              {/* FAQ — clean dividers, no boxes */}
+              <div className="mb-14">
+                <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Questions</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-6">What parents usually ask us</h2>
+                <LandingFAQ faqs={page.faqs} />
+              </div>
+
+              {/* Mobile booking */}
+              <div id="book" className="mb-14">
+                <MobileBookSection serviceType={serviceType} pagePath={page.path} />
+                <div className="mt-5 text-center text-sm text-[#666]">
+                  <p>{LANDING_SITE.address} · {LANDING_SITE.hours}</p>
+                  <a href={`tel:${LANDING_SITE.phone}`} className="font-semibold text-[#6B5B95] mt-1 inline-block">{LANDING_SITE.phone}</a>
+                </div>
+              </div>
+
+              {/* Related */}
+              <div className="mb-8">
+                <h2 className="text-xl font-semibold text-[#1a1a1a] mb-4">Related Care</h2>
+                <div className="flex flex-wrap gap-2.5">
                   {page.related.map((r) => {
                     const rp = LANDING_PAGES.find((p) => p.path === r);
                     return rp ? (
-                      <li key={r}>
-                        <Link href={r} className="inline-block rounded-full border-2 border-[#6B5B95] text-[#1a1a1a] font-semibold px-5 py-2.5 hover:bg-[#F5F0FC] transition">
-                          {rp.nav} →
-                        </Link>
-                      </li>
+                      <Link key={r} href={r} className="rounded-full bg-white border border-[#EDD8F0] text-[#1a1a1a] font-medium px-5 py-2.5 text-sm hover:border-[#6B5B95] hover:bg-[#F5F0FC] transition">
+                        {rp.nav}
+                      </Link>
                     ) : null;
                   })}
-                </ul>
-              </Section>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          {/* ════════ RIGHT COLUMN: Sticky form (starts at hero level) ════════ */}
+          {/* ════ RIGHT COLUMN: Sticky form ════ */}
           <DesktopStickyForm serviceType={serviceType} pagePath={page.path} advice={page.advice} />
         </div>
       </div>
-    <MobileCTABar serviceType={serviceType} pagePath={page.path} /></>
+      <MobileCTABar serviceType={serviceType} pagePath={page.path} />
+    </>
   );
 }
