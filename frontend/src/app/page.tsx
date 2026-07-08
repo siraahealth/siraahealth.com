@@ -7,6 +7,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import ParentStories from "@/components/home/ParentStories";
 import { VaccinationBackendService } from "@/services-backend/VaccinationService";
 import { ConditionsSection } from "@/components/home/ConditionsSection";
+import { PediatricServicesSection } from "@/components/home/PediatricServicesSection";
 import { LeadFormSection } from "@/components/home/LeadFormSection";
 import { BlogPreviewSection } from "@/components/home/BlogPreviewSection";
 
@@ -89,7 +90,10 @@ export default async function Home() {
         {/* 1. Hero — vaccinations + development CTAs */}
         <HeroSection content={heroContent} stats={stats} />
 
-        {/* 2. Conditions — names the problems parents are searching for */}
+        {/* 2a. Pediatric OPD Services */}
+        <PediatricServicesSection />
+
+        {/* 2b. Conditions — names the problems parents are searching for */}
         <ConditionsSection />
 
         {/* 3. Doctors — quote-led, small photo format */}
