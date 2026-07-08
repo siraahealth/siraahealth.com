@@ -1,7 +1,9 @@
-# Siraa Health — Pediatric Clinic, Gurgaon
+# Siraa Health
+
 > Siraa Health is a pediatric neurodevelopment and child health clinic in Sector 67, Gurgaon, offering evidence-based care for children from birth to 16 years.
 
 ## Services
+
 - Pediatric consultation (sick child, same-day appointments)
 - Child vaccination (IAP schedule, painless options)
 - Newborn care
@@ -14,24 +16,25 @@
 - School health checkups
 
 ## Contact
+
 - Phone: +91 99107 31103
-- Hours: Mon–Sat 9:00 AM – 7:00 PM, Sunday closed
+- Hours: Mon-Sat 9:00 AM - 7:00 PM, Sunday closed
 - Location: Sector 67, Gurgaon, Haryana, India
 - Website: https://siraahealth.com
 
 ## Key Pages
-- Homepage: https://siraahealth.com/
-- Vaccination: https://siraahealth.com/vaccinations/Thick-DelhiNCR
-- Development: https://siraahealth.com/milestones/Thick-DelhiNCR
-- Blog: https://siraahealth.com/blog
-- Child Fever: https://siraahealth.com/child-fever-treatment-gurgaon
-- Child Vaccination: https://siraahealth.com/child-vaccination-gurgaon
-- Best Pediatrician Gurgaon: https://siraahealth.com/best-pediatrician-gurgaon
-- Newborn Care: https://siraahealth.com/newborn-baby-doctor-gurgaon
-- Cough & Cold: https://siraahealth.com/child-cough-cold-doctor-gurgaon
-- Speech Delay: https://siraahealth.com/child-not-talking
+
+- [Homepage](https://siraahealth.com/)
+- [Vaccination](https://siraahealth.com/vaccinations/Thick-DelhiNCR)
+- [Development](https://siraahealth.com/milestones/Thick-DelhiNCR)
+- [Blog](https://siraahealth.com/blog)
+- [Child Fever](https://siraahealth.com/child-fever-treatment-gurgaon)
+- [Child Vaccination](https://siraahealth.com/child-vaccination-gurgaon)
+- [Best Pediatrician Gurgaon](https://siraahealth.com/best-pediatrician-gurgaon)
+- [Newborn Care](https://siraahealth.com/newborn-baby-doctor-gurgaon)
 
 ## Medical Authority
+
 - Medically reviewed content
 - IAP (Indian Academy of Pediatrics) certified vaccinations
 - Evidence-based therapy protocols
