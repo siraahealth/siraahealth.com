@@ -109,6 +109,15 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             </div>
 
             <div className="px-5 md:px-8 pt-8">
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-[#666] mb-5">
+                <Link href="/" className="hover:text-[#1a1a1a] transition flex items-center gap-1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</Link>
+                <span className="opacity-40">›</span>
+                <Link href="/#pediatric-services" className="hover:text-[#1a1a1a] transition">Pediatric Care</Link>
+                <span className="opacity-40">›</span>
+                <span className="text-[#1a1a1a] font-medium">{page.nav}</span>
+              </nav>
+
               {/* Badges */}
               <div className="flex flex-wrap gap-2 mb-5">
                 <span className="inline-block rounded-full bg-[#F5F0FC] border border-[#EDD8F0] text-[#6B5B95] text-xs font-semibold px-4 py-1.5 uppercase tracking-wider">{page.nav} · Gurgaon</span>
