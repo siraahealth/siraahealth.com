@@ -37,9 +37,6 @@ export const metadata: Metadata = {
   },
   description:
     "Early screening and evidence-based therapy for speech delay, autism, and developmental delays by Gurgaon's leading pediatric specialists.",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Siraa Health | Pediatric Therapy Clinic",
     description:
