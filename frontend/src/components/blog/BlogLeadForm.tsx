@@ -23,6 +23,15 @@ export default function BlogLeadForm({ slug }: { slug: string }) {
       });
       if (res.ok) {
         setStatus("success");
+        if (typeof window !== "undefined") {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: "form_submit",
+            form_name: "blog_lead_form",
+            service: form.concern || "Blog Enquiry",
+            page: `/blog/${slug}`,
+          });
+        }
         setForm({ name: "", phone: "", city: "", concern: "" });
       } else {
         setStatus("error");
