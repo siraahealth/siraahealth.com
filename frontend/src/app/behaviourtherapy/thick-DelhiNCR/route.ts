@@ -874,6 +874,14 @@ function submitForm(src){
   document.getElementById('ty').classList.add('show');
   window.scrollTo(0,0);
 
+  // Fire unified form_submit event (consistent across all page families)
+  if(window.siraaTrack){
+    window.siraaTrack('form_submit', {
+      form_name : src === 'm' ? 'mobile_drawer' : src === 'p' ? 'popup_15sec' : 'desktop_sidebar',
+      page_family: 'behaviourtherapy'
+    });
+  }
+
   // Fire thank_you_page_view
   if(window.siraaTrack){
     window.siraaTrack('thank_you_page_view', {

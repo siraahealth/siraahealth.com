@@ -46,6 +46,15 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
       });
       if (!res.ok) throw new Error("failed");
       setState("success");
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: "form_submit",
+          form_name: source,
+          page_family: "neuro_landing",
+          concern: form.concern,
+        });
+      }
     } catch { setState("error"); }
   };
 

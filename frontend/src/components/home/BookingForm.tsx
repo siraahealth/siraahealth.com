@@ -69,6 +69,11 @@ export function BookingForm() {
         child_age: data.child_age || "",
         primary_concern: data.primary_concern || "",
       });
+      pushEvent("form_submit", {
+        form_name: "booking_form",
+        page_family: "homepage_vaccination",
+        primary_concern: data.primary_concern || "",
+      });
       reset();
     } catch (error) {
       console.error(error);
