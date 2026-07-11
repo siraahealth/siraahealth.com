@@ -9,7 +9,12 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const data = await BookingBackendService.createBooking(body);
+    let data = null;
+    try {
+      data = await BookingBackendService.createBooking(body);
+    } catch (bookingErr) {
+      console.error("Booking collection save error (non-blocking):", bookingErr);
+    }
 
     // Also save to leads collection for unified tracking
     try {
