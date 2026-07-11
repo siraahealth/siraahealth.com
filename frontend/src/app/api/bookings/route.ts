@@ -34,11 +34,6 @@ export async function POST(request: Request) {
           gclid: body.gclid || "",
         },
       };
-      console.log("[DEBUG] Incoming body UTM fields:", JSON.stringify({
-        utm_source: body.utm_source, utm_medium: body.utm_medium,
-        utm_campaign: body.utm_campaign, utm_term: body.utm_term, gclid: body.gclid,
-      }));
-      console.log("[DEBUG] Lead payload being sent to Strapi:", JSON.stringify(leadPayload));
       const leadRes = await fetch(`${STRAPI_URL}/api/leads`, {
         method: "POST",
         headers: {
@@ -47,8 +42,6 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify(leadPayload),
       });
-      const leadResText = await leadRes.text();
-      console.log("[DEBUG] Strapi leads response status:", leadRes.status, "body:", leadResText);
     } catch (leadErr) {
       console.error("Lead save error:", leadErr);
     }
