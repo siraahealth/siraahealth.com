@@ -21,11 +21,18 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify({
           data: {
-            firstname: body.parent_name,
-            phone: body.phone_number,
-            child_age: body.child_age,
-            concern: body.primary_concern || "Development Assessment",
-            source: "milestones_page",
+            firstname: body.name || body.parent_name,
+            phone: body.phone || body.phone_number,
+            child_age: body.childAge || body.child_age,
+            concern: body.concern || body.primary_concern || "Development Assessment",
+            source: body.source || "milestones_page",
+            page: body.page || "unknown",
+            utm_source: body.utm_source || "",
+            utm_medium: body.utm_medium || "",
+            utm_campaign: body.utm_campaign || "",
+            utm_term: body.utm_term || "",
+            utm_content: body.utm_content || "",
+            gclid: body.gclid || "",
           },
         }),
       });
