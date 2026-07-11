@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { CheckCircle2, ChevronRight, Phone, ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { CheckCircle2, ChevronRight, Phone, ArrowRight, X } from "lucide-react";
 import {
   LandingLeadForm, LandingExitPopup, TrustBar, LandingBreadcrumb,
   FAQItem, HowItWorks, TestimonialCard, DoctorQuote, Eyebrow, InternalLinks,
@@ -26,6 +26,7 @@ export interface LandingPageData {
 
 export function LandingPageTemplate({ data }: { data: LandingPageData }) {
   const formRef = useRef<HTMLDivElement>(null);
+  const [showModal, setShowModal] = useState(false);
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
 
   return (
@@ -43,14 +44,6 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
                 {data.h1First} <span className="text-primary">{data.h1Accent}</span>
               </h1>
               <p className="text-[17px] text-muted-foreground leading-relaxed mb-6 max-w-2xl">{data.subtext}</p>
-              <div className="flex flex-wrap gap-3 mb-8">
-                <button onClick={scrollToForm} className="px-6 py-3.5 rounded-xl bg-primary text-white font-bold text-[15px] flex items-center gap-2 hover:bg-primary/90 transition-all shadow-md shadow-primary/20">
-                  {data.ctaLabel} <ChevronRight className="w-5 h-5" />
-                </button>
-                <a href="tel:+919910731103" className="px-6 py-3.5 rounded-xl border-2 border-primary text-primary font-bold text-[15px] flex items-center gap-2 hover:bg-primary/5 transition-all">
-                  <Phone className="w-5 h-5" /> Call us now
-                </a>
-              </div>
               <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border/40">
                 {data.stats.map((s) => (
                   <div key={s.label} className="text-center">
@@ -158,6 +151,17 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
 
             <InternalLinks links={data.internalLinks} />
 
+            <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex h-16 bg-white overflow-hidden shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
+              <button onClick={() => setShowModal(true)} className="flex-1 bg-primary text-white font-bold text-[13px] flex items-center justify-center gap-2 px-4 cursor-pointer border-0 outline-none" style={{clipPath:"polygon(0 0, 90% 0, 75% 100%, 0 100%)"}}>
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <span>Book Appointment</span>
+              </button>
+              <a href="tel:+919910731103" className="w-36 bg-white text-foreground font-bold text-[13px] flex items-center justify-center gap-1 pr-3">
+                <span>Call Now</span>
+                <ChevronRight className="w-4 h-4 text-primary flex-shrink-0" />
+              </a>
+            </div>
+
             <div className="lg:hidden mb-12 mt-8" ref={formRef}>
               <div className="rounded-2xl bg-white border border-border/50 shadow-lg p-6">
                 <LandingLeadForm source={`${data.sourcePrefix}_mobile`} defaultConcern={data.concern} ctaLabel={data.ctaLabel} />
@@ -182,6 +186,21 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
           </div>
         </div>
       </div>
+
+            {showModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setShowModal(false)}>
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+                <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 z-10" onClick={e => e.stopPropagation()}>
+                  <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
+                    <X className="w-5 h-5" />
+                  </button>
+                  <h3 className="font-display font-bold text-[22px] text-foreground mb-1">Book a Free Assessment</h3>
+                  <p className="text-muted-foreground text-[13px] mb-4">No waiting list. We respond within 2 hours.</p>
+                  <LandingLeadForm source={`${data.sourcePrefix}_modal`} defaultConcern={data.concern} ctaLabel={data.ctaLabel} />
+                </div>
+              </div>
+            )}
+
     </>
   );
 }
