@@ -125,7 +125,15 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
               </div>
 
               {/* H1 */}
-              <h1 className="text-[1.75rem] md:text-[2.5rem] font-bold leading-[1.2] text-[#1a1a1a] mb-5">{page.h1}</h1>
+              <h1 className="text-[1.75rem] md:text-[2.5rem] font-bold leading-[1.2] text-[#1a1a1a] mb-5">
+                {page.h1.includes("{{ACCENT}}") ? (
+                  <>
+                    {page.h1.split("{{ACCENT}}")[0]}
+                    <span className="text-[#E8614A]">{page.h1.split("{{ACCENT}}")[1].split("{{/ACCENT}}")[0]}</span>
+                    {page.h1.split("{{/ACCENT}}")[1]}
+                  </>
+                ) : page.h1}
+              </h1>
 
               {/* Sub text */}
               <p className="text-[17px] text-[#2d2d2d] leading-relaxed max-w-xl mb-6">{page.heroSub}</p>
