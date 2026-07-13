@@ -28,7 +28,7 @@ export function ExitPopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("loading");
-    pushEvent("popup_lead_submit", {});
+    pushEvent("form_submit", { form_name: "exit_popup", concern: form.concern });
     try {
       const res = await fetch("/api/hubspot/contact", {
         method: "POST",
