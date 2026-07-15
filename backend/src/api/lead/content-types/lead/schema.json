@@ -48,6 +48,12 @@
     },
     "gclid": {
       "type": "string"
+    },
+    "reference_code": {
+      "type": "string"
+    },
+    "urgency": {
+      "type": "string"
     }
   }
 }
