@@ -7,6 +7,13 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { firstname, phone, child_age, concern, source } = body;
+    const utm_source = body.utm_source || "";
+    const utm_medium = body.utm_medium || "";
+    const utm_campaign = body.utm_campaign || "";
+    const utm_term = body.utm_term || "";
+    const utm_content = body.utm_content || "";
+    const gclid = body.gclid || "";
+    const page = body.page || body.landing_page || body.last_landing_page || "";
 
     if (!firstname || !phone) {
       return NextResponse.json({ error: "Name and phone are required" }, { status: 400 });
@@ -24,7 +31,20 @@ export async function POST(request: Request) {
           Authorization: `Bearer ${CUSTOM_TOKEN}`,
         },
         body: JSON.stringify({
-          data: { firstname, phone, child_age, concern, source },
+          data: {
+            firstname,
+            phone,
+            child_age,
+            concern,
+            source,
+            page,
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            utm_term,
+            utm_content,
+            gclid,
+          },
         }),
       });
     } catch (strapiErr) {

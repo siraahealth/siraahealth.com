@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useUTMs } from "@/components/landing/LandingComponents";
 
 export default function BlogLeadForm({ slug }: { slug: string }) {
   const [form, setForm] = useState({ name: "", phone: "", city: "", concern: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const utms = useUTMs();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -17,8 +19,10 @@ export default function BlogLeadForm({ slug }: { slug: string }) {
           phone: form.phone,
           firstname: form.name,
           source: "Blog Lead Form",
+          page: `/blog/${slug}`,
           last_landing_page: `/blog/${slug}`,
           first_landing_page: `/blog/${slug}`,
+          ...utms,
         }),
       });
       if (res.ok) {
