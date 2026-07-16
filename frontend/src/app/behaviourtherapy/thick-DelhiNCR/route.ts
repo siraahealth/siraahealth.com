@@ -781,7 +781,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- MOBILE STICKY BAR -->
 <div class="mobile-form-bar">
-  <p>Book a Free Consultation</p>
+  <p>Free Expert Consultation</p>
   <div style="display:flex;gap:8px;flex-shrink:0;">
     <button onclick="openWaModal()" style="background:#25D366;color:#fff;">WhatsApp</button>
     <button onclick="openForm()">Book Now</button>
