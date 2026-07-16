@@ -1,0 +1,493 @@
+diff --git a/frontend/src/app/behaviourtherapy/thick-DelhiNCR/route.ts b/frontend/src/app/behaviourtherapy/thick-DelhiNCR/route.ts
+index 3086bec..79549b8 100644
+--- a/frontend/src/app/behaviourtherapy/thick-DelhiNCR/route.ts
++++ b/frontend/src/app/behaviourtherapy/thick-DelhiNCR/route.ts
+@@ -240,6 +240,22 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
+ .popup-skip{display:block;text-align:center;margin-top:10px;font-size:11.5px;color:#aaa;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;}
+ .popup-skip:hover{color:#888;text-decoration:underline;}
+ .popup-note{font-size:10.5px;color:#bbb;text-align:center;margin-top:8px;line-height:1.5;}
++
++/* ═══════════════════════════════
++   WHATSAPP PRE-CHAT MODAL
++═══════════════════════════════ */
++.wa-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:320;align-items:center;justify-content:center;padding:1rem;}
++.wa-overlay.open{display:flex;}
++.wa-box{background:#ffffff;border-radius:20px;width:100%;max-width:380px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.22);animation:popIn 0.3s cubic-bezier(0.32,0.72,0,1);position:relative;padding:1.4rem 1.4rem 1.2rem;}
++.wa-close{position:absolute;top:12px;right:14px;background:#f0f0f0;border:none;color:#666;width:26px;height:26px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;font-weight:700;}
++.wa-close:hover{background:#e2e2e2;}
++.wa-box h3{font-family:'Nunito',sans-serif;color:#1a1a1a;font-size:1.05rem;font-weight:800;margin-bottom:4px;}
++.wa-box p.wa-sub{font-size:12px;color:#888;margin-bottom:14px;}
++.wa-opt{width:100%;text-align:left;padding:12px 14px;border-radius:12px;border:2px solid #EDD8F0;background:#fff;font-size:13.5px;font-weight:600;color:#333;cursor:pointer;margin-bottom:8px;font-family:'Inter',sans-serif;transition:border-color 0.15s,background 0.15s;}
++.wa-opt:hover{border-color:#25D366;background:#f5fdf8;}
++.wa-opt:disabled{opacity:0.5;cursor:default;}
++.wa-back{background:none;border:none;color:#999;font-size:12px;cursor:pointer;margin-top:4px;font-family:'Inter',sans-serif;}
++.wa-back:hover{color:#666;text-decoration:underline;}
+ </style>
+ 
+ <!-- ═══════════════════════════════════════════
+@@ -766,7 +782,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ <!-- MOBILE STICKY BAR -->
+ <div class="mobile-form-bar">
+   <p>Book a Free Consultation</p>
+-  <button onclick="openForm()">Book Now</button>
++  <div style="display:flex;gap:8px;flex-shrink:0;">
++    <button onclick="openWaModal()" style="background:#25D366;color:#fff;">WhatsApp</button>
++    <button onclick="openForm()">Book Now</button>
++  </div>
++</div>
++
++<!-- WHATSAPP PRE-CHAT MODAL -->
++<div class="wa-overlay" id="wa-overlay">
++  <div class="wa-box">
++    <button class="wa-close" onclick="closeWaModal()">&#10005;</button>
++    <div id="wa-step-1">
++      <h3>What brings you here today?</h3>
++      <p class="wa-sub">This helps us respond faster on WhatsApp.</p>
++      <button class="wa-opt" onclick="waSelectConcern('My child is unwell today')">My child is unwell today</button>
++      <button class="wa-opt" onclick="waSelectConcern('Routine checkup / vaccination')">Routine checkup / vaccination</button>
++      <button class="wa-opt" onclick="waSelectConcern('Development or behaviour concern')">Development or behaviour concern</button>
++      <button class="wa-opt" onclick="waSelectConcern('Something else')">Something else</button>
++    </div>
++    <div id="wa-step-2" style="display:none;">
++      <h3>How urgent is it?</h3>
++      <p class="wa-sub">One more tap and we&#39;ll open WhatsApp.</p>
++      <button class="wa-opt" id="wa-urgent-1" onclick="waSelectUrgency('Need to be seen today')">Need to be seen today</button>
++      <button class="wa-opt" id="wa-urgent-2" onclick="waSelectUrgency('This week is fine')">This week is fine</button>
++      <button class="wa-opt" id="wa-urgent-3" onclick="waSelectUrgency('Just exploring / no rush')">Just exploring / no rush</button>
++      <button class="wa-back" onclick="waBackToStep1()">&#8592; Back</button>
++    </div>
++  </div>
+ </div>
+ 
+ <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+@@ -819,6 +861,74 @@ function openForm(){
+   if(window.innerWidth<=740){openDrawer();}
+   else{document.getElementById('fa').scrollIntoView({behavior:'smooth'});}
+ }
++
++// ── WHATSAPP PRE-CHAT MODAL ──────────────────
++var waConcern = '';
++
++function openWaModal(){
++  waConcern = '';
++  document.getElementById('wa-step-1').style.display = 'block';
++  document.getElementById('wa-step-2').style.display = 'none';
++  document.getElementById('wa-overlay').classList.add('open');
++  if(window.siraaTrack){ window.siraaTrack('whatsapp_cta_click', { click_source: 'mobile_bar' }); }
++}
++
++function closeWaModal(){
++  document.getElementById('wa-overlay').classList.remove('open');
++}
++
++function waSelectConcern(label){
++  waConcern = label;
++  document.getElementById('wa-step-1').style.display = 'none';
++  document.getElementById('wa-step-2').style.display = 'block';
++}
++
++function waBackToStep1(){
++  document.getElementById('wa-step-1').style.display = 'block';
++  document.getElementById('wa-step-2').style.display = 'none';
++}
++
++function waSelectUrgency(urgencyLabel){
++  var buttons = document.querySelectorAll('#wa-step-2 .wa-opt');
++  buttons.forEach(function(b){
++    if(b.textContent === urgencyLabel){ b.textContent = 'Opening WhatsApp...'; }
++    b.disabled = true;
++  });
++
++  var lastTouch = window.siraaPopulateHiddenFields ? window.siraaPopulateHiddenFields('wa') : {};
++
++  var payload = {
++    concern: waConcern,
++    urgency: urgencyLabel,
++    page: window.location.pathname,
++    source: 'whatsapp_widget',
++    utm_source: lastTouch.utm_source || '',
++    utm_medium: lastTouch.utm_medium || '',
++    utm_campaign: lastTouch.utm_campaign || '',
++    utm_term: lastTouch.utm_term || '',
++    utm_content: lastTouch.utm_content || '',
++    gclid: lastTouch.gclid || ''
++  };
++
++  fetch('/api/whatsapp-lead', {
++    method: 'POST',
++    headers: { 'Content-Type': 'application/json' },
++    body: JSON.stringify(payload)
++  }).then(function(r){ return r.json(); }).catch(function(){ return {}; }).then(function(data){
++    var refCode = (data && data.referenceCode) ? data.referenceCode : '';
++    var msg = 'Hi I require help as ' + waConcern.charAt(0).toLowerCase() + waConcern.slice(1)
++      + ', I want consultation ' + urgencyLabel.charAt(0).toLowerCase() + urgencyLabel.slice(1)
++      + (refCode ? '. (Ref: ' + refCode + ')' : '.');
++    if(window.siraaTrack){
++      window.siraaTrack('whatsapp_click', { click_source: 'mobile_bar', concern: waConcern, urgency: urgencyLabel, reference_code: refCode });
++    }
++    window.open('https://wa.me/919910731103?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
++    closeWaModal();
++    setTimeout(function(){
++      buttons.forEach(function(b){ b.disabled = false; });
++    }, 400);
++  });
++}
+ function submitForm(src){
+   if(src==='p'){ closePopup(); }
+   var sfx=src==='m'?'-m':(src==='p'?'-p':'-d');
+@@ -831,10 +941,23 @@ function submitForm(src){
+ 
+   // bt-lead-v2
+   // ── STRAPI BACKUP ────────────────────────────
++  var utmFields = window.siraaPopulateHiddenFields ? window.siraaPopulateHiddenFields(src) : {};
+   fetch('/api/hubspot/contact', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+-    body: JSON.stringify({ firstname: n, phone: p, source: 'behaviour_therapy_page', concern: 'Behaviour Therapy' })
++    body: JSON.stringify({
++      firstname: n,
++      phone: p,
++      source: 'behaviour_therapy_page',
++      concern: 'Behaviour Therapy',
++      page: window.location.pathname,
++      utm_source: utmFields.utm_source,
++      utm_medium: utmFields.utm_medium,
++      utm_campaign: utmFields.utm_campaign,
++      utm_term: utmFields.utm_term,
++      utm_content: utmFields.utm_content,
++      gclid: utmFields.gclid
++    })
+   }).catch(function(e){ console.error('[Siraa] Lead backup error:', e); });
+   // ── END STRAPI BACKUP ─────────────────────────
+ 
+diff --git a/frontend/src/app/blog/[slug]/page.tsx b/frontend/src/app/blog/[slug]/page.tsx
+index d1c5b0f..94af61a 100644
+--- a/frontend/src/app/blog/[slug]/page.tsx
++++ b/frontend/src/app/blog/[slug]/page.tsx
+@@ -4,6 +4,7 @@ import BlogLeadForm from "@/components/blog/BlogLeadForm";
+ import ReactMarkdown from "react-markdown";
+ import remarkGfm from "remark-gfm";
+ import FAQAccordion from "@/components/blog/FAQAccordion";
++import BlogMobileStickyBar from "@/components/blog/BlogMobileStickyBar";
+ export const dynamic = "force-dynamic";
+ 
+ export async function generateMetadata({ params }: any) {
+@@ -117,11 +118,7 @@ export default async function BlogPostPage({ params }: any) {
+           </div>
+         </div>
+       )}
+-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 flex gap-2 md:hidden z-50">
+-        <a href="tel:+919910731103" className="flex-1 bg-blue-600 text-white text-center py-3 rounded-lg text-sm font-medium">Call Now</a>
+-        <a href="https://wa.me/919910731103" className="flex-1 bg-green-500 text-white text-center py-3 rounded-lg text-sm font-medium">WhatsApp</a>
+-        <a href="#lead-form" className="flex-1 bg-teal-600 text-white text-center py-3 rounded-lg text-sm font-medium">Book</a>
+-      </div>
++      <BlogMobileStickyBar />
+       <BlogLeadForm slug={slug} />
+     </main>
+   );
+diff --git a/frontend/src/components/WhatsAppLeadModal.tsx b/frontend/src/components/WhatsAppLeadModal.tsx
+index a2a9584..568c0fa 100644
+--- a/frontend/src/components/WhatsAppLeadModal.tsx
++++ b/frontend/src/components/WhatsAppLeadModal.tsx
+@@ -61,10 +61,11 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
+     }
+ 
+     const messageParts = [
+-      "Hi, ",
++      "Hi I require help as ",
+       concern.label.charAt(0).toLowerCase() + concern.label.slice(1),
+-      urgency.value === "urgent_today" ? " and need to be seen today." : ".",
+-      referenceCode ? ` (Ref: ${referenceCode})` : "",
++      ", I want consultation ",
++      urgency.label.charAt(0).toLowerCase() + urgency.label.slice(1),
++      `. (Ref: ${referenceCode})`,
+     ];
+     const message = encodeURIComponent(messageParts.join(""));
+     const waUrl = `https://wa.me/${PHONE_NUMBER}?text=${message}`;
+@@ -85,6 +86,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
+         onClick={(e) => e.stopPropagation()}
+       >
+         <button
++          type="button"
+           onClick={onClose}
+           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+           aria-label="Close"
+@@ -103,6 +105,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
+             <div className="flex flex-col gap-2">
+               {CONCERN_OPTIONS.map((opt) => (
+                 <button
++          type="button"
+                   key={opt.value}
+                   onClick={() => {
+                     setConcern(opt);
+@@ -128,6 +131,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
+             <div className="flex flex-col gap-2">
+               {URGENCY_OPTIONS.map((opt) => (
+                 <button
++          type="button"
+                   key={opt.value}
+                   disabled={loading}
+                   onClick={() => handleUrgencySelect(opt)}
+@@ -138,6 +142,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
+               ))}
+             </div>
+             <button
++          type="button"
+               onClick={() => setStep(1)}
+               className="mt-3 text-[13px] text-muted-foreground hover:text-foreground transition-colors"
+             >
+diff --git a/frontend/src/components/blog/BlogMobileStickyBar.tsx b/frontend/src/components/blog/BlogMobileStickyBar.tsx
+new file mode 100644
+index 0000000..337128c
+--- /dev/null
++++ b/frontend/src/components/blog/BlogMobileStickyBar.tsx
+@@ -0,0 +1,29 @@
++"use client";
++
++import { useState } from "react";
++import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
++import { pushEvent } from "@/utils/gtm";
++
++export default function BlogMobileStickyBar() {
++  const [showWaModal, setShowWaModal] = useState(false);
++
++  return (
++    <>
++      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 flex gap-2 md:hidden z-50">
++        <a href="tel:+919910731103" className="flex-1 bg-blue-600 text-white text-center py-3 rounded-lg text-sm font-medium">Call Now</a>
++        <button
++          type="button"
++          onClick={() => {
++            pushEvent("whatsapp_cta_click", { source: "blog_mobile_bar" });
++            setShowWaModal(true);
++          }}
++          className="flex-1 bg-green-500 text-white text-center py-3 rounded-lg text-sm font-medium border-0 cursor-pointer"
++        >
++          WhatsApp
++        </button>
++        <a href="#lead-form" className="flex-1 bg-teal-600 text-white text-center py-3 rounded-lg text-sm font-medium">Book</a>
++      </div>
++      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
++    </>
++  );
++}
+diff --git a/frontend/src/components/home/QuizSection.tsx b/frontend/src/components/home/QuizSection.tsx
+index 1e43525..1073737 100644
+--- a/frontend/src/components/home/QuizSection.tsx
++++ b/frontend/src/components/home/QuizSection.tsx
+@@ -16,6 +16,7 @@ import { QuizService } from "@/services/QuizService";
+ import { Button } from "@/components/ui/button";
+ import { scrollToSection } from "@/utils/scroll";
+ import { pushEvent } from "@/utils/gtm";
++import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
+ 
+ const schema = yup.object().shape({
+   childAge: yup.string().required("Child age is required"),
+@@ -46,6 +47,7 @@ export function QuizSection() {
+   const [isSubmitting, setIsSubmitting] = useState(false);
+   const [showResult, setShowResult] = useState(false);
+   const [submitError, setSubmitError] = useState<string | null>(null);
++  const [showWaModal, setShowWaModal] = useState(false);
+ 
+   const {
+     register,
+@@ -155,6 +157,7 @@ export function QuizSection() {
+ 
+   if (showResult) {
+     return (
++      <>
+       <section className="py-12 lg:py-20 bg-[#F8FAFF]">
+         <div className="container mx-auto px-4 max-w-3xl">
+           <div className="bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-primary/10 border border-primary/5 text-center space-y-6">
+@@ -182,15 +185,16 @@ export function QuizSection() {
+                 Book Development Assessment
+                 <ArrowRight className="w-5 h-5" />
+               </button>
+-              <a
+-                href="https://wa.me/919910731103?text=Hi%20I%20want%20to%20book%20a%20child%20assessment%20with%20Siraa%20Health"
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                onClick={() => pushEvent("quiz_result_cta_click", { cta: "whatsapp" })}
++              <button
++                type="button"
++                onClick={() => {
++                  pushEvent("quiz_result_cta_click", { cta: "whatsapp" });
++                  setShowWaModal(true);
++                }}
+                 className="px-8 py-4 rounded-full font-bold text-lg bg-secondary/20 text-foreground hover:bg-secondary/30 border-2 border-secondary transition-all text-center"
+               >
+                 Chat on WhatsApp
+-              </a>
++              </button>
+             </div>
+             <button
+               onClick={() => {
+@@ -204,6 +208,8 @@ export function QuizSection() {
+           </div>
+         </div>
+       </section>
++      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
++      </>
+     );
+   }
+ 
+diff --git a/frontend/src/components/landing/LandingComponents.tsx b/frontend/src/components/landing/LandingComponents.tsx
+index 88d8be1..cae6045 100644
+--- a/frontend/src/components/landing/LandingComponents.tsx
++++ b/frontend/src/components/landing/LandingComponents.tsx
+@@ -11,6 +11,7 @@ import {
+   Star,
+ } from "lucide-react";
+ import Link from "next/link";
++import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
+ 
+ export function useUTMs() {
+   const [utms, setUtms] = useState<Record<string, string>>({});
+@@ -33,6 +34,7 @@ export interface Testimonial { name: string; location: string; child: string; te
+ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compact = false, ctaLabel = "Book a free assessment" }: { source: string; defaultConcern?: string; compact?: boolean; ctaLabel?: string; }) {
+   const [form, setForm] = useState({ name: "", phone: "", concern: defaultConcern });
+   const [state, setState] = useState<FormState>("idle");
++  const [showWaModal, setShowWaModal] = useState(false);
+   const utms = useUTMs();
+ 
+   const handleSubmit = async (e: React.FormEvent) => {
+@@ -74,6 +76,7 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
+   }
+ 
+   return (
++    <>
+     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+       {!compact && (
+         <div className="mb-1">
+@@ -109,11 +112,17 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
+       <button type="submit" disabled={state === "loading" || !form.name || !form.phone} className="w-full py-4 rounded-xl bg-primary text-white font-bold text-[15px] flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20">
+         {state === "loading" ? "Sending..." : <>{ctaLabel} <ChevronRight className="w-5 h-5" /></>}
+       </button>
+-      <a href="https://wa.me/919910731103?text=Hi%2C%20I%20have%20a%20question%20about%20my%20child%27s%20development" target="_blank" rel="noopener noreferrer" className="w-full py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#22c55e] transition-all">
++      <button
++        type="button"
++        onClick={() => setShowWaModal(true)}
++        className="w-full py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#22c55e] transition-all"
++      >
+         <MessageCircle className="w-5 h-5" /> WhatsApp an expert instead
+-      </a>
++      </button>
+       <p className="text-[11px] text-muted-foreground text-center leading-relaxed">No spam. Your details are shared only with our clinical team.</p>
+     </form>
++    {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
++    </>
+   );
+ }
+ 
+diff --git a/frontend/src/components/layout/AppNavbar.tsx b/frontend/src/components/layout/AppNavbar.tsx
+index 83ef496..64fbb0a 100644
+--- a/frontend/src/components/layout/AppNavbar.tsx
++++ b/frontend/src/components/layout/AppNavbar.tsx
+@@ -5,15 +5,16 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
+ import {
+   formattedPhoneNumber,
+   PHONE_NUMBER,
+-  whatsappUrl,
+ } from "@/utils/contant";
+ import Link from "next/link";
+ import Image from "next/image";
+ import { ScrollButton } from "../core/ScrollButton";
+ import { pushEvent } from "@/utils/gtm";
++import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
+ 
+ export default function AppNavbar() {
+   const [isOpen, setIsOpen] = useState(false);
++  const [showWaModal, setShowWaModal] = useState(false);
+ 
+   return (
+     <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 shadow-sm h-[81px] transition-all duration-300">
+@@ -76,18 +77,17 @@ export default function AppNavbar() {
+         {/* Mobile WhatsApp & Menu Button */}
+         <div className="flex items-center gap-2 md:hidden relative z-50">
+           {PHONE_NUMBER && (
+-            <a
+-              href={whatsappUrl}
+-              target="_blank"
+-              rel="noopener noreferrer"
+-              onClick={() =>
+-                pushEvent("whatsapp_cta_click", { source: "app_navbar" })
+-              }
+-              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
++            <button
++              type="button"
++              onClick={() => {
++                pushEvent("whatsapp_cta_click", { source: "app_navbar" });
++                setShowWaModal(true);
++              }}
++              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30 border-0 cursor-pointer"
+               aria-label="Contact on WhatsApp"
+             >
+               <MessageCircle className="w-4 h-4 text-white" />
+-            </a>
++            </button>
+           )}
+           <button
+             onClick={() => {
+@@ -160,6 +160,7 @@ export default function AppNavbar() {
+           </div>
+         </div>
+       </div>
++      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
+     </header>
+   );
+ }
+diff --git a/frontend/src/components/layout/LandingNavbar.tsx b/frontend/src/components/layout/LandingNavbar.tsx
+index e434c97..af4c6d5 100644
+--- a/frontend/src/components/layout/LandingNavbar.tsx
++++ b/frontend/src/components/layout/LandingNavbar.tsx
+@@ -2,14 +2,16 @@
+ 
+ import { useState } from "react";
+ import { Menu, X, MessageCircle } from "lucide-react";
+-import { PHONE_NUMBER, whatsappUrl } from "@/utils/contant";
++import { PHONE_NUMBER } from "@/utils/contant";
+ import Link from "next/link";
+ import Image from "next/image";
+ import { ScrollButton } from "../core/ScrollButton";
+ import { pushEvent } from "@/utils/gtm";
++import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
+ 
+ export default function LandingNavbar() {
+   const [isOpen, setIsOpen] = useState(false);
++  const [showWaModal, setShowWaModal] = useState(false);
+ 
+   return (
+     <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 h-20 transition-all duration-300">
+@@ -68,16 +70,17 @@ export default function LandingNavbar() {
+         {/* Mobile WhatsApp & Menu Button */}
+         <div className="flex items-center gap-2 md:hidden relative z-50">
+           {PHONE_NUMBER && (
+-            <a
+-              href={whatsappUrl}
+-              target="_blank"
+-              rel="noopener noreferrer"
+-              onClick={() => pushEvent("whatsapp_cta_click", { source: "landing_navbar" })}
+-              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
++            <button
++              type="button"
++              onClick={() => {
++                pushEvent("whatsapp_cta_click", { source: "landing_navbar" });
++                setShowWaModal(true);
++              }}
++              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30 border-0 cursor-pointer"
+               aria-label="Contact on WhatsApp"
+             >
+               <MessageCircle className="w-4 h-4 text-white" />
+-            </a>
++            </button>
+           )}
+           <button
+             onClick={() => {
+@@ -135,6 +138,7 @@ export default function LandingNavbar() {
+           </div>
+         </div>
+       </div>
++      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
+     </header>
+   );
+ }

@@ -11,6 +11,7 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
+import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
 
 export function useUTMs() {
   const [utms, setUtms] = useState<Record<string, string>>({});
@@ -33,6 +34,7 @@ export interface Testimonial { name: string; location: string; child: string; te
 export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compact = false, ctaLabel = "Book a free assessment" }: { source: string; defaultConcern?: string; compact?: boolean; ctaLabel?: string; }) {
   const [form, setForm] = useState({ name: "", phone: "", concern: defaultConcern });
   const [state, setState] = useState<FormState>("idle");
+  const [showWaModal, setShowWaModal] = useState(false);
   const utms = useUTMs();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -74,6 +76,7 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       {!compact && (
         <div className="mb-1">
@@ -109,11 +112,17 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
       <button type="submit" disabled={state === "loading" || !form.name || !form.phone} className="w-full py-4 rounded-xl bg-primary text-white font-bold text-[15px] flex items-center justify-center gap-2 hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20">
         {state === "loading" ? "Sending..." : <>{ctaLabel} <ChevronRight className="w-5 h-5" /></>}
       </button>
-      <a href="https://wa.me/919910731103?text=Hi%2C%20I%20have%20a%20question%20about%20my%20child%27s%20development" target="_blank" rel="noopener noreferrer" className="w-full py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#22c55e] transition-all">
+      <button
+        type="button"
+        onClick={() => setShowWaModal(true)}
+        className="w-full py-3.5 rounded-xl bg-[#25D366] text-white font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#22c55e] transition-all"
+      >
         <MessageCircle className="w-5 h-5" /> WhatsApp an expert instead
-      </a>
+      </button>
       <p className="text-[11px] text-muted-foreground text-center leading-relaxed">No spam. Your details are shared only with our clinical team.</p>
     </form>
+    {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
+    </>
   );
 }
 

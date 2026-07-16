@@ -61,10 +61,11 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
     }
 
     const messageParts = [
-      "Hi, ",
+      "Hi I require help as ",
       concern.label.charAt(0).toLowerCase() + concern.label.slice(1),
-      urgency.value === "urgent_today" ? " and need to be seen today." : ".",
-      referenceCode ? ` (Ref: ${referenceCode})` : "",
+      ", I want consultation ",
+      urgency.label.charAt(0).toLowerCase() + urgency.label.slice(1),
+      `. (Ref: ${referenceCode})`,
     ];
     const message = encodeURIComponent(messageParts.join(""));
     const waUrl = `https://wa.me/${PHONE_NUMBER}?text=${message}`;
@@ -85,6 +86,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={onClose}
           className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Close"
@@ -103,6 +105,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
             <div className="flex flex-col gap-2">
               {CONCERN_OPTIONS.map((opt) => (
                 <button
+          type="button"
                   key={opt.value}
                   onClick={() => {
                     setConcern(opt);
@@ -128,6 +131,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
             <div className="flex flex-col gap-2">
               {URGENCY_OPTIONS.map((opt) => (
                 <button
+          type="button"
                   key={opt.value}
                   disabled={loading}
                   onClick={() => handleUrgencySelect(opt)}
@@ -138,6 +142,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
               ))}
             </div>
             <button
+          type="button"
               onClick={() => setStep(1)}
               className="mt-3 text-[13px] text-muted-foreground hover:text-foreground transition-colors"
             >

@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
-import { PHONE_NUMBER, whatsappUrl } from "@/utils/contant";
+import { PHONE_NUMBER } from "@/utils/contant";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
 import { pushEvent } from "@/utils/gtm";
+import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
 
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showWaModal, setShowWaModal] = useState(false);
 
   return (
     <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 h-20 transition-all duration-300">
@@ -68,16 +70,17 @@ export default function LandingNavbar() {
         {/* Mobile WhatsApp & Menu Button */}
         <div className="flex items-center gap-2 md:hidden relative z-50">
           {PHONE_NUMBER && (
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => pushEvent("whatsapp_cta_click", { source: "landing_navbar" })}
-              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
+            <button
+              type="button"
+              onClick={() => {
+                pushEvent("whatsapp_cta_click", { source: "landing_navbar" });
+                setShowWaModal(true);
+              }}
+              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30 border-0 cursor-pointer"
               aria-label="Contact on WhatsApp"
             >
               <MessageCircle className="w-4 h-4 text-white" />
-            </a>
+            </button>
           )}
           <button
             onClick={() => {
@@ -135,6 +138,7 @@ export default function LandingNavbar() {
           </div>
         </div>
       </div>
+      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
     </header>
   );
 }

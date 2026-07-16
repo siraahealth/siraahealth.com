@@ -5,15 +5,16 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import {
   formattedPhoneNumber,
   PHONE_NUMBER,
-  whatsappUrl,
 } from "@/utils/contant";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
 import { pushEvent } from "@/utils/gtm";
+import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
 
 export default function AppNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showWaModal, setShowWaModal] = useState(false);
 
   return (
     <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-border/50 shadow-sm h-[81px] transition-all duration-300">
@@ -76,18 +77,17 @@ export default function AppNavbar() {
         {/* Mobile WhatsApp & Menu Button */}
         <div className="flex items-center gap-2 md:hidden relative z-50">
           {PHONE_NUMBER && (
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                pushEvent("whatsapp_cta_click", { source: "app_navbar" })
-              }
-              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30"
+            <button
+              type="button"
+              onClick={() => {
+                pushEvent("whatsapp_cta_click", { source: "app_navbar" });
+                setShowWaModal(true);
+              }}
+              className="p-2 rounded-full transition-colors bg-[#25D366] shadow-lg shadow-[#25D366]/30 border-0 cursor-pointer"
               aria-label="Contact on WhatsApp"
             >
               <MessageCircle className="w-4 h-4 text-white" />
-            </a>
+            </button>
           )}
           <button
             onClick={() => {
@@ -160,6 +160,7 @@ export default function AppNavbar() {
           </div>
         </div>
       </div>
+      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
     </header>
   );
 }

@@ -4,6 +4,7 @@ import BlogLeadForm from "@/components/blog/BlogLeadForm";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import FAQAccordion from "@/components/blog/FAQAccordion";
+import BlogMobileStickyBar from "@/components/blog/BlogMobileStickyBar";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: any) {
@@ -117,11 +118,7 @@ export default async function BlogPostPage({ params }: any) {
           </div>
         </div>
       )}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 flex gap-2 md:hidden z-50">
-        <a href="tel:+919910731103" className="flex-1 bg-blue-600 text-white text-center py-3 rounded-lg text-sm font-medium">Call Now</a>
-        <a href="https://wa.me/919910731103" className="flex-1 bg-green-500 text-white text-center py-3 rounded-lg text-sm font-medium">WhatsApp</a>
-        <a href="#lead-form" className="flex-1 bg-teal-600 text-white text-center py-3 rounded-lg text-sm font-medium">Book</a>
-      </div>
+      <BlogMobileStickyBar />
       <BlogLeadForm slug={slug} />
     </main>
   );

@@ -16,6 +16,7 @@ import { QuizService } from "@/services/QuizService";
 import { Button } from "@/components/ui/button";
 import { scrollToSection } from "@/utils/scroll";
 import { pushEvent } from "@/utils/gtm";
+import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
 
 const schema = yup.object().shape({
   childAge: yup.string().required("Child age is required"),
@@ -46,6 +47,7 @@ export function QuizSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [showWaModal, setShowWaModal] = useState(false);
 
   const {
     register,
@@ -155,6 +157,7 @@ export function QuizSection() {
 
   if (showResult) {
     return (
+      <>
       <section className="py-12 lg:py-20 bg-[#F8FAFF]">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-primary/10 border border-primary/5 text-center space-y-6">
@@ -182,15 +185,16 @@ export function QuizSection() {
                 Book Development Assessment
                 <ArrowRight className="w-5 h-5" />
               </button>
-              <a
-                href="https://wa.me/919910731103?text=Hi%20I%20want%20to%20book%20a%20child%20assessment%20with%20Siraa%20Health"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => pushEvent("quiz_result_cta_click", { cta: "whatsapp" })}
+              <button
+                type="button"
+                onClick={() => {
+                  pushEvent("quiz_result_cta_click", { cta: "whatsapp" });
+                  setShowWaModal(true);
+                }}
                 className="px-8 py-4 rounded-full font-bold text-lg bg-secondary/20 text-foreground hover:bg-secondary/30 border-2 border-secondary transition-all text-center"
               >
                 Chat on WhatsApp
-              </a>
+              </button>
             </div>
             <button
               onClick={() => {
@@ -204,6 +208,8 @@ export function QuizSection() {
           </div>
         </div>
       </section>
+      {showWaModal && <WhatsAppLeadModal onClose={() => setShowWaModal(false)} />}
+      </>
     );
   }
 

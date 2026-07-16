@@ -240,6 +240,22 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
 .popup-skip{display:block;text-align:center;margin-top:10px;font-size:11.5px;color:#aaa;cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;}
 .popup-skip:hover{color:#888;text-decoration:underline;}
 .popup-note{font-size:10.5px;color:#bbb;text-align:center;margin-top:8px;line-height:1.5;}
+
+/* ═══════════════════════════════
+   WHATSAPP PRE-CHAT MODAL
+═══════════════════════════════ */
+.wa-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:320;align-items:center;justify-content:center;padding:1rem;}
+.wa-overlay.open{display:flex;}
+.wa-box{background:#ffffff;border-radius:20px;width:100%;max-width:380px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.22);animation:popIn 0.3s cubic-bezier(0.32,0.72,0,1);position:relative;padding:1.4rem 1.4rem 1.2rem;}
+.wa-close{position:absolute;top:12px;right:14px;background:#f0f0f0;border:none;color:#666;width:26px;height:26px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;font-weight:700;}
+.wa-close:hover{background:#e2e2e2;}
+.wa-box h3{font-family:'Nunito',sans-serif;color:#1a1a1a;font-size:1.05rem;font-weight:800;margin-bottom:4px;}
+.wa-box p.wa-sub{font-size:12px;color:#888;margin-bottom:14px;}
+.wa-opt{width:100%;text-align:left;padding:12px 14px;border-radius:12px;border:2px solid #EDD8F0;background:#fff;font-size:13.5px;font-weight:600;color:#333;cursor:pointer;margin-bottom:8px;font-family:'Inter',sans-serif;transition:border-color 0.15s,background 0.15s;}
+.wa-opt:hover{border-color:#25D366;background:#f5fdf8;}
+.wa-opt:disabled{opacity:0.5;cursor:default;}
+.wa-back{background:none;border:none;color:#999;font-size:12px;cursor:pointer;margin-top:4px;font-family:'Inter',sans-serif;}
+.wa-back:hover{color:#666;text-decoration:underline;}
 </style>
 
 <!-- ═══════════════════════════════════════════
@@ -766,7 +782,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- MOBILE STICKY BAR -->
 <div class="mobile-form-bar">
   <p>Book a Free Consultation</p>
-  <button onclick="openForm()">Book Now</button>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="openWaModal()" style="background:#25D366;color:#fff;">WhatsApp</button>
+    <button onclick="openForm()">Book Now</button>
+  </div>
+</div>
+
+<!-- WHATSAPP PRE-CHAT MODAL -->
+<div class="wa-overlay" id="wa-overlay">
+  <div class="wa-box">
+    <button class="wa-close" onclick="closeWaModal()">&#10005;</button>
+    <div id="wa-step-1">
+      <h3>What brings you here today?</h3>
+      <p class="wa-sub">This helps us respond faster on WhatsApp.</p>
+      <button class="wa-opt" onclick="waSelectConcern('My child is unwell today')">My child is unwell today</button>
+      <button class="wa-opt" onclick="waSelectConcern('Routine checkup / vaccination')">Routine checkup / vaccination</button>
+      <button class="wa-opt" onclick="waSelectConcern('Development or behaviour concern')">Development or behaviour concern</button>
+      <button class="wa-opt" onclick="waSelectConcern('Something else')">Something else</button>
+    </div>
+    <div id="wa-step-2" style="display:none;">
+      <h3>How urgent is it?</h3>
+      <p class="wa-sub">One more tap and we&#39;ll open WhatsApp.</p>
+      <button class="wa-opt" id="wa-urgent-1" onclick="waSelectUrgency('Need to be seen today')">Need to be seen today</button>
+      <button class="wa-opt" id="wa-urgent-2" onclick="waSelectUrgency('This week is fine')">This week is fine</button>
+      <button class="wa-opt" id="wa-urgent-3" onclick="waSelectUrgency('Just exploring / no rush')">Just exploring / no rush</button>
+      <button class="wa-back" onclick="waBackToStep1()">&#8592; Back</button>
+    </div>
+  </div>
 </div>
 
 <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
@@ -819,6 +861,74 @@ function openForm(){
   if(window.innerWidth<=740){openDrawer();}
   else{document.getElementById('fa').scrollIntoView({behavior:'smooth'});}
 }
+
+// ── WHATSAPP PRE-CHAT MODAL ──────────────────
+var waConcern = '';
+
+function openWaModal(){
+  waConcern = '';
+  document.getElementById('wa-step-1').style.display = 'block';
+  document.getElementById('wa-step-2').style.display = 'none';
+  document.getElementById('wa-overlay').classList.add('open');
+  if(window.siraaTrack){ window.siraaTrack('whatsapp_cta_click', { click_source: 'mobile_bar' }); }
+}
+
+function closeWaModal(){
+  document.getElementById('wa-overlay').classList.remove('open');
+}
+
+function waSelectConcern(label){
+  waConcern = label;
+  document.getElementById('wa-step-1').style.display = 'none';
+  document.getElementById('wa-step-2').style.display = 'block';
+}
+
+function waBackToStep1(){
+  document.getElementById('wa-step-1').style.display = 'block';
+  document.getElementById('wa-step-2').style.display = 'none';
+}
+
+function waSelectUrgency(urgencyLabel){
+  var buttons = document.querySelectorAll('#wa-step-2 .wa-opt');
+  buttons.forEach(function(b){
+    if(b.textContent === urgencyLabel){ b.textContent = 'Opening WhatsApp...'; }
+    b.disabled = true;
+  });
+
+  var lastTouch = window.siraaPopulateHiddenFields ? window.siraaPopulateHiddenFields('wa') : {};
+
+  var payload = {
+    concern: waConcern,
+    urgency: urgencyLabel,
+    page: window.location.pathname,
+    source: 'whatsapp_widget',
+    utm_source: lastTouch.utm_source || '',
+    utm_medium: lastTouch.utm_medium || '',
+    utm_campaign: lastTouch.utm_campaign || '',
+    utm_term: lastTouch.utm_term || '',
+    utm_content: lastTouch.utm_content || '',
+    gclid: lastTouch.gclid || ''
+  };
+
+  fetch('/api/whatsapp-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json(); }).catch(function(){ return {}; }).then(function(data){
+    var refCode = (data && data.referenceCode) ? data.referenceCode : '';
+    var msg = 'Hi I require help as ' + waConcern.charAt(0).toLowerCase() + waConcern.slice(1)
+      + ', I want consultation ' + urgencyLabel.charAt(0).toLowerCase() + urgencyLabel.slice(1)
+      + (refCode ? '. (Ref: ' + refCode + ')' : '.');
+    if(window.siraaTrack){
+      window.siraaTrack('whatsapp_click', { click_source: 'mobile_bar', concern: waConcern, urgency: urgencyLabel, reference_code: refCode });
+    }
+    window.open('https://wa.me/919910731103?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+    closeWaModal();
+    setTimeout(function(){
+      buttons.forEach(function(b){ b.disabled = false; });
+    }, 400);
+  });
+}
 function submitForm(src){
   if(src==='p'){ closePopup(); }
   var sfx=src==='m'?'-m':(src==='p'?'-p':'-d');
@@ -831,10 +941,23 @@ function submitForm(src){
 
   // bt-lead-v2
   // ── STRAPI BACKUP ────────────────────────────
+  var utmFields = window.siraaPopulateHiddenFields ? window.siraaPopulateHiddenFields(src) : {};
   fetch('/api/hubspot/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ firstname: n, phone: p, source: 'behaviour_therapy_page', concern: 'Behaviour Therapy' })
+    body: JSON.stringify({
+      firstname: n,
+      phone: p,
+      source: 'behaviour_therapy_page',
+      concern: 'Behaviour Therapy',
+      page: window.location.pathname,
+      utm_source: utmFields.utm_source,
+      utm_medium: utmFields.utm_medium,
+      utm_campaign: utmFields.utm_campaign,
+      utm_term: utmFields.utm_term,
+      utm_content: utmFields.utm_content,
+      gclid: utmFields.gclid
+    })
   }).catch(function(e){ console.error('[Siraa] Lead backup error:', e); });
   // ── END STRAPI BACKUP ─────────────────────────
 
