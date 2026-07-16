@@ -126,6 +126,16 @@ export default function LandingNavbar() {
             >
               Development
             </Link>
+            <Link
+              href="/blog"
+              onClick={() => {
+                setIsOpen(false);
+                pushEvent("navbar_cta_click", { cta: "blog", navbar: "landing", source: "mobile_menu" });
+              }}
+              className="text-lg font-bold text-[#1A1A1A]"
+            >
+              Blog
+            </Link>
 
             <ScrollButton
               sectionId="booking-form"
