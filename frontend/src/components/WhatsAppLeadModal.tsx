@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { PHONE_NUMBER } from "@/utils/contant";
 import { useUTMs } from "@/components/landing/LandingComponents";
@@ -22,6 +23,11 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState<1 | 2>(1);
   const [concern, setConcern] = useState<{ value: string; label: string } | null>(null);
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const utms = useUTMs();
 
   async function handleUrgencySelect(urgency: { value: string; label: string }) {
@@ -75,7 +81,9 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
     onClose();
   }
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4"
       onClick={onClose}
@@ -151,6 +159,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
           </>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
