@@ -261,7 +261,7 @@ export function MobileCTABar({ serviceType, pagePath }: { serviceType: string; p
         <button onClick={() => { setDrawerOpen(true); push("cta_click", { cta: "mobile_bar" }); }}
           className="flex-1 h-full text-white font-semibold text-sm flex items-center justify-center"
           style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)", clipPath: "polygon(0 0, 90% 0, 75% 100%, 0 100%)" }}>
-          <span className="pr-6">Free Expert Consultation</span>
+          <span>Free Expert Consultation</span>
         </button>
         <a href={`tel:${LANDING_SITE.phone}`} onClick={() => push("call_click", { location: "mobile_bar" })}
           className="flex-1 -ml-8 h-full inline-flex items-center justify-center bg-white text-[#1a1a1a] font-semibold text-sm">

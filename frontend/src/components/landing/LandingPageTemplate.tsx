@@ -45,17 +45,8 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
               <h1 className="font-display font-bold text-[32px] lg:text-[42px] text-foreground leading-[1.15] mb-5">
                 {data.h1First} <span className="text-primary">{data.h1Accent}</span>
               </h1>
-              <p className="text-[17px] text-muted-foreground leading-relaxed mb-6 max-w-2xl">{data.subtext}</p>
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border/40">
-                {data.stats.map((s) => (
-                  <div key={s.label} className="text-center">
-                    <div className="font-display font-bold text-[24px] text-primary">{s.val}</div>
-                    <div className="text-[12px] text-muted-foreground mt-0.5">{s.label}</div>
-                  </div>
-                ))}
-              </div>
               {data.heroImage && (
-                <div className="mt-8 rounded-2xl overflow-hidden shadow-lg">
+                <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
                   <Image
                     src={data.heroImage}
                     alt={data.heroImageAlt ?? data.h1First}
@@ -66,6 +57,15 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
                   />
                 </div>
               )}
+              <p className="text-[17px] text-muted-foreground leading-relaxed mb-6 max-w-2xl">{data.subtext}</p>
+              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border/40">
+                {data.stats.map((s) => (
+                  <div key={s.label} className="text-center">
+                    <div className="font-display font-bold text-[24px] text-primary">{s.val}</div>
+                    <div className="text-[12px] text-muted-foreground mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </section>
 
             <section className="mb-12">
