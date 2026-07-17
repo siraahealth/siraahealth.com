@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { CheckCircle2, ChevronRight, Phone, ArrowRight, X } from "lucide-react";
 import {
   LandingLeadForm, LandingExitPopup, TrustBar, LandingBreadcrumb,
@@ -11,6 +12,7 @@ export interface LandingPageData {
   url?: string; breadcrumb: string; eyebrow: string; concern: string;
   h1First: string; h1Accent: string; subtext: string; ctaLabel: string;
   sourcePrefix: string; seoTitle?: string; metaDescription?: string;
+  heroImage?: string; heroImageAlt?: string;
   stats: { val: string; label: string }[];
   symptoms: string[]; whatChanges: string[];
   whatGains: { title: string; desc: string }[];
@@ -52,6 +54,18 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
                   </div>
                 ))}
               </div>
+              {data.heroImage && (
+                <div className="mt-8 rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src={data.heroImage}
+                    alt={data.heroImageAlt ?? data.h1First}
+                    width={1000}
+                    height={600}
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                </div>
+              )}
             </section>
 
             <section className="mb-12">

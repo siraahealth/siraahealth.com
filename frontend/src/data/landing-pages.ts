@@ -12,6 +12,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "If your child is not talking the way other children are — or has stopped talking — you are not overreacting. You are paying attention. And that is exactly the right thing to do.",
     "ctaLabel": "Book a free speech assessment",
     "sourcePrefix": "child_not_talking",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4870+",
@@ -202,6 +204,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Every meltdown, every refusal, every moment that leaves you exhausted — there is a reason behind it. Our behaviour therapists find that reason, and then we fix it. Together.",
     "ctaLabel": "Book a behaviour assessment",
     "sourcePrefix": "child_behaviour_problems",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4870+",
@@ -387,6 +391,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "No eye contact can mean many things — autism, anxiety, sensory differences, or nothing at all. The only way to know is a proper assessment. And the earlier you know, the more you can do.",
     "ctaLabel": "Book an autism assessment",
     "sourcePrefix": "child_no_eye_contact",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "2wks",
@@ -572,6 +578,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "You know your child better than anyone. If something feels off, trust that instinct. A developmental assessment gives you the clarity you need to take the right next step.",
     "ctaLabel": "Book a developmental assessment",
     "sourcePrefix": "child_not_meeting_milestones",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "6mo+",
@@ -751,6 +759,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Children with ADHD are often the brightest, most creative kids in the room. They just need support that fits how their brain actually works. That is exactly what we provide.",
     "ctaLabel": "Book an ADHD assessment",
     "sourcePrefix": "child_cant_focus",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4870+",
@@ -930,6 +940,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "An autism assessment is not about putting a label on your child. It is about understanding how their mind works so you can support them in the right way from today.",
     "ctaLabel": "Book an autism assessment",
     "sourcePrefix": "autism_assessment_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "2wks",
@@ -1119,6 +1131,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "A proper ADHD assessment does not just give you a diagnosis. It gives you a complete picture of how your child learns, struggles and thrives. That picture changes everything.",
     "ctaLabel": "Book an ADHD assessment",
     "sourcePrefix": "adhd_assessment_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4yrs+",
@@ -1307,6 +1321,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Every child communicates differently. Our speech and language therapists work with your child's unique profile to build the communication skills that matter most to them and to you.",
     "ctaLabel": "Book a speech therapy assessment",
     "sourcePrefix": "speech_therapy_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "8-12",
@@ -1494,6 +1510,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Holding a pencil, sitting at a desk, tolerating a busy classroom, getting dressed without a battle. These things should not be this hard. Our OT team helps children do them with confidence.",
     "ctaLabel": "Book an OT assessment",
     "sourcePrefix": "occupational_therapy_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4-6",
@@ -1682,6 +1700,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "One comprehensive assessment. A complete picture of your child across every area of development. A clear plan for what comes next. That is what a Siraa developmental assessment gives you.",
     "ctaLabel": "Book a developmental assessment",
     "sourcePrefix": "developmental_assessment_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "1 visit",
@@ -1868,6 +1888,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "From your child's first vaccination to their first day of school ready, Siraa Health supports every stage of your child's growth. One clinic. One team. One complete picture.",
     "ctaLabel": "Book an appointment",
     "sourcePrefix": "child_development_centre_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4870+",
@@ -2055,6 +2077,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Applied Behaviour Analysis is the most researched intervention for autism. At Siraa, we use it in a play-based, child-led way that respects your child's individuality while building real life skills.",
     "ctaLabel": "Book an ABA consultation",
     "sourcePrefix": "aba_therapy_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "6-8",
@@ -2241,6 +2265,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "School readiness is about much more than knowing the alphabet. It covers attention, communication, self-care, emotional regulation and social skills. Our assessment tells you exactly where your child stands and what to do before they start.",
     "ctaLabel": "Book a school readiness assessment",
     "sourcePrefix": "school_readiness_assessment",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "1 visit",
@@ -2420,6 +2446,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Children with learning difficulties are often bright, creative and determined. They just need an approach that fits how their brain processes information. An assessment is where that starts.",
     "ctaLabel": "Book a learning difficulties assessment",
     "sourcePrefix": "learning_difficulties_assessment",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "4870+",
@@ -2603,6 +2631,8 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Research is clear. The earlier a child receives targeted support, the better the outcomes. At Siraa, we work with children from 6 months old, giving every child the best possible start.",
     "ctaLabel": "Book an early intervention assessment",
     "sourcePrefix": "early_intervention_gurgaon",
+    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
         "val": "6mo+",
