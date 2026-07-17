@@ -127,11 +127,15 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
 }
 
 export function TrustBar() {
+  const items = ["4870 plus families trust us","IAP certified vaccinations","Evidence-based therapy","Golf Course Road, Gurgaon","Mon to Sat 9am to 7pm"];
   return (
     <div className="bg-primary/5 border-b border-primary/10 py-2.5 px-4">
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-y-1 lg:flex-row lg:flex-wrap lg:items-center lg:justify-center lg:gap-x-6 lg:gap-y-1 text-[12px] text-foreground/70">
-        {["4870 plus families trust us","IAP certified vaccinations","Evidence-based therapy","Golf Course Road, Gurgaon","Mon to Sat 9am to 7pm"].map((item) => (
-          <span key={item} className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-primary"></span>{item}</span>
+      <div className="max-w-7xl mx-auto flex items-center justify-center gap-5 flex-wrap text-[12px] text-foreground/70">
+        {items.map((item) => (
+          <span key={item} className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+            {item}
+          </span>
         ))}
       </div>
     </div>
