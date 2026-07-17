@@ -177,7 +177,7 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
             <InternalLinks links={data.internalLinks} />
 
             <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex h-16 bg-white overflow-hidden shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
-              <button onClick={() => setShowModal(true)} className="flex-1 bg-primary text-white font-bold text-[13px] flex items-center justify-center px-4 cursor-pointer border-0 outline-none" style={{clipPath:"polygon(0 0, 90% 0, 75% 100%, 0 100%)"}}>
+              <button onClick={() => setShowModal(true)} className="flex-1 bg-primary text-white font-bold text-[13px] flex items-center justify-center pl-4 pr-14 cursor-pointer border-0 outline-none" style={{clipPath:"polygon(0 0, 90% 0, 75% 100%, 0 100%)"}}>
                 <span>Free Expert Consultation</span>
               </button>
               <a href="tel:+919910731103" className="w-36 bg-white text-foreground font-bold text-[13px] flex items-center justify-center">
