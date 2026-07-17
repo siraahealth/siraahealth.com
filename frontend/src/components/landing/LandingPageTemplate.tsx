@@ -2,11 +2,12 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { CheckCircle2, ChevronRight, Phone, ArrowRight, X } from "lucide-react";
+import { CheckCircle2, ArrowRight, X } from "lucide-react";
 import {
   LandingLeadForm, LandingExitPopup, TrustBar, LandingBreadcrumb,
   FAQItem, HowItWorks, TestimonialCard, DoctorQuote, Eyebrow, InternalLinks,
 } from "@/components/landing/LandingComponents";
+import { FloatingDecor } from "@/components/landing/FloatingDecor";
 
 export interface LandingPageData {
   url?: string; breadcrumb: string; eyebrow: string; concern: string;
@@ -36,11 +37,12 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
       <LandingExitPopup source={`exit_popup_${data.sourcePrefix}`} defaultConcern={data.concern} />
       <TrustBar />
       <LandingBreadcrumb label={data.breadcrumb} />
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 relative">
+        <FloatingDecor />
         <div className="lg:grid lg:grid-cols-[1fr_380px] lg:gap-12 lg:items-start py-10 lg:py-16">
           <div className="min-w-0">
 
-            <section className="mb-12">
+            <section className="mb-12 relative">
               <Eyebrow>{data.eyebrow}</Eyebrow>
               <h1 className="font-display font-bold text-[32px] lg:text-[42px] text-foreground leading-[1.15] mb-5">
                 {data.h1First} <span className="text-primary">{data.h1Accent}</span>
@@ -136,6 +138,15 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
             <section className="mb-12">
               <Eyebrow>Why Siraa Health</Eyebrow>
               <h2 className="font-display font-bold text-[26px] text-foreground mb-2">{data.whySiraaHeading ?? "What sets us apart from other clinics in Gurgaon"}</h2>
+              <div className="mb-6 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/assets/lead-child.png"
+                  alt="A child with a Siraa Health specialist"
+                  width={1000}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
               <p className="text-muted-foreground mb-6 leading-relaxed">4870 plus families chose Siraa Health. Here is why.</p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {data.whySiraa.map((item) => (
@@ -166,13 +177,11 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
             <InternalLinks links={data.internalLinks} />
 
             <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 flex h-16 bg-white overflow-hidden shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
-              <button onClick={() => setShowModal(true)} className="flex-1 bg-primary text-white font-bold text-[13px] flex items-center justify-center gap-2 px-4 cursor-pointer border-0 outline-none" style={{clipPath:"polygon(0 0, 90% 0, 75% 100%, 0 100%)"}}>
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <span>Book Appointment</span>
+              <button onClick={() => setShowModal(true)} className="flex-1 bg-primary text-white font-bold text-[13px] flex items-center justify-center px-4 cursor-pointer border-0 outline-none" style={{clipPath:"polygon(0 0, 90% 0, 75% 100%, 0 100%)"}}>
+                <span>Free Expert Consultation</span>
               </button>
-              <a href="tel:+919910731103" className="w-36 bg-white text-foreground font-bold text-[13px] flex items-center justify-center gap-1 pr-3">
+              <a href="tel:+919910731103" className="w-36 bg-white text-foreground font-bold text-[13px] flex items-center justify-center">
                 <span>Call Now</span>
-                <ChevronRight className="w-4 h-4 text-primary flex-shrink-0" />
               </a>
             </div>
 

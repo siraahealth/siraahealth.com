@@ -12,7 +12,7 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "If your child is not talking the way other children are — or has stopped talking — you are not overreacting. You are paying attention. And that is exactly the right thing to do.",
     "ctaLabel": "Book a free speech assessment",
     "sourcePrefix": "child_not_talking",
-    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImage": "/assets/child not talking neuro.jpeg",
     "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
@@ -759,7 +759,7 @@ export const PAGE_DATA: Record<string, LandingPageData> = {
     "subtext": "Children with ADHD are often the brightest, most creative kids in the room. They just need support that fits how their brain actually works. That is exactly what we provide.",
     "ctaLabel": "Book an ADHD assessment",
     "sourcePrefix": "child_cant_focus",
-    "heroImage": "/assets/Fallbackneuro.jpeg",
+    "heroImage": "/assets/adhdneuro.jpeg",
     "heroImageAlt": "Siraa Health specialist with a child",
     "stats": [
       {
