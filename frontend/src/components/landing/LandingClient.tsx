@@ -259,13 +259,13 @@ export function MobileCTABar({ serviceType, pagePath }: { serviceType: string; p
     <>
       <div className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-white overflow-hidden shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center h-14">
         <button onClick={() => { setDrawerOpen(true); push("cta_click", { cta: "mobile_bar" }); }}
-          className="flex-1 h-full text-white font-semibold text-sm flex items-center justify-center"
+          className="flex-1 h-full text-white font-semibold text-sm flex items-center justify-center pl-2 pr-24"
           style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)", clipPath: "polygon(0 0, 90% 0, 75% 100%, 0 100%)" }}>
           <span>Free Expert Consultation</span>
         </button>
         <a href={`tel:${LANDING_SITE.phone}`} onClick={() => push("call_click", { location: "mobile_bar" })}
           className="flex-1 -ml-8 h-full inline-flex items-center justify-center bg-white text-[#1a1a1a] font-semibold text-sm">
-          Call Now <span className="ml-1 text-[#2DBF6E]">›</span>
+          Call Now
         </a>
       </div>
       {drawerOpen && <div className="fixed inset-0 z-[60] bg-black/40 lg:hidden" onClick={() => setDrawerOpen(false)} />}
