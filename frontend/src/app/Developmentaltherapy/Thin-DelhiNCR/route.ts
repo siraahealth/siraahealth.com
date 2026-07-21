@@ -210,7 +210,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
   .what-img img{height:220px;}
   .who-grid{grid-template-columns:1fr;}
   .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-  .classes-grid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .classes-grid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;scrollbar-width:none;}
   .classes-grid::-webkit-scrollbar{display:none;}
   .classes-grid .class-card{flex:0 0 85%;scroll-snap-align:start;}
   .stats-bar{flex-direction:column;}
