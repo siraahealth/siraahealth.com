@@ -210,7 +210,9 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
   .what-img img{height:220px;}
   .who-grid{grid-template-columns:1fr;}
   .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-  .classes-grid{grid-template-columns:1fr;}
+  .classes-grid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .classes-grid::-webkit-scrollbar{display:none;}
+  .classes-grid .class-card{flex:0 0 85%;scroll-snap-align:start;}
   .stats-bar{flex-direction:column;}
   .s-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.2);}
   .s-item:last-child{border-bottom:none;}
@@ -512,7 +514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="tag tag-green">Developmental Therapy · Gurgaon</span>
         <span class="tag tag-coral">Talk to Expert for Free</span>
       </div>
-      <h1>When Milestones Feel <em>Out of Reach</em>, There Is a Way Forward</h1>
+      <h1>Wondering If Your Child Is Developing as <em>Expected</em>?</h1>
       <p class="hero-sub">Every child develops at their own pace, but when speech, motor skills, or social milestones consistently lag behind, waiting rarely helps on its own. Developmental therapy gives children the structured support they need to build skills step by step, at home, in school, and in every relationship that matters.</p>
       <div class="trust-strip">
         <span class="tp">500+ Families Helped</span>
@@ -666,9 +668,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- MEET THE TEAM -->
   <div class="card">
-    <div class="sec-label">Our Specialists</div>
-    <h2>Meet the Team</h2>
-    <p style="font-size:13px;color:#666;margin-bottom:10px;">Certified developmental therapists and pediatric specialists, dedicated to helping every child reach their full potential.</p>
     <div style="border-radius:16px;overflow:hidden;border:2px solid #EDD8F0;">
       <img src="/assets/Team.jpg" alt="Siraa Health developmental therapy team" style="width:100%;height:auto;display:block;"/>
     </div>
