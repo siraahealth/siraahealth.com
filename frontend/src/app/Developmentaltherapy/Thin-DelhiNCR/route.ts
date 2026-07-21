@@ -20,7 +20,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;font-size:14px;}
+html{overflow-x:hidden;}
+body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;font-size:14px;overflow-x:hidden;max-width:100vw;}
 
 /* NAV */
 .nav{background:#ffffff;border-bottom:1px solid #EDD8F0;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;}
