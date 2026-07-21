@@ -203,7 +203,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
   .mobile-form-bar{display:flex;position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#E8614A,#D4527E);padding:14px 20px;z-index:150;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -4px 20px rgba(0,0,0,0.15);}
   .mobile-form-bar p{font-family:'Nunito',sans-serif;color:#fff;font-size:13px;font-weight:700;line-height:1.3;}
   .mobile-form-bar button{background:#F9C846;color:#333;border:none;border-radius:50px;padding:11px 20px;font-size:13px;font-weight:900;cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif;flex-shrink:0;}
-  .footer{padding-bottom:80px;}
+  .footer{padding-bottom:140px;}
   .hero h1{font-size:1.4rem;}
   .what-wrap{flex-direction:column;}
   .what-img{width:100%;}
