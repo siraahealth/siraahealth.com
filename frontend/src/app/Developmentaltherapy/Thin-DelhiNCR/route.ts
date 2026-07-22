@@ -210,8 +210,10 @@ body{font-family:'Inter',system-ui,sans-serif;color:#2d2d2d;background:#F5F0FC;f
   .what-img img{height:220px;}
   .who-grid{grid-template-columns:1fr;}
   .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-  .classes-grid{grid-template-columns:1fr;}
-  
+  .classes-section-card{overflow-x:hidden;}
+  .classes-grid{display:flex;grid-template-columns:none;width:100%;max-width:100%;min-width:0;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;scrollbar-width:none;}
+  .classes-grid::-webkit-scrollbar{display:none;}
+  .classes-grid .class-card{flex:0 0 85%;min-width:0;scroll-snap-align:start;}
   .stats-bar{flex-direction:column;}
   .s-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.2);}
   .s-item:last-child{border-bottom:none;}
@@ -539,7 +541,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- CLASSES SECTION -->
-  <div class="card">
+  <div class="card classes-section-card">
     <div class="sec-label">What We Offer</div>
     <h2>Classes at Siraa</h2>
     <p>Every programme at Siraa is designed around your child's world, combining evidence-based methods with warm, play-led sessions that children genuinely enjoy.</p>
