@@ -51,10 +51,6 @@ export const Chocolate = ({ className = "" }: { className?: string }) => (
 const submitLead = async (name: string, phone: string, formName: string, pagePath: string, serviceType: string) => {
   const digits = phone.replace(/\D/g, "");
   const attr = getAttribution(pagePath);
-  fetch("/api/hubspot/contact", {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ firstname: name, phone, source: "landing_page", concern: serviceType }),
-  }).catch(() => null);
   const hsPayload: Record<string, unknown> = {
     fields: [{ name: "firstname", value: name }, { name: "email", value: `${digits}@lead.siraahealth.com` }, { name: "phone", value: phone }],
     context: { pageUri: window.location.href, pageName: document.title },
@@ -103,7 +99,7 @@ export function LandingReviews() {
           <p className="text-[#2d2d2d] leading-relaxed text-[15px]">&ldquo;{r.text}&rdquo;</p>
           <div className="mt-4 flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#6B5B95] to-[#8B6BAF] text-white text-sm font-semibold grid place-items-center">{r.author[0]}</div>
-            <div><p className="font-semibold text-sm text-[#1a1a1a]">{r.author}</p><p className="text-xs text-[#666]">{r.loc}</p></div>
+            <div><p className="font-semibold text-sm text-[#1a1a1a]">{r.author}</p><p className="text-xs text-[#595959]">{r.loc}</p></div>
           </div>
         </div>
       ))}
@@ -176,7 +172,7 @@ function ThankYou() {
       </div>
       <h3 className="text-2xl font-semibold text-[#1a1a1a] mb-2">Thank You!</h3>
       <p className="text-[#2d2d2d]">Our expert will call you shortly.</p>
-      <p className="text-sm text-[#666] mt-2">Need to reach us sooner? Call <a href={`tel:${LANDING_SITE.phone}`} className="font-semibold text-[#6B5B95]">{LANDING_SITE.phone}</a></p>
+      <p className="text-sm text-[#595959] mt-2">Need to reach us sooner? Call <a href={`tel:${LANDING_SITE.phone}`} className="font-semibold text-[#6B5B95]">{LANDING_SITE.phone}</a></p>
     </div>
   );
 }
