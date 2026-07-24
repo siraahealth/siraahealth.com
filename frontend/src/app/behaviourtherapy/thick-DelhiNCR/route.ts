@@ -929,7 +929,9 @@ function waSelectUrgency(urgencyLabel){
     }, 400);
   });
 }
+var siraaFormAlreadySubmitted = false;
 function submitForm(src){
+  if(siraaFormAlreadySubmitted) return;
   if(src==='p'){ closePopup(); }
   var sfx=src==='m'?'-m':(src==='p'?'-p':'-d');
   var n=document.getElementById('fn'+sfx).value.trim();
@@ -937,6 +939,7 @@ function submitForm(src){
   var digits = p.replace(/\\D/g,'');
   if(!n){ alert('Please enter your name.'); return; }
   if(digits.length !== 10){ alert('Please enter a valid 10-digit mobile number.'); return; }
+  siraaFormAlreadySubmitted = true;
 
 
   // bt-lead-v2
