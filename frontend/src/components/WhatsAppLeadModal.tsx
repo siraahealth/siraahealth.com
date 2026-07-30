@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
-import { PHONE_NUMBER } from "@/utils/contant";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 import { useUTMs } from "@/components/landing/LandingComponents";
 
 const CONCERN_OPTIONS = [
@@ -20,6 +20,7 @@ const URGENCY_OPTIONS = [
 ];
 
 export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
+  const { phoneNumber } = usePhoneNumber();
   const [step, setStep] = useState<1 | 2>(1);
   const [concern, setConcern] = useState<{ value: string; label: string } | null>(null);
   const [loading, setLoading] = useState(false);
@@ -74,7 +75,7 @@ export function WhatsAppLeadModal({ onClose }: { onClose: () => void }) {
       `. (Ref: ${referenceCode})`,
     ];
     const message = encodeURIComponent(messageParts.join(""));
-    const waUrl = `https://wa.me/${PHONE_NUMBER}?text=${message}`;
+    const waUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
     window.open(waUrl, "_blank", "noopener,noreferrer");
     setLoading(false);

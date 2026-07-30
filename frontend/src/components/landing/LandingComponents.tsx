@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 
 export function useUTMs() {
   const [utms, setUtms] = useState<Record<string, string>>({});
@@ -32,6 +33,7 @@ export interface Step { num: string; title: string; desc: string; }
 export interface Testimonial { name: string; location: string; child: string; text: string; rating?: number; }
 
 export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compact = false, ctaLabel = "Book a free assessment" }: { source: string; defaultConcern?: string; compact?: boolean; ctaLabel?: string; }) {
+  const { phoneNumber, formattedPhoneNumber } = usePhoneNumber();
   const [form, setForm] = useState({ name: "", phone: "", concern: defaultConcern });
   const [state, setState] = useState<FormState>("idle");
   const [showWaModal, setShowWaModal] = useState(false);
@@ -69,7 +71,7 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
         <h3 className="font-display font-bold text-xl text-foreground mb-2">We will call you shortly</h3>
         <p className="text-muted-foreground text-sm leading-relaxed">
           Our team will reach out within a few hours. If you need us sooner, call{" "}
-          <a href="tel:+919910731103" className="text-primary font-semibold">+91 99107 31103</a>
+          <a href={`tel:${phoneNumber}`} className="text-primary font-semibold">{formattedPhoneNumber}</a>
         </p>
       </div>
     );

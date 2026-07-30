@@ -11,6 +11,8 @@ import { ExitPopup } from "@/components/ExitPopup";
 import GTMScript from "@/components/analytics/GTMScript";
 import GTMFrame from "@/components/analytics/GTMFrame";
 import GTMRouteTracker from "@/components/analytics/GTMRouteTracker";
+import { getSiteSettings } from "@/lib/siteSettings";
+import { PhoneNumberProvider } from "@/components/providers/PhoneNumberProvider";
 
 const baseUrl = new URL(
   process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000",
@@ -66,12 +68,12 @@ export const metadata: Metadata = {
     : { index: false, follow: false },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const { phoneNumber } = await getSiteSettings();
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
   const schemaOrg = {
     "@context": "https://schema.org",
@@ -127,18 +129,20 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <GTMRouteTracker />
         </Suspense>
-        <Providers>
-          <div className="min-h-screen bg-background font-sans">
-            <NavbarSwitcher />
-            {children}
-            <Footer />
-            <div className="hidden md:block">
-              <FloatingWhatsApp />
+        <PhoneNumberProvider phoneNumber={phoneNumber}>
+          <Providers>
+            <div className="min-h-screen bg-background font-sans">
+              <NavbarSwitcher />
+              {children}
+              <Footer />
+              <div className="hidden md:block">
+                <FloatingWhatsApp />
+              </div>
+              <ScrollOnMount />
+              <ExitPopup />
             </div>
-            <ScrollOnMount />
-            <ExitPopup />
-          </div>
-        </Providers>
+          </Providers>
+        </PhoneNumberProvider>
       </body>
     </html>
   );

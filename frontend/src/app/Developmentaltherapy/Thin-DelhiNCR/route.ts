@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
+import { getSiteSettings } from '@/lib/siteSettings';
 
-const html = `
+function buildHtml(phoneNumber: string, formattedPhoneNumber: string, whatsappDigits: string) {
+  return `
 
 <!DOCTYPE html>
 <html lang="en">
@@ -748,7 +750,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <footer class="footer">
-  <p>8 Centers in Gurgaon &nbsp;|&nbsp; +91 99107 31103 &nbsp;|&nbsp; Mon to Sat, 9AM to 7PM</p>
+  <p>8 Centers in Gurgaon &nbsp;|&nbsp; ${formattedPhoneNumber} &nbsp;|&nbsp; Mon to Sat, 9AM to 7PM</p>
   <p style="margin-top:4px;">&#169; 2026 Siraa Health. All Rights Reserved &nbsp;|&nbsp; <a href="https://siraahealth.com/privacy-policy">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://siraahealth.com/medical-disclaimer">Medical Disclaimer</a></p>
   <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);text-align:left;max-width:680px;margin-left:auto;margin-right:auto;">
     <p style="font-size:11px;color:rgba(255,255,255,0.7);font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.8px;">Disclaimer</p>
@@ -821,7 +823,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ty-check">&#10003;</div>
   <h1>Thank You!</h1>
   <p class="ty-sub">We have received your query.</p>
-  <p class="ty-detail">Our expert will call you shortly. If you need to reach us sooner, call <strong>+91 99107 31103</strong> directly.</p>
+  <p class="ty-detail">Our expert will call you shortly. If you need to reach us sooner, call <strong>${formattedPhoneNumber}</strong> directly.</p>
   <div class="ty-brand">Siraa Health</div>
 </div>
 
@@ -901,7 +903,7 @@ function waSelectUrgency(urgencyLabel){
     if(window.siraaTrack){
       window.siraaTrack('whatsapp_click', { click_source: 'mobile_bar', concern: waConcern, urgency: urgencyLabel, reference_code: refCode });
     }
-    window.open('https://wa.me/919910731103?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+    window.open('https://wa.me/${whatsappDigits}?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
     closeWaModal();
     setTimeout(function(){
       buttons.forEach(function(b){ b.disabled = false; });
@@ -1086,8 +1088,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 `;
+}
 
 export async function GET() {
+  const { phoneNumber } = await getSiteSettings();
+  const formattedPhoneNumber = phoneNumber.replace(/(\+91)(\d{5})(\d{5})/, "$1 $2 $3");
+  const whatsappDigits = phoneNumber.replace(/[^0-9]/g, "");
+  const html = buildHtml(phoneNumber, formattedPhoneNumber, whatsappDigits);
   return new NextResponse(html, {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',

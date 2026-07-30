@@ -1,7 +1,7 @@
 "use client";
 // Landing client v7 — behaviourtherapy-style hero (full-width image + text below), no blob, no doctor quote.
 import { useEffect, useRef, useState, useCallback } from "react";
-import { LANDING_SITE } from "@/lib/landingSeo";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 
 const push = (event: string, data: Record<string, unknown> = {}) =>
   typeof window !== "undefined" &&
@@ -165,6 +165,7 @@ function LeadForm({ formName, serviceType, pagePath, onSubmitted, compact = fals
 
 /* ── Thank you ── */
 function ThankYou() {
+  const { phoneNumber } = usePhoneNumber();
   return (
     <div className="text-center py-10 px-6">
       <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-[#2DBF6E] text-white grid place-items-center">
@@ -172,13 +173,14 @@ function ThankYou() {
       </div>
       <h3 className="text-2xl font-semibold text-[#1a1a1a] mb-2">Thank You!</h3>
       <p className="text-[#2d2d2d]">Our expert will call you shortly.</p>
-      <p className="text-sm text-[#595959] mt-2">Need to reach us sooner? Call <a href={`tel:${LANDING_SITE.phone}`} className="font-semibold text-[#6B5B95]">{LANDING_SITE.phone}</a></p>
+      <p className="text-sm text-[#595959] mt-2">Need to reach us sooner? Call <a href={`tel:${phoneNumber}`} className="font-semibold text-[#6B5B95]">{phoneNumber}</a></p>
     </div>
   );
 }
 
 /* ── Desktop fixed form (JS positioning, no doctor quote) ── */
 export function DesktopStickyForm({ serviceType, pagePath }: { serviceType: string; pagePath: string }) {
+  const { phoneNumber } = usePhoneNumber();
   const [done, setDone] = useState(false);
   const placeholderRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
@@ -217,10 +219,10 @@ export function DesktopStickyForm({ serviceType, pagePath }: { serviceType: stri
             {done ? <ThankYou /> : <LeadForm formName="desktop_sidebar" serviceType={serviceType} pagePath={pagePath} onSubmitted={() => setDone(true)} />}
           </div>
         </div>
-        <a href={`tel:${LANDING_SITE.phone}`} onClick={() => push("call_click", { location: "sticky_desktop" })}
+        <a href={`tel:${phoneNumber}`} onClick={() => push("call_click", { location: "sticky_desktop" })}
           className="flex items-center justify-center gap-2 rounded-2xl border border-[#EDD8F0] text-[#1a1a1a] font-medium py-3 hover:bg-[#F5F0FC] transition text-sm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#6B5B95"><path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1v3.4a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.3 1z"/></svg>
-          {LANDING_SITE.phone}
+          {phoneNumber}
         </a>
       </div>
     </aside>
@@ -243,6 +245,7 @@ export function MobileBookSection({ serviceType, pagePath }: { serviceType: stri
 
 /* ── Mobile bottom bar + drawer ── */
 export function MobileCTABar({ serviceType, pagePath }: { serviceType: string; pagePath: string }) {
+  const { phoneNumber } = usePhoneNumber();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -259,7 +262,7 @@ export function MobileCTABar({ serviceType, pagePath }: { serviceType: string; p
           style={{ background: "linear-gradient(135deg, #E8614A, #D4527E)", clipPath: "polygon(0 0, 90% 0, 75% 100%, 0 100%)" }}>
           <span>Free Expert Consultation</span>
         </button>
-        <a href={`tel:${LANDING_SITE.phone}`} onClick={() => push("call_click", { location: "mobile_bar" })}
+        <a href={`tel:${phoneNumber}`} onClick={() => push("call_click", { location: "mobile_bar" })}
           className="flex-1 -ml-8 h-full inline-flex items-center justify-center bg-white text-[#1a1a1a] font-semibold text-sm">
           Call Now
         </a>

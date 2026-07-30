@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronRight, CheckCircle2, Phone, Home } from "lucide-react";
 import { ConditionData } from "@/lib/conditions-data";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 import { pushEvent } from "@/utils/gtm";
 import Link from "next/link";
 
@@ -111,6 +112,7 @@ function ConditionLeadForm({ conditionName, slug }: { conditionName: string; slu
 }
 
 export function ConditionPageClient({ condition }: { condition: ConditionData }) {
+  const { phoneNumber, formattedPhoneNumber } = usePhoneNumber();
   const colors = HERO_COLORS[condition.slug] || HERO_COLORS["autism"];
 
   return (
@@ -199,7 +201,7 @@ export function ConditionPageClient({ condition }: { condition: ConditionData })
                   </div>
                   <div>
                     <p className="text-[13px] font-semibold">Or call us directly</p>
-                    <a href="tel:+919910731103" className="text-white/60 text-[13px] hover:text-white transition-colors">+91 99107 31103</a>
+                    <a href={`tel:${phoneNumber}`} className="text-white/60 text-[13px] hover:text-white transition-colors">{formattedPhoneNumber}</a>
                   </div>
                 </div>
               </div>

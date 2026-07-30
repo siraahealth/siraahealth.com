@@ -13,12 +13,12 @@ export const LANDING_SITE = {
   doctor: { name: "Dr. Priya Sharma", creds: "MBBS, MD (Pediatrics)", exp: "20+ years" }, // TODO: confirm
 };
 
-export const clinicSchema = () => ({
+export const clinicSchema = (phone?: string) => ({
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
   name: LANDING_SITE.name,
   url: LANDING_SITE.url,
-  telephone: LANDING_SITE.phone,
+  telephone: phone || LANDING_SITE.phone,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Sector 67",

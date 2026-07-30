@@ -1,15 +1,22 @@
 import Image from "next/image";
 import { MapPin, PhoneCall } from "lucide-react";
-import { formattedPhoneNumber, PHONE_NUMBER } from "@/utils/contant";
 import Link from "next/link";
 import { FooterScheduleButton } from "@/components/layout/FooterScheduleButton";
 import { FooterPhoneLink } from "@/components/layout/FooterPhoneLink";
+import { getSiteSettings } from "@/lib/siteSettings";
 
 /**
  * Server component — all text content, links, and structure are SSR'd for SEO.
  * Interactive CTAs are delegated to client islands (FooterScheduleButton, FooterPhoneLink).
+ * Phone number is fetched directly from Strapi here (server-side) rather than
+ * via the usePhoneNumber() hook, since this stays a Server Component for SEO.
  */
-export default function Footer() {
+export default async function Footer() {
+  const { phoneNumber } = await getSiteSettings();
+  const formattedPhoneNumber = phoneNumber.replace(
+    /(\+91)(\d{5})(\d{5})/,
+    "$1 $2 $3",
+  );
   return (
     <footer className="bg-foreground text-white pt-20 pb-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,10 +86,10 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <PhoneCall className="w-5 h-5 text-primary shrink-0" />
-                {PHONE_NUMBER ? (
+                {phoneNumber ? (
                   /* Client island — phone link with GTM tracking */
                   <FooterPhoneLink
-                    href={`tel:${PHONE_NUMBER}`}
+                    href={`tel:${phoneNumber}`}
                     label={formattedPhoneNumber}
                   />
                 ) : (

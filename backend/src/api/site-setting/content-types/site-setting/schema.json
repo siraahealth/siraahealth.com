@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site Setting",
+    "description": "Global site-wide values (e.g. contact phone number) used across every page. Edit here to update everywhere at once."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "phone_number": {
+      "type": "string",
+      "required": true,
+      "default": "+919910731103",
+      "description": "Primary contact/WhatsApp number, E.164 format (e.g. +919910731103). Used site-wide for Call Now, WhatsApp, and footer links."
+    }
+  }
+}

@@ -5,12 +5,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getLandingPage, landingSlugs, LANDING_PAGES } from "@/content/landingPages";
 import { LANDING_SITE, clinicSchema, faqSchema, medicalPageSchema, breadcrumbSchema } from "@/lib/landingSeo";
+import { getSiteSettings } from "@/lib/siteSettings";
 import {
   LandingFAQ, LandingReviews, DesktopStickyForm, MobileBookSection, MobileCTABar,
   Star, Teddy, Rocket, Ball, Chocolate,
 } from "@/components/landing/LandingClient";
 
 export const dynamicParams = false;
+export const revalidate = 300; // 5 min — lets a Strapi site-setting change (e.g. phone number) reach this static page without a full redeploy
 export function generateStaticParams() { return landingSlugs().map((slug) => ({ slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -58,9 +60,14 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const page = getLandingPage(slug);
   if (!page) notFound();
 
-  const schemas = [clinicSchema(), medicalPageSchema(page), faqSchema(page.faqs), breadcrumbSchema(page)];
+  const { phoneNumber } = await getSiteSettings();
+  const formattedPhoneNumber = phoneNumber.replace(/(\+91)(\d{5})(\d{5})/, "$1 $2 $3");
+  const whatsappDigits = phoneNumber.replace(/[^0-9]/g, "");
+  const faqs = page.faqs.map((f) => ({ ...f, a: f.a.replace("{{PHONE}}", formattedPhoneNumber) }));
+
+  const schemas = [clinicSchema(phoneNumber), medicalPageSchema(page), faqSchema(faqs), breadcrumbSchema(page)];
   const serviceType = page.cta.replace(/^Book |^Get /, "");
-  const waHref = `https://wa.me/${LANDING_SITE.whatsapp}?text=${encodeURIComponent("Hi, I'd like to consult a pediatrician at Siraa Health.")}`;
+  const waHref = `https://wa.me/${whatsappDigits}?text=${encodeURIComponent("Hi, I'd like to consult a pediatrician at Siraa Health.")}`;
   const heroImage = HERO_IMAGE_MAP[page.path] || "/assets/hero-specialist.jpeg";
 
   return (
@@ -190,7 +197,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
                     </div>
                   ))}
                 </div>
-                <a href={`tel:${LANDING_SITE.phone}`} className="inline-flex items-center gap-2 rounded-full bg-[#C0392B] text-white font-semibold h-11 px-6 text-sm">
+                <a href={`tel:${phoneNumber}`} className="inline-flex items-center gap-2 rounded-full bg-[#C0392B] text-white font-semibold h-11 px-6 text-sm">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1v3.4a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.3 1z"/></svg>
                   Call Siraa Health Now
                 </a>
@@ -261,7 +268,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
               <div className="mb-14">
                 <p className="text-[#6B5B95] text-xs font-semibold uppercase tracking-wider mb-2">Questions</p>
                 <h2 className="text-2xl md:text-3xl font-semibold text-[#1a1a1a] mb-6">What parents usually ask us</h2>
-                <LandingFAQ faqs={page.faqs} />
+                <LandingFAQ faqs={faqs} />
               </div>
 
               {/* Mobile booking */}
@@ -269,7 +276,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
                 <MobileBookSection serviceType={serviceType} pagePath={page.path} />
                 <div className="mt-5 text-center text-sm text-[#666]">
                   <p>{LANDING_SITE.address} · {LANDING_SITE.hours}</p>
-                  <a href={`tel:${LANDING_SITE.phone}`} className="font-semibold text-[#6B5B95] mt-1 inline-block">{LANDING_SITE.phone}</a>
+                  <a href={`tel:${phoneNumber}`} className="font-semibold text-[#6B5B95] mt-1 inline-block">{formattedPhoneNumber}</a>
                 </div>
               </div>
 

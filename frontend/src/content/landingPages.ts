@@ -884,7 +884,7 @@ export const LANDING_PAGES: LandingPage[] = [
       { q: "Which areas does the Sector 67 clinic serve?", a: "Families come primarily from Sectors 65–72, Golf Course Extension Road, Sohna Road, Nirvana Country, Vatika City and South City II — though any family willing to make the trip is welcome. Same-day slots make it practical even from farther out." },
       { q: "Do you take walk-ins?", a: "We strongly prefer a quick call or WhatsApp first — it usually means near-zero waiting. Genuinely urgent children are seen regardless; a child with breathing difficulty is taken in immediately, appointment or not." },
       { q: "Are you open on Sundays?", a: "The clinic is closed on Sundays. For urgent Sunday concerns, use the nearest hospital emergency department; for advice on ongoing treatment, message us on WhatsApp and we respond when the clinic reopens." },
-      { q: "How do I book an appointment?", a: "Call or WhatsApp +91 99107 31103, or use the booking form on this page — you'll get a confirmed time slot. Vaccination visits can be scheduled in advance; sick-child slots are held for same-day booking each morning." },
+      { q: "How do I book an appointment?", a: "Call or WhatsApp {{PHONE}}, or use the booking form on this page — you'll get a confirmed time slot. Vaccination visits can be scheduled in advance; sick-child slots are held for same-day booking each morning." },
     ],
     cta: "Book at Sector 67 Clinic",
     related: ["/sick-child-opd-gurgaon", "/child-vaccination-gurgaon", "/best-pediatrician-gurgaon"],

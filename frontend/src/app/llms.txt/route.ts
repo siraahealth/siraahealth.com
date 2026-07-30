@@ -1,3 +1,5 @@
+import { getSiteSettings } from "@/lib/siteSettings";
+
 function toUrlList(value: string | undefined): string[] {
   if (!value) return [];
   return value
@@ -9,7 +11,7 @@ function toUrlList(value: string | undefined): string[] {
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
-  const phone = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const { phoneNumber: phone } = await getSiteSettings();
 
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 

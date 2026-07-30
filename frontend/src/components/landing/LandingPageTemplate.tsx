@@ -8,6 +8,7 @@ import {
   FAQItem, HowItWorks, TestimonialCard, DoctorQuote, Eyebrow, InternalLinks,
 } from "@/components/landing/LandingComponents";
 import { FloatingDecor } from "@/components/landing/FloatingDecor";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 
 export interface LandingPageData {
   url?: string; breadcrumb: string; eyebrow: string; concern: string;
@@ -28,6 +29,7 @@ export interface LandingPageData {
 }
 
 export function LandingPageTemplate({ data }: { data: LandingPageData }) {
+  const { phoneNumber, formattedPhoneNumber } = usePhoneNumber();
   const formRef = useRef<HTMLDivElement>(null);
   const [showModal, setShowModal] = useState(false);
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -180,7 +182,7 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
               <button onClick={() => setShowModal(true)} className="flex-1 bg-primary text-white font-bold text-[13px] flex items-center justify-center pl-2 pr-24 cursor-pointer border-0 outline-none" style={{clipPath:"polygon(0 0, 90% 0, 75% 100%, 0 100%)"}}>
                 <span>Free Expert Consultation</span>
               </button>
-              <a href="tel:+919910731103" className="w-36 bg-white text-foreground font-bold text-[13px] flex items-center justify-center">
+              <a href={`tel:${phoneNumber}`} className="w-36 bg-white text-foreground font-bold text-[13px] flex items-center justify-center">
                 <span>Call Now</span>
               </a>
             </div>
@@ -202,7 +204,7 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
               </div>
               <div className="mt-4 p-4 rounded-xl border border-border/40 text-center">
                 <p className="text-[12px] text-muted-foreground mb-1">Prefer to call?</p>
-                <a href="tel:+919910731103" className="font-bold text-[16px] text-primary hover:text-primary/80 transition-colors">+91 99107 31103</a>
+                <a href={`tel:${phoneNumber}`} className="font-bold text-[16px] text-primary hover:text-primary/80 transition-colors">{formattedPhoneNumber}</a>
                 <p className="text-[11px] text-muted-foreground mt-0.5">Mon to Sat, 9am to 7pm</p>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronRight, Phone } from "lucide-react";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 import { pushEvent } from "@/utils/gtm";
 
 const CONCERNS = [
@@ -20,6 +21,7 @@ const CONCERNS = [
 type FormState = "idle" | "loading" | "success" | "error";
 
 export function LeadFormSection() {
+  const { phoneNumber, formattedPhoneNumber } = usePhoneNumber();
   const [form, setForm] = useState({ parentName: "", phone: "", childAge: "", concern: "" });
   const [state, setState] = useState<FormState>("idle");
 
@@ -77,7 +79,7 @@ export function LeadFormSection() {
               </div>
               <div>
                 <p className="font-bold text-[14px] text-foreground">Prefer to call directly?</p>
-                <a href="tel:+919910731103" className="text-[13px] text-muted-foreground hover:text-primary transition-colors font-medium">+91 99107 31103</a>
+                <a href={`tel:${phoneNumber}`} className="text-[13px] text-muted-foreground hover:text-primary transition-colors font-medium">{formattedPhoneNumber}</a>
               </div>
             </div>
           </div>

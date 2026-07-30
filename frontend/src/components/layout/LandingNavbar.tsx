@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
-import { PHONE_NUMBER } from "@/utils/contant";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
@@ -10,6 +10,7 @@ import { pushEvent } from "@/utils/gtm";
 import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
 
 export default function LandingNavbar() {
+  const { phoneNumber } = usePhoneNumber();
   const [isOpen, setIsOpen] = useState(false);
   const [showWaModal, setShowWaModal] = useState(false);
 
@@ -69,7 +70,7 @@ export default function LandingNavbar() {
 
         {/* Mobile WhatsApp & Menu Button */}
         <div className="flex items-center gap-2 md:hidden relative z-50">
-          {PHONE_NUMBER && (
+          {phoneNumber && (
             <button
               type="button"
               onClick={() => {

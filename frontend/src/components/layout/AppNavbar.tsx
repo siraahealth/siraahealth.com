@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
-import {
-  formattedPhoneNumber,
-  PHONE_NUMBER,
-} from "@/utils/contant";
+import { usePhoneNumber } from "@/components/providers/PhoneNumberProvider";
 import Link from "next/link";
 import Image from "next/image";
 import { ScrollButton } from "../core/ScrollButton";
@@ -13,6 +10,7 @@ import { pushEvent } from "@/utils/gtm";
 import { WhatsAppLeadModal } from "@/components/WhatsAppLeadModal";
 
 export default function AppNavbar() {
+  const { phoneNumber, formattedPhoneNumber } = usePhoneNumber();
   const [isOpen, setIsOpen] = useState(false);
   const [showWaModal, setShowWaModal] = useState(false);
 
@@ -40,13 +38,13 @@ export default function AppNavbar() {
             Talk to a Specialist
           </span>
 
-          {PHONE_NUMBER && (
+          {phoneNumber && (
             <div className="flex flex-col items-end border-r border-border/50 pr-8">
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
                 Call Us Today
               </span>
               <a
-                href={`tel:${PHONE_NUMBER}`}
+                href={`tel:${phoneNumber}`}
                 onClick={() =>
                   pushEvent("phone_call_click", {
                     source: "app_navbar_desktop",
@@ -76,7 +74,7 @@ export default function AppNavbar() {
 
         {/* Mobile WhatsApp & Menu Button */}
         <div className="flex items-center gap-2 md:hidden relative z-50">
-          {PHONE_NUMBER && (
+          {phoneNumber && (
             <button
               type="button"
               onClick={() => {
@@ -120,7 +118,7 @@ export default function AppNavbar() {
             </div>
 
             <div className="mt-auto space-y-6">
-              {PHONE_NUMBER && (
+              {phoneNumber && (
                 <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
                   <div className="flex items-center gap-3 mb-1">
                     <Phone className="w-4 h-4 text-primary" />
@@ -129,7 +127,7 @@ export default function AppNavbar() {
                     </span>
                   </div>
                   <a
-                    href={`tel:${PHONE_NUMBER}`}
+                    href={`tel:${phoneNumber}`}
                     onClick={() =>
                       pushEvent("phone_call_click", {
                         source: "app_navbar_menu",
