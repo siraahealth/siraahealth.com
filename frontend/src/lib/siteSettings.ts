@@ -24,7 +24,7 @@ export interface SiteSettings {
 export async function getSiteSettings(): Promise<SiteSettings> {
   try {
     const res = await fetch(`${STRAPI_URL}/api/site-setting`, {
-      headers: { Authorization: `Bearer ${CUSTOM_TOKEN}` },
+      headers: { "X-Custom-Token": CUSTOM_TOKEN },
       next: { revalidate: 300 },
     });
     if (!res.ok) throw new Error(`Strapi site-setting fetch failed: ${res.status}`);
