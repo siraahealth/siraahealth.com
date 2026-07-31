@@ -4,7 +4,7 @@ const CUSTOM_TOKEN = process.env.CUSTOM_TOKEN || "";
 // Env var stays as the safety-net fallback: if Strapi is unreachable (or the
 // Single Type hasn't been created/populated yet), the site still renders a
 // working phone number instead of blank/broken UI.
-const FALLBACK_PHONE_NUMBER = process.env.NEXT_PUBLIC_PHONE_NUMBER || "+919910731103";
+const FALLBACK_PHONE_NUMBER = process.env.NEXT_PUBLIC_PHONE_NUMBER || "+919319741273";
 
 export interface SiteSettings {
   phoneNumber: string;

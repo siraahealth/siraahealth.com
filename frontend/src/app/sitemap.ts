@@ -1,5 +1,4 @@
 import { LANDING_PAGES } from "@/content/landingPages";
-const landingUrls = LANDING_PAGES.map((p) => ({ url: `https://siraahealth.com${p.path}`, lastModified: new Date("2026-07-04"), changeFrequency: "monthly" as const, priority: 0.9 }));
 import { MetadataRoute } from "next";
 
 const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
@@ -8,6 +7,7 @@ const CUSTOM_TOKEN = process.env.CUSTOM_TOKEN || "";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const landingUrls = LANDING_PAGES.map((p) => ({ url: `https://siraahealth.com${p.path}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 }));
   const staticRoutes = [
     "",
     "/blog",

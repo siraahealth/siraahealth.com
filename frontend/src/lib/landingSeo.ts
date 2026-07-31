@@ -5,8 +5,8 @@ import type { LandingPage } from "@/content/landingPages";
 export const LANDING_SITE = {
   name: "Siraa Health",
   url: process.env.NEXT_PUBLIC_FRONTEND_URL || "https://siraahealth.com",
-  phone: process.env.NEXT_PUBLIC_PHONE_NUMBER || "+919910731103",
-  whatsapp: (process.env.NEXT_PUBLIC_PHONE_NUMBER || "+919910731103").replace(/[^0-9]/g, ""),
+  phone: process.env.NEXT_PUBLIC_PHONE_NUMBER || "+919319741273",
+  whatsapp: (process.env.NEXT_PUBLIC_PHONE_NUMBER || "+919319741273").replace(/[^0-9]/g, ""),
   address: "Siraa Health, Sector 67, Gurgaon, Haryana",
   geo: { lat: 28.3841, lng: 77.0637 },
   hours: "Mon–Sat 9:00 AM – 7:00 PM · Sunday Closed",
