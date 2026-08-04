@@ -94,7 +94,6 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: url.protocol.replace(":", "") as "http" | "https",
