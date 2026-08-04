@@ -126,6 +126,11 @@ export function QuizSection() {
         symptoms: data.symptoms,
         concerns: data.concerns,
       });
+      pushEvent("form_submit", {
+        form_name: "homepage_quiz",
+        page_family: "homepage",
+        child_age: data.childAge,
+      });
       setShowResult(true);
       reset();
     } catch (error: any) {

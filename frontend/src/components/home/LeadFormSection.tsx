@@ -32,7 +32,6 @@ export function LeadFormSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("loading");
-    pushEvent("lead_form_submit", { concern: form.concern });
     try {
       const res = await fetch("/api/hubspot/contact", {
         method: "POST",
@@ -40,6 +39,8 @@ export function LeadFormSection() {
         body: JSON.stringify({ firstname: form.parentName, phone: form.phone, child_age: form.childAge, concern: form.concern, source: "homepage_lead_form" }),
       });
       if (!res.ok) throw new Error("Failed");
+      pushEvent("lead_form_submit", { concern: form.concern });
+      pushEvent("form_submit", { form_name: "homepage_lead_form", page_family: "homepage", concern: form.concern });
       setState("success");
       setForm({ parentName: "", phone: "", childAge: "", concern: "" });
     } catch {

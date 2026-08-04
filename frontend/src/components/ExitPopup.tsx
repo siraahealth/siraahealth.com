@@ -28,7 +28,6 @@ export function ExitPopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState("loading");
-    pushEvent("form_submit", { form_name: "exit_popup", concern: form.concern });
     try {
       const res = await fetch("/api/hubspot/contact", {
         method: "POST",
@@ -36,6 +35,7 @@ export function ExitPopup() {
         body: JSON.stringify({ firstname: form.parentName, phone: form.phone, concern: form.concern, source: "exit_popup" }),
       });
       if (!res.ok) throw new Error("Failed");
+      pushEvent("form_submit", { form_name: "exit_popup", concern: form.concern });
       setState("success");
     } catch { setState("error"); }
   };
