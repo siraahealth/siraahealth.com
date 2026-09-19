@@ -1,5 +1,12 @@
-import { BookingForm } from "@/components/home/BookingForm";
+import dynamic from "next/dynamic";
 import ParentStories from "./ParentStories";
+
+// Dynamically imported so the yup/react-hook-form validation code only
+// ships to routes that actually render this booking form, instead of
+// Next bundling it into every route's shared chunk.
+const BookingForm = dynamic(() =>
+  import("@/components/home/BookingForm").then((m) => m.BookingForm),
+);
 
 export function TestimonialsSection() {
   return (

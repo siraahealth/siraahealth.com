@@ -9,7 +9,14 @@ import { ServicesSection } from "@/components/home/ServicesSection";
 import { DoctorsSection } from "@/components/home/DoctorsSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
-import { QuizSection } from "@/components/home/QuizSection";
+import dynamic from "next/dynamic";
+
+// Dynamically imported so framer-motion only ships to routes that
+// actually render this quiz, instead of Next bundling it into every
+// route's shared chunk.
+const QuizSection = dynamic(() =>
+  import("@/components/home/QuizSection").then((m) => m.QuizSection),
+);
 
 export const metadata: Metadata = {
   title: "Child Development Assessment & Therapy",

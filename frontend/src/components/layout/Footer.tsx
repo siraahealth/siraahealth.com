@@ -52,6 +52,7 @@ export default async function Footer() {
               <li>
                 <Link
                   href="/vaccinations/Thick-DelhiNCR"
+                  prefetch={false}
                   className="hover:text-primary transition-colors"
                 >
                   Vaccination
@@ -60,6 +61,7 @@ export default async function Footer() {
               <li>
                 <Link
                   href="/milestones/Thick-DelhiNCR"
+                  prefetch={false}
                   className="hover:text-primary transition-colors"
                 >
                   Development

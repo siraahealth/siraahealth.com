@@ -1,7 +1,14 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
-import { VaccinationBookingForm } from "./VaccinationBookingForm";
+import dynamic from "next/dynamic";
+
+// Dynamically imported so the yup/react-hook-form validation code only
+// ships to routes that actually render this booking form, instead of
+// Next bundling it into every route's shared chunk.
+const VaccinationBookingForm = dynamic(() =>
+  import("./VaccinationBookingForm").then((m) => m.VaccinationBookingForm),
+);
 
 export function VaccinationHero({
   parents_trust_siraa_health,

@@ -35,6 +35,7 @@ export default function LandingNavbar() {
         <nav className="hidden md:flex items-center gap-12">
           <Link
             href="/vaccinations/Thick-DelhiNCR"
+            prefetch={false}
             onClick={() => pushEvent("navbar_cta_click", { cta: "vaccination", navbar: "landing" })}
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
           >
@@ -42,6 +43,7 @@ export default function LandingNavbar() {
           </Link>
           <Link
             href="/milestones/Thick-DelhiNCR"
+            prefetch={false}
             onClick={() => pushEvent("navbar_cta_click", { cta: "development", navbar: "landing" })}
             className="text-[15px] font-semibold text-gray-600 hover:text-[#3B82F6] transition-colors"
           >
@@ -109,6 +111,7 @@ export default function LandingNavbar() {
           <div className="flex flex-col h-full px-6 gap-8">
             <Link
               href="/vaccinations/Thick-DelhiNCR"
+              prefetch={false}
               onClick={() => {
                 setIsOpen(false);
                 pushEvent("navbar_cta_click", { cta: "vaccination", navbar: "landing", source: "mobile_menu" });
@@ -119,6 +122,7 @@ export default function LandingNavbar() {
             </Link>
             <Link
               href="/milestones/Thick-DelhiNCR"
+              prefetch={false}
               onClick={() => {
                 setIsOpen(false);
                 pushEvent("navbar_cta_click", { cta: "development", navbar: "landing", source: "mobile_menu" });
