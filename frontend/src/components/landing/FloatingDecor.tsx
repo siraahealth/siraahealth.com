@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Star, Cloud } from "lucide-react";
 
 /**
@@ -8,6 +5,8 @@ import { Star, Cloud } from "lucide-react";
  * Purely visual — no interaction, no layout impact (absolute + pointer-events-none).
  * Not emojis: hand-built inline SVGs / lucide icons so styling (size, color,
  * opacity) stays fully controllable and consistent with the rest of the UI.
+ * Pure CSS animation (no framer-motion) since it's decorative and non-interactive —
+ * keeps this off the client JS bundle entirely.
  */
 
 function FloatItem({
@@ -26,21 +25,18 @@ function FloatItem({
   rotateRange?: number;
 }) {
   return (
-    <motion.div
-      className={`absolute pointer-events-none select-none ${className}`}
-      animate={{
-        y: [0, -yRange, 0],
-        ...(rotateRange ? { rotate: [-rotateRange, rotateRange, -rotateRange] } : {}),
-      }}
-      transition={{
-        duration,
-        delay,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
+    <div
+      className={`absolute pointer-events-none select-none animate-float-decor ${className}`}
+      style={{
+        animationDuration: `${duration}s`,
+        animationDelay: `${delay}s`,
+        ["--float-y" as string]: `${yRange}px`,
+        ["--float-rot-start" as string]: rotateRange ? `${-rotateRange}deg` : "0deg",
+        ["--float-rot-end" as string]: rotateRange ? `${rotateRange}deg` : "0deg",
+      } as React.CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
