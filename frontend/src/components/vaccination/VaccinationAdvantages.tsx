@@ -1,5 +1,14 @@
 import { CheckCircle, Heart, Shield, Users } from "lucide-react";
-import { VaccinationAdvantageSwiper } from "../swipers/VaccinationAdvantageSwiper";
+import dynamic from "next/dynamic";
+
+// Dynamically imported so the Swiper library only ships to routes that
+// actually render this mobile carousel, instead of Next bundling it into
+// every route's shared chunk.
+const VaccinationAdvantageSwiper = dynamic(() =>
+  import("../swipers/VaccinationAdvantageSwiper").then(
+    (m) => m.VaccinationAdvantageSwiper,
+  ),
+);
 
 export type VaccinationAdvantageData = {
   title: string;

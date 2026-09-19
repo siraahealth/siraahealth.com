@@ -4,10 +4,17 @@ import {
   HeartHandshake,
   CheckCircle2,
 } from "lucide-react";
-import {
-  CareJourneySwiper,
-  type CareJourneyItem,
-} from "@/components/swipers/CareJourneySwiper";
+import dynamic from "next/dynamic";
+import type { CareJourneyItem } from "@/components/swipers/CareJourneySwiper";
+
+// Dynamically imported so the Swiper library only ships to routes that
+// actually render this mobile carousel, instead of Next bundling it into
+// every route's shared chunk.
+const CareJourneySwiper = dynamic(() =>
+  import("@/components/swipers/CareJourneySwiper").then(
+    (m) => m.CareJourneySwiper,
+  ),
+);
 
 export function CareJourneySection() {
   const iconMap = {

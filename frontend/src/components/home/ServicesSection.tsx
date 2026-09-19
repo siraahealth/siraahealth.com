@@ -6,11 +6,16 @@ import {
   Activity,
   HeartHandshake,
 } from "lucide-react";
-import {
-  ServicesSwiper,
-  type ServiceSwiperItem,
-} from "@/components/swipers/ServicesSwiper";
+import dynamic from "next/dynamic";
+import type { ServiceSwiperItem } from "@/components/swipers/ServicesSwiper";
 import { ServiceBookButton } from "@/components/home/ServiceBookButton";
+
+// Dynamically imported so the Swiper library only ships to routes that
+// actually render this mobile carousel, instead of Next bundling it into
+// every route's shared chunk.
+const ServicesSwiper = dynamic(() =>
+  import("@/components/swipers/ServicesSwiper").then((m) => m.ServicesSwiper),
+);
 
 export function ServicesSection() {
   const iconMap = {
