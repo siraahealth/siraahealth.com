@@ -57,6 +57,7 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
                     alt={data.heroImageAlt ?? data.h1First}
                     width={1000}
                     height={600}
+                    sizes="(min-width: 1024px) 700px, 100vw"
                     className="w-full h-auto object-cover"
                     priority
                   />
@@ -147,6 +148,8 @@ export function LandingPageTemplate({ data }: { data: LandingPageData }) {
                   alt="A child with a Siraa Health specialist"
                   width={1000}
                   height={600}
+                  sizes="(min-width: 1024px) 700px, 100vw"
+                  loading="lazy"
                   className="w-full h-auto object-cover"
                 />
               </div>

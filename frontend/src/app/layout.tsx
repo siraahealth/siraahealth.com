@@ -133,7 +133,7 @@ export default async function RootLayout({
           <Providers>
             <div className="min-h-screen bg-background font-sans">
               <NavbarSwitcher />
-              {children}
+              <main>{children}</main>
               <Footer />
               <div className="hidden md:block">
                 <FloatingWhatsApp />

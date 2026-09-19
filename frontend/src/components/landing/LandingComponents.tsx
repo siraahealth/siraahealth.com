@@ -88,16 +88,16 @@ export function LandingLeadForm({ source, defaultConcern = "Not sure yet", compa
         </div>
       )}
       <div className="flex flex-col gap-1">
-        <label className="text-[12px] font-semibold text-foreground/70 uppercase tracking-wide">Your name</label>
-        <input type="text" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} placeholder="Your full name" required className="w-full px-4 py-3 rounded-xl border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white" />
+        <label htmlFor={`${source}-name`} className="text-[12px] font-semibold text-foreground/70 uppercase tracking-wide">Your name</label>
+        <input id={`${source}-name`} type="text" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} placeholder="Your full name" required className="w-full px-4 py-3 rounded-xl border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white" />
       </div>
       <div className="flex flex-col gap-1">
-        <label className="text-[12px] font-semibold text-foreground/70 uppercase tracking-wide">Mobile number</label>
-        <input type="tel" value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} placeholder="+91 XXXXX XXXXX" required className="w-full px-4 py-3 rounded-xl border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white" />
+        <label htmlFor={`${source}-phone`} className="text-[12px] font-semibold text-foreground/70 uppercase tracking-wide">Mobile number</label>
+        <input id={`${source}-phone`} type="tel" value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} placeholder="+91 XXXXX XXXXX" required className="w-full px-4 py-3 rounded-xl border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white" />
       </div>
       <div className="flex flex-col gap-1">
-        <label className="text-[12px] font-semibold text-foreground/70 uppercase tracking-wide">Main concern</label>
-        <select value={form.concern} onChange={(e) => setForm((p) => ({ ...p, concern: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white">
+        <label htmlFor={`${source}-concern`} className="text-[12px] font-semibold text-foreground/70 uppercase tracking-wide">Main concern</label>
+        <select id={`${source}-concern`} value={form.concern} onChange={(e) => setForm((p) => ({ ...p, concern: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-border text-[14px] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white">
           <option value="Speech &amp; Language Delay">Speech &amp; Language Delay</option>
           <option value="Autism Spectrum Disorder">Autism Spectrum Disorder</option>
           <option value="ADHD">ADHD</option>
