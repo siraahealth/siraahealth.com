@@ -100,6 +100,14 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
         ],
       },
+      {
+        // Keep the private deck out of search engines and AI crawlers.
+        source: "/(deck|api/deck/.*)",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive, nosnippet, noimageindex, noai, noimageai" },
+          { key: "Cache-Control", value: "private, no-store" },
+        ],
+      },
     ];
   },
   images: {

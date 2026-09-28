@@ -1,11 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DECK_COOKIE, DECK_TTL_SECONDS, pinMatches, signDeckToken } from "@/lib/deckAuth";
+import { recordFailure, retryAfter } from "@/lib/deckRateLimit";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "https://api.siraahealth.com";
 const CUSTOM_TOKEN = process.env.CUSTOM_TOKEN || "";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: NextRequest) {
+  // Set by nginx from the real connection, so visitors can't spoof it.
+  const ip = req.headers.get("x-real-ip")?.trim() || null;
+
+  const wait = retryAfter(ip);
+  if (wait > 0) {
+    return NextResponse.json(
+      { error: "Too many attempts. Please try again in a few minutes." },
+      { status: 429, headers: { "Retry-After": String(wait) } },
+    );
+  }
+
   let body: { email?: unknown; pin?: unknown };
   try {
     body = await req.json();
@@ -20,6 +32,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   }
   if (!pin || !pinMatches(pin)) {
+    recordFailure(ip);
+    await new Promise((r) => setTimeout(r, 400)); // slow down guessing
     return NextResponse.json({ error: "That PIN isn't right. Please check and try again." }, { status: 401 });
   }
 
@@ -36,7 +50,7 @@ export async function POST(req: NextRequest) {
           email,
           viewed_at: new Date().toISOString(),
           user_agent: req.headers.get("user-agent")?.slice(0, 255) ?? "",
-          ip: (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(),
+          ip: ip ?? "",
         },
       }),
     });

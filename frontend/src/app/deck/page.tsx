@@ -7,7 +7,14 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Pitch Deck",
-  robots: { index: false, follow: false },
+  robots: {
+    index: false,
+    follow: false,
+    noarchive: true,
+    nosnippet: true,
+    noimageindex: true,
+    googleBot: { index: false, follow: false, noimageindex: true },
+  },
 };
 
 export default async function DeckPage() {
