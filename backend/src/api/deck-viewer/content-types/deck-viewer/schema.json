@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "deck_viewers",
+  "info": {
+    "singularName": "deck-viewer",
+    "pluralName": "deck-viewers",
+    "displayName": "Deck Viewer",
+    "description": "Everyone who unlocked the pitch deck at /deck"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "viewed_at": {
+      "type": "datetime"
+    },
+    "user_agent": {
+      "type": "string"
+    },
+    "ip": {
+      "type": "string"
+    }
+  }
+}

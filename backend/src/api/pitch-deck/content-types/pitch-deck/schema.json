@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "pitch_decks",
+  "info": {
+    "singularName": "pitch-deck",
+    "pluralName": "pitch-decks",
+    "displayName": "Pitch Deck",
+    "description": "The PDF shown at /deck after a visitor enters their email and PIN. Upload a new file here to replace the deck."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["files"]
+    }
+  }
+}

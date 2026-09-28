@@ -36,7 +36,7 @@ function buildContentSecurityPolicy(): string {
     ]
       .filter(Boolean)
       .join(" "),
-    "frame-src https://www.googletagmanager.com https://www.facebook.com https://staticxx.facebook.com",
+    "frame-src 'self' https://www.googletagmanager.com https://www.facebook.com https://staticxx.facebook.com",
     [
       "connect-src",
       "'self'",
@@ -89,6 +89,15 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
+        ],
+      },
+      {
+        // The /deck page embeds this PDF in an iframe; later rules override
+        // the site-wide frame blocking above for this route only.
+        source: "/api/deck/file",
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
         ],
       },
     ];

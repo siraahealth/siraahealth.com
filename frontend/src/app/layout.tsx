@@ -6,6 +6,7 @@ import { Providers } from "@/components/providers";
 import NavbarSwitcher from "@/components/layout/NavbarSwitcher";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import ScrollOnMount from "@/components/core/ScrollOnMount";
 import { ExitPopup } from "@/components/ExitPopup";
 import GTMScript from "@/components/analytics/GTMScript";
@@ -132,14 +133,20 @@ export default async function RootLayout({
         <PhoneNumberProvider phoneNumber={phoneNumber}>
           <Providers>
             <div className="min-h-screen bg-background font-sans">
-              <NavbarSwitcher />
+              <SiteChrome>
+                <NavbarSwitcher />
+              </SiteChrome>
               <main>{children}</main>
-              <Footer />
-              <div className="hidden md:block">
-                <FloatingWhatsApp />
-              </div>
+              <SiteChrome>
+                <Footer />
+                <div className="hidden md:block">
+                  <FloatingWhatsApp />
+                </div>
+              </SiteChrome>
               <ScrollOnMount />
-              <ExitPopup />
+              <SiteChrome>
+                <ExitPopup />
+              </SiteChrome>
             </div>
           </Providers>
         </PhoneNumberProvider>

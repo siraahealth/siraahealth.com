@@ -11,3 +11,7 @@ CUSTOM_TOKEN="XYZ"
 # GA4 and GTM
 NEXT_PUBLIC_GTM_ID=""
 NEXT_PUBLIC_GA4_ID=""
+
+# Private pitch deck (/deck)
+DECK_PIN=""
+DECK_SECRET=""
