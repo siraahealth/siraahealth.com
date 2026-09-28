@@ -1,7 +1,9 @@
 import crypto from "crypto";
 
 export const DECK_COOKIE = "siraa_deck";
-export const DECK_TTL_SECONDS = 60 * 60 * 12; // 12h
+// Cookie outlives the 10-min client idle timer by a minute so the page, not a
+// surprise 401, decides when to log out.
+export const DECK_TTL_SECONDS = 11 * 60;
 
 function secret() {
   const s = process.env.DECK_SECRET;
