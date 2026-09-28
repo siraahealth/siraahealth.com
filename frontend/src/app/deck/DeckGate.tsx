@@ -139,9 +139,15 @@ export default function DeckGate({ initiallyUnlocked }: { initiallyUnlocked: boo
             disabled={loading || !email || !pin}
             className="w-full rounded-xl bg-primary py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
           >
-            {loading ? "Checking…" : "View pitch deck"}
+            {loading ? "Checking…" : "View our pitch deck"}
           </button>
         </form>
+        <Link
+          href="/"
+          className="mt-3 flex w-full items-center justify-center rounded-xl border border-primary py-3.5 text-base font-semibold text-primary transition-colors hover:bg-primary/5"
+        >
+          View our website
+        </Link>
         <p className="mt-4 text-[13px] text-muted-foreground">Your email is shared only with the Siraa Health team.</p>
       </section>
     </div>
