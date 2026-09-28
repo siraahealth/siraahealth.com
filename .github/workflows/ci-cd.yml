@@ -29,6 +29,7 @@ jobs:
           filters: |
             frontend:
               - 'frontend/**'
+              - '.github/workflows/**'
 
       - name: Build using Node.js ${{ matrix.node-version }}
         if: steps.changes.outputs.frontend == 'true'
@@ -43,6 +44,8 @@ jobs:
           echo "CUSTOM_TOKEN=${{ secrets.CUSTOM_TOKEN }}" >> .env
           echo "NEXT_PUBLIC_GTM_ID=${{ vars.NEXT_PUBLIC_GTM_ID }}" >> .env
           echo "NEXT_PUBLIC_NODE_ENV=${{ vars.NEXT_PUBLIC_NODE_ENV }}" >> .env
+          echo "DECK_PIN=${{ secrets.DECK_PIN }}" >> .env
+          echo "DECK_SECRET=${{ secrets.DECK_SECRET }}" >> .env
 
           # Install dependencies and build frontend
           npm install
