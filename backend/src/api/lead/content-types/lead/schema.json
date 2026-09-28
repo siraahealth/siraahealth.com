@@ -54,6 +54,15 @@
     },
     "urgency": {
       "type": "string"
+    },
+    "lead_final_status": {
+      "type": "enumeration",
+      "enum": [
+        "Not Answering Call Again",
+        "OPD Done",
+        "OPD Schedule",
+        "IPD Done"
+      ]
     }
   }
 }
